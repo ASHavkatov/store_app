@@ -8,7 +8,7 @@ import 'package:store_app/core/presentations/store_sign_up_container.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/onboarding_screen_splash/onboarding/widgets/store_floating_button.dart';
 
-import '../../core/routing/routes.dart';
+import '../../../core/routing/routes.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
@@ -20,6 +20,7 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         child: SingleChildScrollView(
