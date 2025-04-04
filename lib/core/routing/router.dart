@@ -6,10 +6,10 @@ import 'package:store_app/terms_and_privacy/cookie_use.dart';
 import 'package:store_app/terms_and_privacy/privacy_view.dart';
 import 'package:store_app/terms_and_privacy/terms_view.dart';
 
-import '../../login_sign_up/sign_up/sign_up_view.dart';
+import '../../login_sign_up/sign_up/page/sign_up_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.onBoarding,
+  initialLocation: Routes.signUp,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
