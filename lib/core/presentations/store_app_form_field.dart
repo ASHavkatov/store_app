@@ -38,7 +38,7 @@ class StoreAppFormField extends StatelessWidget {
           decoration: InputDecoration(
             suffix: suffix,
             hintText: hintText,
-            hintStyle: TextStyle(color: AppColors.primary400, fontSize: 16),
+            hintStyle: TextStyle(color: AppColors.primary500, fontSize: 16),
             contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
