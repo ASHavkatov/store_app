@@ -1,14 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/presentations/store_app_form_field.dart';
-import 'package:store_app/core/presentations/store_app_text.dart';
-import 'package:store_app/core/presentations/store_sign_up_container.dart';
 import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/onboarding_screen_splash/onboarding/widgets/store_floating_button.dart';
 
-import '../../../core/routing/routes.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../comman/presentations/store_app_form_field.dart';
+import '../../../comman/presentations/store_app_text.dart';
+import '../../../comman/presentations/store_sign_up_container.dart';
+import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
 
 class SignUpView extends StatelessWidget {
   SignUpView({super.key});
@@ -28,7 +29,7 @@ class SignUpView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 55),
+              SizedBox(height: 55.h),
               StoreAppText(
                 title: "Create an account",
                 color: AppColors.primary900,
@@ -41,7 +42,7 @@ class SignUpView extends StatelessWidget {
                 color: AppColors.primary500,
                 size: 16,
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
               StoreAppFormField(
                 title: "Full Name",
                 hintText: "Enter your full name",
@@ -57,7 +58,7 @@ class SignUpView extends StatelessWidget {
                 color: AppColors.primary900,
                 controller: emailController,
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 16.h),
               StoreAppFormField(
                 title: "Password",
                 hintText: "Enter your password",
@@ -66,7 +67,7 @@ class SignUpView extends StatelessWidget {
                 controller: passwordController,
                 suffix: SvgPicture.asset("assets/icons/store_app_hide.svg"),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 12.h),
               Text.rich(
                 TextSpan(
                   text: 'By signing up you agree to our ',
@@ -118,14 +119,14 @@ class SignUpView extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
               StoreFloatingButton(
                 text: "Create an Account",
                 arrow: false,
                 color: AppColors.primary200,
                 callback: () {},
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
               Row(
                 children: [
                   const Expanded(child: Divider()),
@@ -142,7 +143,7 @@ class SignUpView extends StatelessWidget {
                   const Expanded(child: Divider()),
                 ],
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 24.h),
               StoreSignUpContainer(
                 color: Colors.white,
                 title: "Sigh Up With Google",
@@ -156,7 +157,7 @@ class SignUpView extends StatelessWidget {
                 svg: "assets/icons/store_app_facebook.svg",
                 fontColor: Colors.white,
               ),
-              SizedBox(height: 48),
+              SizedBox(height: 63.h),
               Center(
                 child: Text.rich(
                   TextSpan(

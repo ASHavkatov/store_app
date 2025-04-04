@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 
-import '../core/routing/routes.dart';
+import '../../../core/routing/routes.dart';
 
 class PrivacyView extends StatelessWidget {
   const PrivacyView({super.key});
