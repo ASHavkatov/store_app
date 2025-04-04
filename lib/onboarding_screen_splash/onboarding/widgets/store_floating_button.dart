@@ -6,7 +6,9 @@ class StoreFloatingButton extends StatelessWidget {
     super.key,
     required this.text,
     required this.arrow,
-    required this.callback
+    required this.callback,
+    this.width = 341,
+    this.height = 54,
   });
 
   final String text;
@@ -15,6 +17,8 @@ class StoreFloatingButton extends StatelessWidget {
 
   final VoidCallback callback;
 
+  final double width, height;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,8 +26,8 @@ class StoreFloatingButton extends StatelessWidget {
         callback;
       },
       child: Container(
-        width: 341,
-        height: 54,
+        width: width,
+        height: height,
         decoration: BoxDecoration(
           color: Colors.black,
           borderRadius: BorderRadius.circular(10),
