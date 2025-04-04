@@ -5,8 +5,8 @@ class StoreAppText extends StatelessWidget {
     super.key,
     required this.title,
     required this.color,
-     this.size = 18,
-     this.fontWeight = FontWeight.w400,
+    this.size = 18,
+    this.fontWeight = FontWeight.w400,
   });
 
   final String title;
@@ -16,6 +16,15 @@ class StoreAppText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(title, style: TextStyle(color: color, fontWeight: fontWeight, fontSize: size,letterSpacing: -1,height: 1),);
+    return Text(
+      title,
+      style: TextStyle(
+        color: color,
+        fontWeight: fontWeight,
+        fontSize: size,
+        letterSpacing: -1,
+        height: 1,
+      ),
+    );
   }
 }

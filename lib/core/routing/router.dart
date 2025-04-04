@@ -9,7 +9,7 @@ import 'package:store_app/terms_and_privacy/terms_view.dart';
 import '../../login_sign_up/sign_up/page/sign_up_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.signUp,
+  initialLocation: Routes.onBoarding,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
