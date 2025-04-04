@@ -7,8 +7,8 @@ class StoreFloatingButton extends StatelessWidget {
     required this.text,
     required this.arrow,
     required this.callback,
-    this.width = 341,
-    this.height = 54,
+    this.width = double.infinity,
+    this.height = 54, required this.color,
   });
 
   final String text;
@@ -18,6 +18,7 @@ class StoreFloatingButton extends StatelessWidget {
   final VoidCallback callback;
 
   final double width, height;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +26,23 @@ class StoreFloatingButton extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: color,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
         spacing: 10,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            text,
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontFamily: "GeneralSans",
-                fontWeight: FontWeight.w500),
+          GestureDetector(
+            onTap: callback,
+            child: Text(
+              text,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: "GeneralSans",
+                  fontWeight: FontWeight.w500),
+            ),
           ),
           if(arrow)
           SvgPicture.asset("assets/icons/arrow-right.svg")
