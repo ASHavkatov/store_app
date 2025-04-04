@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/presentations/store_app_form_field.dart';
@@ -30,14 +31,14 @@ class LoginView extends StatelessWidget {
               size: 32,
               fontWeight: FontWeight.w600,
             ),
-            SizedBox(height: 8),
+            SizedBox(height: 8.h),
             StoreAppText(
               title: "It’s great to see you again.",
               color: Colors.black.withValues(alpha: 0.5),
               size: 16,
               fontWeight: FontWeight.w400,
             ),
-            SizedBox(height: 25),
+            SizedBox(height: 25.h),
             StoreAppFormField(
               title: 'Email',
               hintText: "Enter your email address",
@@ -46,7 +47,7 @@ class LoginView extends StatelessWidget {
               controller: emailController,
               size: 16,
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             StoreAppFormField(
               title: "Password",
               hintText: "Enter your password",
@@ -56,7 +57,7 @@ class LoginView extends StatelessWidget {
               size: 16,
               suffix: SvgPicture.asset('assets/icons/store_app_hide.svg'),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 10.h),
             Row(
               children: [
                 Text(
@@ -82,7 +83,7 @@ class LoginView extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 24.h),
             StoreFloatingButton(
               text: "Login",
               arrow: false,
@@ -103,21 +104,21 @@ class LoginView extends StatelessWidget {
                 const Expanded(child: Divider()),
               ],
             ),
-            SizedBox(height: 24),
+            SizedBox(height: 24.h),
             StoreSignUpContainer(
               color: Colors.white,
               title: "Login with Google",
               svg: "assets/icons/store_app_google.svg",
               fontColor: Colors.black,
             ),
-            SizedBox(height: 16),
+            SizedBox(height: 16.h),
             StoreSignUpContainer(
               color: AppColors.darkBlue,
               title: "Login with Facebook",
               svg: "assets/icons/store_app_facebook.svg",
               fontColor: Colors.white,
             ),
-            SizedBox(height: 212),
+            SizedBox(height: 164.h),
             Center(
               child: Text.rich(
                 TextSpan(
