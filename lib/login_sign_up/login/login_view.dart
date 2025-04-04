@@ -133,7 +133,7 @@ class LoginView extends StatelessWidget {
                       ),
                       recognizer:
                           TapGestureRecognizer()
-                            ..onTap = () {();},
+                            ..onTap = () {context.go(Routes.signUp);},
                     ),
                   ],
                 ),

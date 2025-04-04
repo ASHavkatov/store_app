@@ -43,9 +43,10 @@ class OnboardingView extends StatelessWidget {
         width: double.infinity,
         height: 107,
         color: Colors.white,
-        child: Center(
-            child: ElevatedButton(
-          onPressed: () {
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25, vertical: 22),
+            child: GestureDetector(
+          onTap: () {
             context.go(Routes.signUp);
           },
           child: StoreFloatingButton(
