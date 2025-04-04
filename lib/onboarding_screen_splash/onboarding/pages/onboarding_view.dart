@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 import '../../../core/go_route/routes.dart';
 import '../widgets/store_floating_button.dart';
@@ -46,12 +47,13 @@ class OnboardingView extends StatelessWidget {
         child: Center(
             child: ElevatedButton(
           onPressed: () {
-            context.go(Routes.login);
+            context.go(Routes.signUp);
           },
           child: StoreFloatingButton(
             text: "Get Started",
-            arrow: false,
+            arrow: true,
             callback: () {},
+            color: AppColors.primary900,
           ),
         )),
       ),

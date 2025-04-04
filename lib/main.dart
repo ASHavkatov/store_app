@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:store_app/onboarding_screen_splash/onboarding/pages/onboarding_view.dart';
+import 'core/go_route/router.dart';
 
 void main(){
   runApp(MyApp());
