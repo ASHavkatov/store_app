@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/go_route/routes.dart';
 import '../widgets/store_floating_button.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -42,8 +44,16 @@ class OnboardingView extends StatelessWidget {
         height: 107,
         color: Colors.white,
         child: Center(
-          child: StoreFloatingButton(text: "Get Started",arrow: false,callback: (){},)
-        ),
+            child: ElevatedButton(
+          onPressed: () {
+            context.go(Routes.login);
+          },
+          child: StoreFloatingButton(
+            text: "Get Started",
+            arrow: false,
+            callback: () {},
+          ),
+        )),
       ),
     );
   }
