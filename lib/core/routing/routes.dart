@@ -6,4 +6,5 @@ class Routes{
   static const terms = "/terms";
   static const privacy = "/privacy";
   static const cookieUse = "/cookieUse";
+  static const resetPassword = "/resetPassword";
 }

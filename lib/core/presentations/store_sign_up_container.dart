@@ -3,7 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app/core/utils/colors.dart';
 
 class StoreSignUpContainer extends StatelessWidget {
-  const StoreSignUpContainer({super.key, required this.color, required this.title, required this.svg, required this.fontColor});
+  const StoreSignUpContainer({
+    super.key,
+    required this.color,
+    required this.title,
+    required this.svg,
+    required this.fontColor,
+  });
 
   final Color color, fontColor;
   final String title;
@@ -17,6 +23,7 @@ class StoreSignUpContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppColors.primary200),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
@@ -30,7 +37,7 @@ class StoreSignUpContainer extends StatelessWidget {
                 color: fontColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                letterSpacing: -0.5
+                letterSpacing: -0.5,
               ),
             ),
           ],
