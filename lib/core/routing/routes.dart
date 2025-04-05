@@ -8,4 +8,5 @@ class Routes{
   static const cookieUse = "/cookieUse";
   static const resetPassword = "/reset-password";
   static const splashScreen = '/splash-screen';
+  static const validation = '/validation';
 }
