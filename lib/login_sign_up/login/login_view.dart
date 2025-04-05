@@ -21,7 +21,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.only(left: 25, right: 25, top: 59),
+        padding:  EdgeInsets.only(left: 25.w, right: 25.w, top: 59.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
