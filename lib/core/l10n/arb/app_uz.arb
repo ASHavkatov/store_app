@@ -1,0 +1,16 @@
+{
+  "getStarted": "Boshlash",
+  "createAccount": "Akkaunt yaratish ",
+  "letsCreateAccount": "Keling yangi akkaunt yaratamiz",
+  "fullName": "Ism Sharifingiz",
+  "enterName": "Ism Sharifingizni kiriting",
+  "enterEmail": "Emailingizni kiriting",
+  "password": "Parol",
+  "enterPassword": "Parolingizni kiriting",
+  "agreeTo": "Ro'yxatdan o'tish orqali siz quyidagilarga rozisiz",
+  "signUpGoogle": "Google orqali ro'yxatdan o'tish",
+  "signUpFacebook": "Facebook orqali ro'yxatdan o'tish",
+  "alreadyHave": "Allaqachon akkaunt mavjudmi?",
+  "login": "Kirish",
+  "enterValidEmail": "Iltimos to'g'ri email manzil kiriting"
+}
