@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/presentations/store_app_form_field.dart';
-import 'package:store_app/core/presentations/store_app_text.dart';
-import 'package:store_app/core/presentations/store_sign_up_container.dart';
 import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/onboarding_screen_splash/onboarding/widgets/store_floating_button.dart';
-
-import '../../core/routing/routes.dart';
+import '../../../../core/routing/routes.dart';
+import '../../../comman/presentations/store_app_form_field.dart';
+import '../../../comman/presentations/store_app_text.dart';
+import '../../../comman/presentations/store_sign_up_container.dart';
+import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({super.key});
@@ -20,6 +19,7 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding:  EdgeInsets.only(left: 25.w, right: 25.w, top: 59.h),
         child: Column(
