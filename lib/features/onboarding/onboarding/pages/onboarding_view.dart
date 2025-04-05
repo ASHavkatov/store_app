@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
+import 'package:store_app/core/l10n/localization_view_model.dart';
 import 'package:store_app/core/utils/colors.dart';
-import '../../../core/routing/routes.dart';
+import '../../../../core/routing/routes.dart';
 import '../widgets/store_floating_button.dart';
 
 class OnboardingView extends StatelessWidget {
@@ -10,7 +13,28 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(backgroundColor: Colors.white,surfaceTintColor: Colors.transparent,),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        actions: [
+          TextButton(
+            onPressed: () {
+              context.read<LocalizationViewModel>().currentLocale = Locale(
+                "uz",
+              );
+            },
+            child: Text("uz"),
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<LocalizationViewModel>().currentLocale = Locale(
+                "en",
+              );
+            },
+            child: Text("en"),
+          ),
+        ],
+      ),
       body: Stack(
         children: [
           Container(
@@ -45,17 +69,18 @@ class OnboardingView extends StatelessWidget {
         color: Colors.white,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25, vertical: 22),
-            child: GestureDetector(
-          onTap: () {
-            context.go(Routes.signUp);
-          },
-          child: StoreFloatingButton(
-            text: "Get Started",
-            arrow: true,
-            callback: () {},
-            color: AppColors.primary900,
+          child: GestureDetector(
+            onTap: () {
+              context.go(Routes.signUp);
+            },
+            child: StoreFloatingButton(
+              text: MyLocalizations.of(context)!.getStarted,
+              arrow: true,
+              callback: () {},
+              color: AppColors.primary900,
+            ),
           ),
-        )),
+        ),
       ),
     );
   }

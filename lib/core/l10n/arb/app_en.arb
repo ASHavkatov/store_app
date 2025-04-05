@@ -1,0 +1,16 @@
+{
+  "getStarted": "Get Started",
+  "createAccount": "Create an account ",
+  "letsCreateAccount": "Let's create your account",
+  "fullName": "Full Name",
+  "enterName": "Enter your full name",
+  "enterEmail": "Enter your email",
+  "password": "Password",
+  "enterPassword": "Enter your password",
+  "agreeTo": "By signing up you agree to our",
+  "signUpGoogle": "Sign Up with Google",
+  "signUpFacebook": "Sign Up with Facebook",
+  "alreadyHave": "Already have an account?",
+  "login": "Login",
+  "enterValidEmail": "Please enter valid email address"
+}

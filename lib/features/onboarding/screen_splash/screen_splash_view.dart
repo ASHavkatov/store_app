@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/routing/routes.dart';
-import 'package:store_app/onboarding_screen_splash/onboarding/pages/onboarding_view.dart';
 
 class SplashScreen extends StatelessWidget {
   @override

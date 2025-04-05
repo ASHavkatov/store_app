@@ -1,13 +1,16 @@
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
-import 'package:store_app/login_sign_up/login/login_view.dart';
-import 'package:store_app/onboarding_screen_splash/onboarding/pages/onboarding_view.dart';
-import 'package:store_app/onboarding_screen_splash/screen_splash/screen_splash_view.dart';
-import 'package:store_app/terms_and_privacy/cookie_use.dart';
-import 'package:store_app/terms_and_privacy/privacy_view.dart';
-import 'package:store_app/terms_and_privacy/terms_view.dart';
+import 'package:store_app/data/repositories/auth_repository.dart';
+import 'package:store_app/features/authentication/sign_up/blocs/sign_up_view_model.dart';
 
-import '../../login_sign_up/sign_up/page/sign_up_view.dart';
+import '../../features/authentication/login/pages/login_view.dart';
+import '../../features/authentication/sign_up/page/sign_up_view.dart';
+import '../../features/authentication/terms_and_privacy/cookie_use.dart';
+import '../../features/authentication/terms_and_privacy/privacy_view.dart';
+import '../../features/authentication/terms_and_privacy/terms_view.dart';
+import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
+import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   initialLocation: Routes.splashScreen,
@@ -16,7 +19,7 @@ GoRouter router = GoRouter(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(path: Routes.signUp, builder: (context, state) => SignUpView()),
+    GoRoute(path: Routes.signUp, builder: (context, state) => SignUpView(vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),)),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
