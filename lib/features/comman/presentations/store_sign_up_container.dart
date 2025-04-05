@@ -26,7 +26,7 @@ class StoreSignUpContainer extends StatelessWidget {
         border: Border.all(color: AppColors.primary200),
       ),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 70, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
         child: Row(
           children: [
             SvgPicture.asset(svg),

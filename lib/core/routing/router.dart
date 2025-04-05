@@ -1,5 +1,8 @@
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
+import 'package:store_app/data/repositories/auth_repository.dart';
+import 'package:store_app/features/authentication/sign_up/blocs/sign_up_view_model.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -16,7 +19,7 @@ GoRouter router = GoRouter(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(path: Routes.signUp, builder: (context, state) => SignUpView()),
+    GoRoute(path: Routes.signUp, builder: (context, state) => SignUpView(vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),)),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
