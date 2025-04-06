@@ -12,7 +12,7 @@ import '../../../comman/presentations/store_sign_up_container.dart';
 import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
 
 class LoginView extends StatefulWidget {
-  LoginView({super.key});
+  const LoginView({super.key});
 
   @override
   State<LoginView> createState() => _LoginViewState();
