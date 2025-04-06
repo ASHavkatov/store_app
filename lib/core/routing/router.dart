@@ -1,7 +1,9 @@
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
+import 'package:store_app/features/authentication/login/manager/login_view_model.dart';
 import 'package:store_app/features/authentication/reset_password/pages/reset_password.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
@@ -19,16 +21,29 @@ GoRouter router = GoRouter(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(path: Routes.signUp, builder: (context, state) => SignUpView(vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),)),
+    GoRoute(
+      path: Routes.signUp,
+      builder:
+          (context, state) => SignUpView(
+            vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),
+          ),
+    ),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
-    GoRoute(path: Routes.login, builder: (context, state) => LoginView()),
+    GoRoute(
+      path: Routes.login,
+      builder:
+          (context, state) =>
+              LoginView(vm: LoginViewModel(repo: context.read())),
+    ),
     GoRoute(
       path: Routes.splashScreen,
       builder: (context, state) => SplashScreen(),
     ),
-    GoRoute(path: Routes.validation, builder: (context, state) => ResetPassword()),
-
+    GoRoute(
+      path: Routes.validation,
+      builder: (context, state) => ResetPassword(),
+    ),
   ],
 );
