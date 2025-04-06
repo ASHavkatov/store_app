@@ -130,7 +130,7 @@ final SignUpViewModel vm;
                       arrow: false,
                       color: AppColors.primary200,
                       callback: () {
-
+                        context.push(Routes.home);
                       },
                     ),
                     SizedBox(height: 24.h),
