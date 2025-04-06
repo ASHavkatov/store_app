@@ -78,6 +78,50 @@ final SignUpViewModel vm;
                       ),
                       SizedBox(height: 12.h),
                       Text.rich(
+                    ),
+                    SizedBox(height: 24.h),
+                    StoreFloatingButton(
+                      text: MyLocalizations.of(context)!.createAccount,
+                      arrow: false,
+                      color: AppColors.primary200,
+                      callback: () {
+                        context.push(Routes.home);
+                      },
+                    ),
+                    SizedBox(height: 24.h),
+                    Row(
+                      children: [
+                        const Expanded(child: Divider()),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text(
+                            'Or',
+                            style: TextStyle(
+                              color: AppColors.primary500,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        const Expanded(child: Divider()),
+                      ],
+                    ),
+                    SizedBox(height: 24.h),
+                    StoreSignUpContainer(
+                      color: Colors.white,
+                      title: MyLocalizations.of(context)!.signUpGoogle,
+                      svg: "assets/icons/store_app_google.svg",
+                      fontColor: AppColors.primary900,
+                    ),
+                    SizedBox(height: 16),
+                    StoreSignUpContainer(
+                      color: AppColors.darkBlue,
+                      title: MyLocalizations.of(context)!.signUpFacebook,
+                      svg: "assets/icons/store_app_facebook.svg",
+                      fontColor: Colors.white,
+                    ),
+                    SizedBox(height: 63.h),
+                    Center(
+                      child: Text.rich(
                         TextSpan(
                           text: MyLocalizations.of(context)!.agreeTo,
                           style: TextStyle(color: AppColors.primary500, fontSize: 14),

@@ -7,8 +7,8 @@ import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_
 
 import '../../../../core/routing/routes.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+class VerificationView extends StatelessWidget {
+  const VerificationView({super.key});
 
   @override
   Widget build(BuildContext context) {

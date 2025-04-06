@@ -4,7 +4,8 @@ import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
 import 'package:store_app/features/authentication/login/manager/login_view_model.dart';
-import 'package:store_app/features/authentication/reset_password/pages/reset_password.dart';
+import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
+import 'package:store_app/features/home/pages/home_view.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -43,7 +44,11 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.validation,
-      builder: (context, state) => ResetPassword(),
+      builder: (context, state) => VerificationView(),
+    ),
+    GoRoute(
+      path: Routes.home,
+      builder: (context, state) => HomeView(),
     ),
   ],
 );
