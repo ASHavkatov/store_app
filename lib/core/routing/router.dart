@@ -2,6 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
+import 'package:store_app/features/authentication/reset_password/pages/validation_view.dart';
 import 'package:store_app/features/authentication/sign_up/blocs/sign_up_view_model.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
@@ -28,5 +29,7 @@ GoRouter router = GoRouter(
       path: Routes.splashScreen,
       builder: (context, state) => SplashScreen(),
     ),
+    GoRoute(path: Routes.validation, builder: (context, state) => ValidationView()),
+
   ],
 );

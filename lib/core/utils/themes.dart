@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 
 class AppThemes {
-  static final darkTheme = ThemeData(
+  static final lightTheme = ThemeData(
     fontFamily: "GeneralSans",
     colorScheme: ColorScheme(
       brightness: Brightness.light,
