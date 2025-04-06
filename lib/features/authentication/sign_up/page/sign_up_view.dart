@@ -16,13 +16,13 @@ import '../manager/sign_up_view_model.dart';
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key, required this.vm});
 
-final SignUpViewModel vm;
+  final SignUpViewModel vm;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignUpViewModel>(
-      create: (context)=> SignUpViewModel(authRepo: context.read()),
-      builder:(context, child){
+      create: (context) => SignUpViewModel(authRepo: context.read()),
+      builder: (context, child) {
         return Scaffold(
           backgroundColor: Colors.white,
           body: Padding(
@@ -31,8 +31,7 @@ final SignUpViewModel vm;
               child: Form(
                 key: vm.formKey,
                 child: Consumer<SignUpViewModel>(
-                  builder:(context,vm, _)=> Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  builder: (context, vm, _) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 55.h),
@@ -50,7 +49,7 @@ final SignUpViewModel vm;
                       ),
                       SizedBox(height: 24.h),
                       StoreAppFormField(
-                        validator:(email)=> vm.validateFullName(email),
+                        validator: (email) => vm.validateFullName(email),
                         title: MyLocalizations.of(context)!.fullName,
                         hintText: MyLocalizations.of(context)!.enterName,
                         fontWeight: FontWeight.w500,
@@ -59,7 +58,7 @@ final SignUpViewModel vm;
                       ),
                       SizedBox(height: 16),
                       StoreAppFormField(
-                        validator: (email)=> vm.validateEmail(email),
+                        validator: (email) => vm.validateEmail(email),
                         title: "Email",
                         hintText: MyLocalizations.of(context)!.enterEmail,
                         fontWeight: FontWeight.w500,
@@ -68,7 +67,7 @@ final SignUpViewModel vm;
                       ),
                       SizedBox(height: 16.h),
                       StoreAppFormField(
-                        validator: (password)=> vm.validatePassword(password),
+                        validator: (password) => vm.validatePassword(password),
                         title: MyLocalizations.of(context)!.password,
                         hintText: MyLocalizations.of(context)!.enterPassword,
                         fontWeight: FontWeight.w500,
@@ -76,109 +75,59 @@ final SignUpViewModel vm;
                         controller: vm.passwordController,
                         suffix: SvgPicture.asset("assets/icons/store_app_hide.svg"),
                       ),
-                      SizedBox(height: 12.h),
-                      Text.rich(
-                    ),
-                    SizedBox(height: 24.h),
-                    StoreFloatingButton(
-                      text: MyLocalizations.of(context)!.createAccount,
-                      arrow: false,
-                      color: AppColors.primary200,
-                      callback: () {
-                        context.push(Routes.home);
-                      },
-                    ),
-                    SizedBox(height: 24.h),
-                    Row(
-                      children: [
-                        const Expanded(child: Divider()),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            'Or',
-                            style: TextStyle(
-                              color: AppColors.primary500,
-                              fontSize: 14,
-                            ),
+                      SizedBox(height: 24.h),
+                      Center(
+                        child: Text.rich(
+                          TextSpan(
+                            text: MyLocalizations.of(context)!.agreeTo,
+                            style: TextStyle(color: AppColors.primary500, fontSize: 14),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Terms, ',
+                                style: TextStyle(
+                                  color: AppColors.primary900,
+                                  fontSize: 15,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(Routes.terms),
+                              ),
+                              TextSpan(
+                                text: 'Privacy Policy, ',
+                                style: TextStyle(
+                                  color: AppColors.primary900,
+                                  fontSize: 15,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(Routes.privacy),
+                              ),
+                              TextSpan(
+                                text: 'and ',
+                                style: TextStyle(
+                                  color: AppColors.primary500,
+                                  fontSize: 14,
+                                ),
+                              ),
+                              TextSpan(
+                                text: 'Cookie Use',
+                                style: TextStyle(
+                                  color: AppColors.primary900,
+                                  fontSize: 15,
+                                ),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(Routes.cookieUse),
+                              ),
+                            ],
                           ),
-                        ),
-                        const Expanded(child: Divider()),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    StoreSignUpContainer(
-                      color: Colors.white,
-                      title: MyLocalizations.of(context)!.signUpGoogle,
-                      svg: "assets/icons/store_app_google.svg",
-                      fontColor: AppColors.primary900,
-                    ),
-                    SizedBox(height: 16),
-                    StoreSignUpContainer(
-                      color: AppColors.darkBlue,
-                      title: MyLocalizations.of(context)!.signUpFacebook,
-                      svg: "assets/icons/store_app_facebook.svg",
-                      fontColor: Colors.white,
-                    ),
-                    SizedBox(height: 63.h),
-                    Center(
-                      child: Text.rich(
-                        TextSpan(
-                          text: MyLocalizations.of(context)!.agreeTo,
-                          style: TextStyle(color: AppColors.primary500, fontSize: 14),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Terms ,',
-                              style: TextStyle(
-                                color: AppColors.primary900,
-                                fontSize: 15,
-                              ),
-                              recognizer:
-                              TapGestureRecognizer()
-                                ..onTap = () {
-                                  context.go(Routes.terms);
-                                },
-                            ),
-                            TextSpan(
-                              text: 'Privacy Policy',
-                              style: TextStyle(
-                                color: AppColors.primary900,
-                                fontSize: 15,
-                              ),
-                              recognizer:
-                              TapGestureRecognizer()
-                                ..onTap = () {
-                                  context.go(Routes.privacy);
-                                },
-                            ),
-                            TextSpan(
-                              text: ', and ',
-                              style: TextStyle(
-                                color: AppColors.primary500,
-                                fontSize: 14,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'Cookie Use',
-                              style: TextStyle(
-                                color: AppColors.primary900,
-                                fontSize: 15,
-                              ),
-                              recognizer:
-                              TapGestureRecognizer()
-                                ..onTap = () {
-                                  context.go(Routes.cookieUse);
-                                },
-                            ),
-                          ],
                         ),
                       ),
                       SizedBox(height: 24.h),
+
                       StoreFloatingButton(
                         text: MyLocalizations.of(context)!.createAccount,
                         arrow: false,
                         color: AppColors.primary200,
                         callback: () {
-
+                          context.push(Routes.home);
                         },
                       ),
                       SizedBox(height: 24.h),
@@ -212,7 +161,7 @@ final SignUpViewModel vm;
                         svg: "assets/icons/store_app_facebook.svg",
                         fontColor: Colors.white,
                       ),
-                      SizedBox(height: 63.h),
+                      SizedBox(height: 48.h),
                       Center(
                         child: Text.rich(
                           TextSpan(
@@ -225,16 +174,14 @@ final SignUpViewModel vm;
                                   color: AppColors.primary900,
                                   fontSize: 15,
                                 ),
-                                recognizer:
-                                TapGestureRecognizer()
-                                  ..onTap = () {
-                                    context.go(Routes.login);
-                                  },
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () => context.go(Routes.login),
                               )
                             ],
                           ),
                         ),
                       ),
+                      SizedBox(height: 32.h),
                     ],
                   ),
                 ),
