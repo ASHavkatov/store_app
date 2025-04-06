@@ -25,23 +25,21 @@ class StoreSignUpContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: AppColors.primary200),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-        child: Row(
-          children: [
-            SvgPicture.asset(svg),
-            SizedBox(width: 10),
-            Text(
-              title,
-              style: TextStyle(
-                color: fontColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                letterSpacing: -0.5,
-              ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(svg),
+          SizedBox(width: 10),
+          Text(
+            title,
+            style: TextStyle(
+              color: fontColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+              letterSpacing: -0.5,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

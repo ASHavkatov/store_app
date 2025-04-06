@@ -64,6 +64,7 @@ class LoginView extends StatelessWidget {
                             color: Colors.black,
                             controller: emailController,
                             size: 16,
+                            // suffix: ,
                           ),
 
                           SizedBox(height: 16.h),
@@ -126,7 +127,7 @@ class LoginView extends StatelessWidget {
                       color: AppColors.primary900,
                     ),
 
-                    SizedBox(height: 34),
+                    SizedBox(height: 34.h),
                     Row(
                       children: [
                         const Expanded(child: Divider()),

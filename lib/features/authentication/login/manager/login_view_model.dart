@@ -9,6 +9,7 @@ class LoginViewModel extends ChangeNotifier {
   String? _errorMessage;
   bool isEmailValid = false;
   bool isPasswordValid = false;
+  bool isTextFieldValid = false;
 
   bool get hasError => _errorMessage != null;
   final loginController = TextEditingController();
@@ -40,8 +41,10 @@ class LoginViewModel extends ChangeNotifier {
     if (password == null || password.isEmpty) {
       return "Parol maydoni bo'sh bo'lmasligi kerak";
     } else if (password.length < 8) {
-      return "Parol 6 ta belgidan kam bo'lmasligi kerak";
-    } else if (!RegExp(r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$&*~]).{6,}$').hasMatch(password)) {
+      return "Parol 8 ta belgidan kam bo'lmasligi kerak";
+    } else if (!RegExp(
+      r'^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$&*~]).{6,}$',
+    ).hasMatch(password)) {
       return "Parolda 1 ta katta harf, 1 ta raqam va 1 ta maxsus belgi bo'lishi kerak";
     }
     return null;
@@ -53,6 +56,4 @@ class LoginViewModel extends ChangeNotifier {
 
     return isEmailValid && isPasswordValid;
   }
-
-
 }
