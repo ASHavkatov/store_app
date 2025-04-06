@@ -12,7 +12,12 @@ class StoreAppFormField extends StatelessWidget {
     required this.color,
     required this.controller,
     this.size = 16,
+    this.validator,
+    this.onChanged
   });
+
+  final String? Function(String?)?  validator;
+  final void Function(String)? onChanged;
 
   final String title, hintText;
   final FontWeight fontWeight;
@@ -33,7 +38,9 @@ class StoreAppFormField extends StatelessWidget {
           fontWeight: fontWeight,
           size: size,
         ),
-        TextField(
+        TextFormField(
+          onChanged: onChanged,
+          validator: validator,
           controller: controller,
           decoration: InputDecoration(
             suffix: suffix,

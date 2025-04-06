@@ -22,20 +22,20 @@ class StoreFloatingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        spacing: 10,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTap: callback,
-            child: Text(
+    return GestureDetector(
+      onTap: callback,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Row(
+          spacing: 10,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
               text,
               style: TextStyle(
                   color: Colors.white,
@@ -43,10 +43,10 @@ class StoreFloatingButton extends StatelessWidget {
                   fontFamily: "GeneralSans",
                   fontWeight: FontWeight.w500),
             ),
-          ),
-          if(arrow)
-          SvgPicture.asset("assets/icons/arrow-right.svg")
-        ],
+            if(arrow)
+            SvgPicture.asset("assets/icons/arrow-right.svg")
+          ],
+        ),
       ),
     );
   }
