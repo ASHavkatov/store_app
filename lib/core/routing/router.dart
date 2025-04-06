@@ -2,10 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
-import 'package:store_app/features/authentication/reset_password/pages/validation_view.dart';
-import 'package:store_app/features/authentication/sign_up/blocs/sign_up_view_model.dart';
-
+import 'package:store_app/features/authentication/reset_password/pages/reset_password.dart';
 import '../../features/authentication/login/pages/login_view.dart';
+import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
@@ -29,7 +28,7 @@ GoRouter router = GoRouter(
       path: Routes.splashScreen,
       builder: (context, state) => SplashScreen(),
     ),
-    GoRoute(path: Routes.validation, builder: (context, state) => ValidationView()),
+    GoRoute(path: Routes.validation, builder: (context, state) => ResetPassword()),
 
   ],
 );

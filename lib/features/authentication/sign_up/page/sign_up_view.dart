@@ -6,12 +6,12 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/features/authentication/sign_up/blocs/sign_up_view_model.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../comman/presentations/store_app_form_field.dart';
 import '../../../comman/presentations/store_app_text.dart';
 import '../../../comman/presentations/store_sign_up_container.dart';
 import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
+import '../manager/sign_up_view_model.dart';
 
 class SignUpView extends StatelessWidget {
   const SignUpView({super.key, required this.vm});
