@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/authentication/login/manager/login_view_model.dart';
 import '../../../../core/routing/routes.dart';
@@ -37,14 +38,14 @@ class LoginView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     StoreAppText(
-                      title: "Login to your account",
+                      title: MyLocalizations.of(context)!.loginTo,
                       color: Colors.black,
                       size: 32,
                       fontWeight: FontWeight.w600,
                     ),
                     SizedBox(height: 8.h),
                     StoreAppText(
-                      title: "It’s great to see you again.",
+                      title: MyLocalizations.of(context)!.itsGreat,
                       color: Colors.black.withValues(alpha: 0.5),
                       size: 16,
                       fontWeight: FontWeight.w400,
@@ -56,7 +57,7 @@ class LoginView extends StatelessWidget {
                           StoreAppFormField(
                             validator: vm.validateEmail,
                             title: 'Email',
-                            hintText: "Enter your email address",
+                            hintText: MyLocalizations.of(context)!.enterEmail,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                             controller: vm.loginController,
@@ -68,7 +69,7 @@ class LoginView extends StatelessWidget {
                           StoreAppFormField(
                             validator: (value)=> vm.validatePassword(value),
                             title: "Password",
-                            hintText: "Enter your password",
+                            hintText: MyLocalizations.of(context)!.enterPassword,
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                             controller: vm.passwordController,
@@ -84,7 +85,7 @@ class LoginView extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Forgot your password? ',
+                          MyLocalizations.of(context)!.forgotPassword,
                           style: TextStyle(
                             color: Colors.black.withValues(alpha: 0.5),
                             fontSize: 14,
@@ -96,7 +97,7 @@ class LoginView extends StatelessWidget {
                             context.push(Routes.resetPassword);
                           },
                           child: Text(
-                            "Reset your password",
+                            MyLocalizations.of(context)!.resetPassword,
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w400,
@@ -122,10 +123,10 @@ class LoginView extends StatelessWidget {
                     Row(
                       children: [
                         const Expanded(child: Divider()),
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Or',
+                            MyLocalizations.of(context)!.or,
                             style: TextStyle(
                               color: AppColors.primary500,
                               fontSize: 14,
@@ -138,14 +139,14 @@ class LoginView extends StatelessWidget {
                     SizedBox(height: 24.h),
                     StoreSignUpContainer(
                       color: Colors.white,
-                      title: "Login with Google",
+                      title: MyLocalizations.of(context)!.loginWithGoogle,
                       svg: "assets/icons/store_app_google.svg",
                       fontColor: Colors.black,
                     ),
                     SizedBox(height: 16.h),
                     StoreSignUpContainer(
                       color: AppColors.darkBlue,
-                      title: "Login with Facebook",
+                      title: MyLocalizations.of(context)!.loginWithFacebook,
                       svg: "assets/icons/store_app_facebook.svg",
                       fontColor: Colors.white,
                     ),
@@ -153,14 +154,14 @@ class LoginView extends StatelessWidget {
                     Center(
                       child: Text.rich(
                         TextSpan(
-                          text: "Don’t have an account?  ",
+                          text: MyLocalizations.of(context)!.doNotHaveAccount,
                           style: TextStyle(
                             color: AppColors.primary500,
                             fontSize: 16,
                           ),
                           children: <TextSpan>[
                             TextSpan(
-                              text: 'Join',
+                              text: MyLocalizations.of(context)!.join,
                               style: TextStyle(
                                 color: AppColors.primary900,
                                 fontSize: 15,

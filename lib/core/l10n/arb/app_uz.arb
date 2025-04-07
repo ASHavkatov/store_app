@@ -12,5 +12,18 @@
   "signUpFacebook": "Facebook orqali ro'yxatdan o'tish",
   "alreadyHave": "Allaqachon akkaunt mavjudmi?",
   "login": "Kirish",
-  "enterValidEmail": "Iltimos to'g'ri email manzil kiriting"
+  "enterValidEmail": "Iltimos to'g'ri email manzil kiriting",
+  "loginTo": "Akkauntingizga kirish",
+  "itsGreat": "Sizni yana ko'rib turganimizdan xursandmiz",
+  "forgotPassword": "Parolni unutdingizmi?",
+  "loginWithGoogle": "Google bilan kirish",
+  "loginWithFacebook": "Facebook bilan kirish",
+  "doNotHaveAccount": "Akkauntingiz yo'qmi?",
+  "or": "yoki",
+  "join": "Qo'shilish",
+  "resetPassword": "Parolni yangilash",
+  "fourDigit": "4 tali kodni kiriting",
+  "fourDigitExample": "(cody.fisher45@example.com) emailingizga borgan 4 talik kodni kiriting",
+  "emailNorReceived": "Email yetib kelmadi?",
+  "resendCode": "Kodni boshqatan jo'natish"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/features/authentication/reset_password/widgets/reset_password_app_bar.dart';
 import 'package:pinput/pinput.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
@@ -19,7 +20,7 @@ class VerificationView extends StatelessWidget {
         child: ListView(
           children: [
             Text(
-              "Enter 4 Digit Code",
+              MyLocalizations.of(context)!.fourDigit,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontFamily: "GeneralSans",
@@ -28,7 +29,7 @@ class VerificationView extends StatelessWidget {
             ),
             SizedBox(height: 8),
             Text(
-              "Enter 4 digit code that your receive on your email (cody.fisher45@example.com).",
+              MyLocalizations.of(context)!.fourDigitExample,
               style: TextStyle(
                 fontFamily: "GeneralSans",
                 fontWeight: FontWeight.w400,
@@ -67,7 +68,7 @@ class VerificationView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Email not received?",
+                        MyLocalizations.of(context)!.emailNorReceived,
                         style: TextStyle(
                           fontFamily: "GeneralSans",
                           fontWeight: FontWeight.w400,
@@ -77,7 +78,7 @@ class VerificationView extends StatelessWidget {
                       GestureDetector(
                         onTap: () {},
                         child: Text(
-                          "Resend code",
+                          MyLocalizations.of(context)!.resendCode,
                           style: TextStyle(
                             fontFamily: "GeneralSans",
                             fontWeight: FontWeight.w600,

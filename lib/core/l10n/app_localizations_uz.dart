@@ -49,4 +49,43 @@ class MyLocalizationsUz extends MyLocalizations {
 
   @override
   String get enterValidEmail => 'Iltimos to\'g\'ri email manzil kiriting';
+
+  @override
+  String get loginTo => 'Akkauntingizga kirish';
+
+  @override
+  String get itsGreat => 'Sizni yana ko\'rib turganimizdan xursandmiz';
+
+  @override
+  String get forgotPassword => 'Parolni unutdingizmi?';
+
+  @override
+  String get loginWithGoogle => 'Google bilan kirish';
+
+  @override
+  String get loginWithFacebook => 'Facebook bilan kirish';
+
+  @override
+  String get doNotHaveAccount => 'Akkauntingiz yo\'qmi?';
+
+  @override
+  String get or => 'yoki';
+
+  @override
+  String get join => 'Qo\'shilish';
+
+  @override
+  String get resetPassword => 'Parolni yangilash';
+
+  @override
+  String get fourDigit => '4 tali kodni kiriting';
+
+  @override
+  String get fourDigitExample => '(cody.fisher45@example.com) emailingizga borgan 4 talik kodni kiriting';
+
+  @override
+  String get emailNorReceived => 'Email yetib kelmadi?';
+
+  @override
+  String get resendCode => 'Kodni boshqatan jo\'natish';
 }
