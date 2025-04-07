@@ -1,23 +1,22 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/authentication/login/manager/login_view_model.dart';
 import '../../../../core/routing/routes.dart';
-import '../../../comman/presentations/store_app_form_field.dart';
-import '../../../comman/presentations/store_app_text.dart';
-import '../../../comman/presentations/store_sign_up_container.dart';
+import '../../../common/presentations/store_app_form_field.dart';
+import '../../../common/presentations/store_app_text.dart';
+import '../../../common/presentations/store_sign_up_container.dart';
 import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
 
 
 
 
 class LoginView extends StatelessWidget {
-  LoginView({super.key, required this.vm});
+  const LoginView({super.key, required this.vm});
   final LoginViewModel vm;
 
 
@@ -61,6 +60,7 @@ class LoginView extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
                             controller: vm.loginController,
+                            isValid: vm.isEmailValid,
                             size: 16,
                             // suffix: ,
                           ),
@@ -74,9 +74,10 @@ class LoginView extends StatelessWidget {
                             color: Colors.black,
                             controller: vm.passwordController,
                             size: 16,
-                            suffix: SvgPicture.asset(
-                              'assets/icons/store_app_hide.svg',
-                            ),
+                            isValid: vm.isPasswordValid,
+                            // suffix: SvgPicture.asset(
+                            //   'assets/icons/store_app_hide.svg',
+                            // ),
                           ),
                         ],
                       ),
