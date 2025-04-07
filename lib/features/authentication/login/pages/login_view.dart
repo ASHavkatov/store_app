@@ -19,21 +19,18 @@ class LoginView extends StatelessWidget {
   LoginView({super.key, required this.vm});
   final LoginViewModel vm;
 
-  final _formKey = GlobalKey<FormState>();
-
-  final TextEditingController emailController = TextEditingController();
-
-  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>(
       create: (_) => LoginViewModel(repo: context.read()),
       builder:
-          (context, child) => Scaffold(
+          (context, child)
+      { final vm = context.watch<LoginViewModel>();
+            return Scaffold(
             backgroundColor: Colors.white,
             body: Form(
-              key: _formKey,
+              key: vm.formKey,
               child: Padding(
                 padding: EdgeInsets.only(left: 25.w, right: 25.w, top: 59.h),
                 child: Column(
@@ -57,12 +54,12 @@ class LoginView extends StatelessWidget {
                       builder:(context, vm, _)=> Column(
                         children: [
                           StoreAppFormField(
-                            validator: (email)=> vm.validateEmail(email),
+                            validator: vm.validateEmail,
                             title: 'Email',
                             hintText: "Enter your email address",
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
-                            controller: emailController,
+                            controller: vm.loginController,
                             size: 16,
                             // suffix: ,
                           ),
@@ -74,7 +71,7 @@ class LoginView extends StatelessWidget {
                             hintText: "Enter your password",
                             fontWeight: FontWeight.w500,
                             color: Colors.black,
-                            controller: passwordController,
+                            controller: vm.passwordController,
                             size: 16,
                             suffix: SvgPicture.asset(
                               'assets/icons/store_app_hide.svg',
@@ -113,15 +110,9 @@ class LoginView extends StatelessWidget {
                     StoreFloatingButton(
                       text: "Login",
                       arrow: false,
-                      callback: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Malades")),
-                          );
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Utolmading")),
-                          );
+                      callback: () async{
+                        if ( vm.isPasswordValid && context.mounted) {
+
                         }
                       },
                       color: AppColors.primary900,
@@ -188,7 +179,8 @@ class LoginView extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          );
+          },
     );
   }
 }

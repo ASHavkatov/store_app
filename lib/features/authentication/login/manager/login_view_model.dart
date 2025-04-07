@@ -6,24 +6,39 @@ class LoginViewModel extends ChangeNotifier {
   LoginViewModel({required AuthRepository repo}) : _repo = repo;
 
   final AuthRepository _repo;
-  String? _errorMessage;
-  bool isEmailValid = false;
-  bool isPasswordValid = false;
-  bool isTextFieldValid = false;
 
-  bool get hasError => _errorMessage != null;
+  final formKey = GlobalKey<FormState>();
+  String? _errorMessage;
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
 
+  bool isEmailValid = false;
+  bool isPasswordValid = false;
+  bool isTextFieldValid = false;
+  bool isLoading = false;
+
+  bool get hasError => _errorMessage != null;
+
   Future<bool> login() async {
+    if (!formKey.currentState!.validate()) return false;
+
+    isLoading = true;
+    _errorMessage = null;
+    notifyListeners();
+
     try {
-      await _repo.login(loginController.text, passwordController.text);
+      final login = loginController.text.trim();
+      final password = passwordController.text.trim();
+
+      await _repo.login(login, password);
     } on Exception catch (e) {
       _errorMessage = e.toString();
+      isLoading = false;
       notifyListeners();
       return false;
     }
-    _errorMessage == null;
+
+    isLoading = false;
     notifyListeners();
     return true;
   }
@@ -53,7 +68,6 @@ class LoginViewModel extends ChangeNotifier {
   bool validateForm(String email, String password) {
     isEmailValid = validateEmail(email) == null;
     isPasswordValid = validatePassword(password) == null;
-
     return isEmailValid && isPasswordValid;
   }
 }
