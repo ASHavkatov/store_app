@@ -76,7 +76,9 @@ class OnboardingView extends StatelessWidget {
             child: StoreFloatingButton(
               text: MyLocalizations.of(context)!.getStarted,
               arrow: true,
-              callback: () {},
+              callback: () {
+                context.go(Routes.login);
+              },
               color: AppColors.primary900,
             ),
           ),

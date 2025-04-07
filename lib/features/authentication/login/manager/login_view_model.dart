@@ -53,6 +53,4 @@ class LoginViewModel extends ChangeNotifier {
 
     return isEmailValid && isPasswordValid;
   }
-
-
 }

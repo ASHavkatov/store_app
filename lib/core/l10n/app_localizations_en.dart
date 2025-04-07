@@ -24,7 +24,7 @@ class MyLocalizationsEn extends MyLocalizations {
   String get enterName => 'Enter your full name';
 
   @override
-  String get enterEmail => 'Enter your email';
+  String get enterEmail => 'Enter your email address';
 
   @override
   String get password => 'Password';
@@ -49,4 +49,43 @@ class MyLocalizationsEn extends MyLocalizations {
 
   @override
   String get enterValidEmail => 'Please enter valid email address';
+
+  @override
+  String get loginTo => 'Login to your Account';
+
+  @override
+  String get itsGreat => 'It\'s great to see you again';
+
+  @override
+  String get forgotPassword => 'Forgot your password?';
+
+  @override
+  String get loginWithGoogle => 'Login With Google';
+
+  @override
+  String get loginWithFacebook => 'Login With Facebook';
+
+  @override
+  String get doNotHaveAccount => 'Don\'t have an account?';
+
+  @override
+  String get or => 'or';
+
+  @override
+  String get join => 'Join';
+
+  @override
+  String get resetPassword => 'Reset Password';
+
+  @override
+  String get fourDigit => 'Enter 4 Digit Code';
+
+  @override
+  String get fourDigitExample => 'Enter 4 digit code that your receive on your email (cody.fisher45@example.com).';
+
+  @override
+  String get emailNorReceived => 'Email not received?';
+
+  @override
+  String get resendCode => 'Resend Code';
 }

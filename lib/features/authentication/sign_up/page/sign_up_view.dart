@@ -137,10 +137,10 @@ final SignUpViewModel vm;
                     Row(
                       children: [
                         const Expanded(child: Divider()),
-                        const Padding(
+                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'Or',
+                            MyLocalizations.of(context)!.or,
                             style: TextStyle(
                               color: AppColors.primary500,
                               fontSize: 14,

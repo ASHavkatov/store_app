@@ -15,7 +15,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.onBoarding,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -42,7 +42,7 @@ GoRouter router = GoRouter(
       builder: (context, state) => SplashScreen(),
     ),
     GoRoute(
-      path: Routes.validation,
+      path: Routes.resetPassword,
       builder: (context, state) => ResetPassword(),
     ),
   ],

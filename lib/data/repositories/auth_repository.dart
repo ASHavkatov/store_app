@@ -26,7 +26,6 @@ class AuthRepository {
     final result = await client.signUp(
       AuthModel(fullName: fullName, email: email, password: password),
     );
-
     return result;
   }
 
