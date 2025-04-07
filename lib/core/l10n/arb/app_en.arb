@@ -4,7 +4,7 @@
   "letsCreateAccount": "Let's create your account",
   "fullName": "Full Name",
   "enterName": "Enter your full name",
-  "enterEmail": "Enter your email",
+  "enterEmail": "Enter your email address",
   "password": "Password",
   "enterPassword": "Enter your password",
   "agreeTo": "By signing up you agree to our",
@@ -12,5 +12,18 @@
   "signUpFacebook": "Sign Up with Facebook",
   "alreadyHave": "Already have an account?",
   "login": "Login",
-  "enterValidEmail": "Please enter valid email address"
+  "enterValidEmail": "Please enter valid email address",
+  "loginTo": "Login to your Account",
+  "itsGreat": "It's great to see you again",
+  "forgotPassword": "Forgot your password?",
+  "loginWithGoogle": "Login With Google",
+  "loginWithFacebook": "Login With Facebook",
+  "doNotHaveAccount": "Don't have an account?",
+  "or": "or",
+  "join": "Join",
+  "resetPassword": "Reset Password",
+  "fourDigit": "Enter 4 Digit Code",
+  "fourDigitExample": "Enter 4 digit code that your receive on your email (cody.fisher45@example.com).",
+  "emailNorReceived": "Email not received?",
+  "resendCode": "Resend Code"
 }

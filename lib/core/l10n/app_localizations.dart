@@ -128,7 +128,7 @@ abstract class MyLocalizations {
   /// No description provided for @enterEmail.
   ///
   /// In en, this message translates to:
-  /// **'Enter your email'**
+  /// **'Enter your email address'**
   String get enterEmail;
 
   /// No description provided for @password.
@@ -178,6 +178,84 @@ abstract class MyLocalizations {
   /// In en, this message translates to:
   /// **'Please enter valid email address'**
   String get enterValidEmail;
+
+  /// No description provided for @loginTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to your Account'**
+  String get loginTo;
+
+  /// No description provided for @itsGreat.
+  ///
+  /// In en, this message translates to:
+  /// **'It\'s great to see you again'**
+  String get itsGreat;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get forgotPassword;
+
+  /// No description provided for @loginWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login With Google'**
+  String get loginWithGoogle;
+
+  /// No description provided for @loginWithFacebook.
+  ///
+  /// In en, this message translates to:
+  /// **'Login With Facebook'**
+  String get loginWithFacebook;
+
+  /// No description provided for @doNotHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get doNotHaveAccount;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get or;
+
+  /// No description provided for @join.
+  ///
+  /// In en, this message translates to:
+  /// **'Join'**
+  String get join;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @fourDigit.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 4 Digit Code'**
+  String get fourDigit;
+
+  /// No description provided for @fourDigitExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 4 digit code that your receive on your email (cody.fisher45@example.com).'**
+  String get fourDigitExample;
+
+  /// No description provided for @emailNorReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Email not received?'**
+  String get emailNorReceived;
+
+  /// No description provided for @resendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend Code'**
+  String get resendCode;
 }
 
 class _MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
