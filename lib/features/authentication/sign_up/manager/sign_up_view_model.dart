@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/colors.dart';
 import '../../../../data/repositories/auth_repository.dart';
 
 class SignUpViewModel extends ChangeNotifier {
@@ -9,9 +10,20 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool isFullNameValid = false;
-  bool isPasswordValid = false;
-  bool isEmailValid = false;
+  bool? fullNameValid, emailValid, passwordValid;
+
+  Color getBackgroundColor() {
+    if (fullNameValid == null || emailValid == null || passwordValid == null) {
+      return AppColors.primary200;
+    }
+
+    if (!fullNameValid! || !emailValid! || !passwordValid!) {
+      return AppColors.primary200;
+    }
+
+    return AppColors.primary900;
+  }
+
 
   String? validateFullName(String? name) {
     if (name == null || name.isEmpty) {
@@ -52,13 +64,6 @@ class SignUpViewModel extends ChangeNotifier {
     return null;
   }
 
-  bool validateForm(String name,String email, String password){
-    isFullNameValid = validateFullName(name) == null;
-    isEmailValid = validateEmail(email) == null;
-    isPasswordValid = validatePassword(password) == null;
-
-    return isFullNameValid && isEmailValid && isPasswordValid;
-  }
 
   Future<bool> signUp() async {
     final result = await _authRepo.signUp(
