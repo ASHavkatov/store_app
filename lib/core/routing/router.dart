@@ -15,7 +15,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.onBoarding,
+  initialLocation: Routes.login,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
