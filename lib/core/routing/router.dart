@@ -16,7 +16,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.signUp,
+  initialLocation: Routes.splashScreen,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -29,9 +29,6 @@ GoRouter router = GoRouter(
             vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),
           ),
     ),
-    GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
-    GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
-    GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
     GoRoute(
       path: Routes.login,
       builder:
@@ -46,9 +43,9 @@ GoRouter router = GoRouter(
       path: Routes.validation,
       builder: (context, state) => VerificationView(),
     ),
-    GoRoute(
-      path: Routes.home,
-      builder: (context, state) => HomeView(),
-    ),
+    GoRoute(path: Routes.home, builder: (context, state) => HomeView()),
+    GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
+    GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
+    GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
   ],
 );
