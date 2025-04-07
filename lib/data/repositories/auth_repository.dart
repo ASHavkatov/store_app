@@ -9,13 +9,14 @@ class AuthRepository {
 
   String? jwt;
 
-  Future<void> login(String login, String password) async {
+  Future<void> login({required String login,required String password}) async {
     final String token = await client.login(login, password);
     await SecureStorage.deleteToken();
     await SecureStorage.deleteCredentials();
     await SecureStorage.saveCredentials(login: login, password: password);
     await SecureStorage.saveToken(token);
     jwt = token;
+
   }
 
   Future<bool> signUp({
