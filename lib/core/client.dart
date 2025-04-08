@@ -8,7 +8,7 @@ class ApiClient {
   ApiClient() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "http://192.168.1.8:8888/api/v1",
+        baseUrl: "http://192.168.9.103:8888/api/v1",
         validateStatus: (status) => true,
       ),
     );
@@ -23,9 +23,10 @@ class ApiClient {
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
     } else {
-      throw Exception("Login qilib beomdi, xullasi nimadur no'to'g'ri ketgan");
+      throw Exception("Login xatoligi");
     }
   }
+
   Future<bool> signUp(AuthModel model) async {
     var response = await dio.post('/auth/register', data: model.toJson());
     if (response.statusCode == 201) {

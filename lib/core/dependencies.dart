@@ -11,6 +11,6 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => ApiClient()),
   Provider(create: (context) => AuthRepository(client: context.read())),
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
-  ChangeNotifierProvider(create: (context)=> LoginViewModel(repo: context.read())),
+  // ChangeNotifierProvider(create: (context)=> LoginViewModel(repo: context.read())),
   ChangeNotifierProvider(create: (context)=> SignUpViewModel(authRepo: context.read())),
 ];

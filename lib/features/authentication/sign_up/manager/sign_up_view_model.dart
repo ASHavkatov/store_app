@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/colors.dart';
 import '../../../../data/repositories/auth_repository.dart';
 
 class SignUpViewModel extends ChangeNotifier {
@@ -9,6 +10,60 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  bool? fullNameValid, emailValid, passwordValid;
+
+  Color getBackgroundColor() {
+    if (fullNameValid == null || emailValid == null || passwordValid == null) {
+      return AppColors.primary200;
+    }
+
+    if (!fullNameValid! || !emailValid! || !passwordValid!) {
+      return AppColors.primary200;
+    }
+
+    return AppColors.primary900;
+  }
+
+
+  String? validateFullName(String? name) {
+    if (name == null || name.isEmpty) {
+      return "Iltimos ismingizni kiriting";
+    }
+    final parts = name.trim().split(" ");
+    if (parts.length < 2) {
+      return "Iltimos Ism Familiyangizni kiriting";
+    }
+    final isValid = parts.every(
+      (part) => RegExp(r'^[a-zA-Z]+$').hasMatch(part),
+    );
+    if (!isValid) {
+      return "Faqat harflardan iborat bulishi shart";
+    }
+    return null;
+  }
+
+  String? validateEmail(String? email) {
+    if (email == null || email.isEmpty) {
+      return "Iltimos emailni kriting";
+    } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email)) {
+      return "Iltimos emailni to'g'ri kiriting";
+    }
+    return null;
+  }
+
+  String? validatePassword(String? password) {
+    if (password == null || password.isEmpty) {
+      return "Iltimos parolni kiriting";
+    } else if (password.length < 8) {
+      return "Parol 8 tadan kam bulmasligi kerak";
+    } else if (!RegExp(
+      r'^(?=.*[A-Z])(?=.*[0-9]).{6,}$',
+    ).hasMatch(password)) {
+      return "Parolda 1 ta katta harf va 1 ta raqam bulishi shart";
+    }
+    return null;
+  }
+
 
   Future<bool> signUp() async {
     final result = await _authRepo.signUp(
@@ -18,13 +73,13 @@ class SignUpViewModel extends ChangeNotifier {
     );
     return result;
   }
+
   Locale _currentLocale = Locale("en");
 
   Locale get currentLocale => _currentLocale;
 
   set currentLocale(Locale locale) {
-
-    if(_currentLocale != locale) {
+    if (_currentLocale != locale) {
       _currentLocale = locale;
       notifyListeners();
     }

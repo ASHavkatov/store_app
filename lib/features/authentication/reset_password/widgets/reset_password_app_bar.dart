@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/routing/routes.dart';
+
 class ResetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ResetPasswordAppBar({super.key});
 
@@ -14,7 +16,7 @@ class ResetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget
       leading: Center(
         child: GestureDetector(
           onTap: () {
-            context.pop();
+            context.go(Routes.login);
           },
           child: SvgPicture.asset('assets/icons/store_shop_back-arrow.svg'),
         ),
