@@ -9,4 +9,6 @@ class Routes{
   static const resetPassword = "/reset-password";
   static const splashScreen = '/splash-screen';
   static const validation = '/validation';
+  static const notification = '/notification';
+
 }

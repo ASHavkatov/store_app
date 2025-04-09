@@ -9,25 +9,14 @@ class AuthRepository {
 
   String? jwt;
 
-  Future<void> login({required String login,required String password}) async {
-    final String token = await client.login(login, password);
-    await SecureStorage.deleteToken();
+
+  Future<bool> login(String login, String password) async {
+    jwt = await client.login(login, password);
     await SecureStorage.deleteCredentials();
+    await SecureStorage.deleteToken();
+    await SecureStorage.saveToken(jwt!);
     await SecureStorage.saveCredentials(login: login, password: password);
-    await SecureStorage.saveToken(token);
-    jwt = token;
-
-  }
-
-  Future<bool> signUp({
-    required String fullName,
-    required String email,
-    required String password,
-  }) async {
-    final result = await client.signUp(
-      AuthModel(fullName: fullName, email: email, password: password),
-    );
-    return result;
+    return true;
   }
 
   Future<void> logout() async {
@@ -44,5 +33,16 @@ class AuthRepository {
     await SecureStorage.deleteToken();
     await SecureStorage.saveToken(jwt!);
     return true;
+  }
+
+  Future<bool> signUp({
+    required String fullName,
+    required String email,
+    required String password,
+  }) async {
+    final result = await client.signUp(
+      AuthModel(fullName: fullName, email: email, password: password),
+    );
+    return result;
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
@@ -62,10 +63,10 @@ class _SignUpViewState extends State<SignUpView> {
                             color: AppColors.primary900,
                             size: 16,
                             controller: vm.fullNameController,
-                            validator: (value){
-                              if(value == null || value.isEmpty){
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
                                 vm.fullNameValid = false;
-                                setState((){});
+                                setState(() {});
                                 return "This field is required";
                               }
                               vm.fullNameValid = true;
@@ -82,8 +83,8 @@ class _SignUpViewState extends State<SignUpView> {
                             color: AppColors.primary900,
                             controller: vm.emailController,
                             size: 16,
-                            validator: (value){
-                              if(value == null || value.isEmpty){
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
                                 vm.emailValid = false;
                                 setState(() {});
                                 return "This field is required";
@@ -104,14 +105,15 @@ class _SignUpViewState extends State<SignUpView> {
                           SizedBox(height: 16.h),
                           StoreAppFormField(
                             title: MyLocalizations.of(context)!.password,
-                            hintText: MyLocalizations.of(context)!.enterPassword,
+                            hintText:
+                                MyLocalizations.of(context)!.enterPassword,
                             isValid: vm.passwordValid,
                             fontWeight: FontWeight.w500,
                             color: AppColors.primary900,
                             size: 16,
                             controller: vm.passwordController,
-                            validator: (value){
-                              if(value == null || value.isEmpty){
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
                                 vm.passwordValid = false;
                                 setState(() {});
                                 return "This field is required";
@@ -120,9 +122,9 @@ class _SignUpViewState extends State<SignUpView> {
                               setState(() {});
                               return null;
                             },
-                          //   suffix: SvgPicture.asset(
-                          //     "assets/icons/hide.svg",
-                          //   ),
+                            //   suffix: SvgPicture.asset(
+                            //     "assets/icons/store_app_hide.svg",
+                            //   ),
                           ),
                           SizedBox(height: 24.h),
                           Center(
@@ -184,9 +186,51 @@ class _SignUpViewState extends State<SignUpView> {
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
                             color: vm.getBackgroundColor(),
-                            callback: ()  {
-                              vm.formKey.currentState!.validate();
-                              context.go(Routes.home);
+                            callback: () async {
+                              if (vm.formKey.currentState!.validate() && context.mounted) {
+                                final status =
+                                    await Permission.notification.request();
+                                if (status.isGranted) {
+                                  context.go(Routes.home);
+                                } else if (status.isPermanentlyDenied) {
+                                  showDialog(
+                                    context: context,
+                                    builder:
+                                        (context) => AlertDialog(
+                                          title: Text(
+                                            'Notification Permission',
+                                            style: TextStyle(
+                                              color: AppColors.primary900,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 20,
+                                            ),
+                                          ),
+                                          content: Text(
+                                            'Please enable notifications manually in settings to receive alerts.',
+                                            style: TextStyle(
+                                              color: AppColors.primary500,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Cancel"),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                openAppSettings();
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("Open Settings"),
+                                            ),
+                                          ],
+                                        ),
+                                  );
+                                }
+                              }
                             },
                           ),
                           SizedBox(height: 24.h),
@@ -210,14 +254,14 @@ class _SignUpViewState extends State<SignUpView> {
                           StoreSignUpContainer(
                             color: Colors.white,
                             title: MyLocalizations.of(context)!.signUpGoogle,
-                            svg: "assets/icons/google.svg",
+                            svg: "assets/icons/store_app_google.svg",
                             fontColor: AppColors.primary900,
                           ),
                           SizedBox(height: 16),
                           StoreSignUpContainer(
                             color: AppColors.darkBlue,
                             title: MyLocalizations.of(context)!.signUpFacebook,
-                            svg: "assets/icons/facebook.svg",
+                            svg: "assets/icons/store_app_facebook.svg",
                             fontColor: Colors.white,
                           ),
                           SizedBox(height: 48.h),

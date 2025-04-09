@@ -1,29 +1,37 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/auth_repository.dart';
-import 'package:store_app/features/authentication/login/blocs/login_event.dart';
-import 'package:store_app/features/authentication/login/blocs/login_state.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../../../data/repositories/auth_repository.dart';
+import 'login_event.dart';
+import 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _repo;
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   LoginBloc({required AuthRepository repo})
-    : _repo = repo,
-      super(LoginState.initial()) {
-    on<LoginSubmitted>(_onLoginSubmitted);
+      : _repo = repo,
+        super(LoginState.initial()) {
+    on<LoginLoad>(_load);
   }
 
-  Future<void> _onLoginSubmitted(
-    LoginSubmitted event,
-    Emitter<LoginState> emit,
-  ) async {
+  Future<void> _load(LoginLoad event, Emitter<LoginState> emit) async {
     emit(state.copyWith(status: LoginStatus.loading));
 
     try {
-      await _repo.login(login: event.email, password: event.password);
+      final store = await _repo.login(
+        loginController.text,
+        passwordController.text,
+      );
 
-      emit(state.copyWith(status: LoginStatus.success));
+      if (store) {
+        emit(state.copyWith(status: LoginStatus.success));
+      } else {
+        emit(state.copyWith(status: LoginStatus.error));
+      }
     } catch (e) {
-      emit(state.copyWith(status: LoginStatus.error, error: e.toString()));
+      emit(state.copyWith(status: LoginStatus.error));
     }
   }
 }
