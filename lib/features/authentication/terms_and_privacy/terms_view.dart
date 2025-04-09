@@ -17,7 +17,7 @@ class TermsView extends StatelessWidget {
             onTap: () {
               context.go(Routes.signUp);
             },
-            child: SvgPicture.asset("assets/icons/store_shop_back-arrow.svg"),
+            child: SvgPicture.asset("assets/icons/back-arrow.svg"),
           ),
         ),
       ),

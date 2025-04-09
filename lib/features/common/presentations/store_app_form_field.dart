@@ -18,7 +18,7 @@ class StoreAppFormField extends StatelessWidget {
   final String title, hintText;
   final String? Function(String?) validator;
   final FontWeight fontWeight;
-final Color color;
+  final Color color;
   final bool? isValid;
   final AutovalidateMode autoValidateMode;
   final double size;
@@ -61,7 +61,7 @@ final Color color;
               child: Padding(
                 padding: EdgeInsets.only(right: 20.w),
                 child: SvgPicture.asset(
-                  "assets/icons/store_app_validation_${isValid != null && isValid! ? 'success' : 'error'}.svg",
+                  "assets/icons/validation_${isValid != null && isValid! ? 'success' : 'error'}.svg",
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.cover,
