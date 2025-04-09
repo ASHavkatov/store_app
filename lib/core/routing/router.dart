@@ -1,7 +1,9 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
+import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
 import 'package:store_app/features/home/pages/home_view.dart';
 import '../../features/authentication/login/pages/login_view.dart';
@@ -27,7 +29,14 @@ GoRouter router = GoRouter(
             vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),
           ),
     ),
-    GoRoute(path: Routes.login, builder: (context, state) => LoginView()),
+    GoRoute(
+      path: Routes.login,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => LoginBloc(repo: context.read()),
+            child: LoginView(),
+          ),
+    ),
     GoRoute(
       path: Routes.splashScreen,
       builder: (context, state) => SplashScreen(),
