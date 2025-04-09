@@ -8,7 +8,7 @@ class ApiClient {
   ApiClient() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "http://192.168.9.103:8888/api/v1",
+        baseUrl: "http://172.27.32.1:8888/api/v1",
         validateStatus: (status) => true,
       ),
     );
