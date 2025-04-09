@@ -43,18 +43,12 @@ class _StoreButtonClickableState extends State<StoreButtonClickable> {
     return GestureDetector(
       onTap: _toggleColor,
       child: Container(
-        width: widget.width,
+        padding: EdgeInsets.symmetric(horizontal: 15),
         height: widget.height,
         decoration: BoxDecoration(
           color: _isActive ? widget.activeColor : widget.inactiveColor,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.3),
-              spreadRadius: 0.1,
-              blurRadius: 0.1,
-            ),
-          ],
+          border: Border.all(color:Colors.black)
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
