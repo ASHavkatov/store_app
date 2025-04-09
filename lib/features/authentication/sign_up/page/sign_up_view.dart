@@ -187,48 +187,12 @@ class _SignUpViewState extends State<SignUpView> {
                             arrow: false,
                             color: vm.getBackgroundColor(),
                             callback: () async {
-                              if (vm.formKey.currentState!.validate() && context.mounted) {
+                              if (vm.formKey.currentState!.validate() &&
+                                  context.mounted) {
                                 final status =
                                     await Permission.notification.request();
                                 if (status.isGranted) {
-                                  context.go(Routes.home);
-                                } else if (status.isPermanentlyDenied) {
-                                  showDialog(
-                                    context: context,
-                                    builder:
-                                        (context) => AlertDialog(
-                                          title: Text(
-                                            'Notification Permission',
-                                            style: TextStyle(
-                                              color: AppColors.primary900,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                          content: Text(
-                                            'Please enable notifications manually in settings to receive alerts.',
-                                            style: TextStyle(
-                                              color: AppColors.primary500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text("Cancel"),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                openAppSettings();
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text("Open Settings"),
-                                            ),
-                                          ],
-                                        ),
-                                  );
+                                  context.push(Routes.home);
                                 }
                               }
                             },
