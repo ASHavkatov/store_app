@@ -1,14 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import '../../../../core/routing/routes.dart';
-import '../../../comman/presentations/store_app_form_field.dart';
-import '../../../comman/presentations/store_app_text.dart';
-import '../../../comman/presentations/store_sign_up_container.dart';
+import '../../../common/presentations/store_app_form_field.dart';
+import '../../../common/presentations/store_app_text.dart';
+import '../../../common/presentations/store_sign_up_container.dart';
 import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
 
 class LoginView extends StatefulWidget {
@@ -57,7 +56,7 @@ class _LoginViewState extends State<LoginView> {
                 fontWeight: FontWeight.w400,
               ),
               SizedBox(height: 25.h),
-              StoreAppFormField(
+              StoreAppFormField(isValid: true,
                 title: 'Email',
                 hintText: MyLocalizations.of(context)!.enterEmail,
                 fontWeight: FontWeight.w500,
@@ -83,13 +82,14 @@ class _LoginViewState extends State<LoginView> {
               ),
               SizedBox(height: 16.h),
               StoreAppFormField(
+                isValid: true,
                 title: "Password",
                 hintText: MyLocalizations.of(context)!.enterPassword,
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
                 controller: passwordController,
                 size: 16,
-                suffix: SvgPicture.asset('assets/icons/store_app_hide.svg'),
+                // suffix: SvgPicture.asset('assets/icons/store_app_hide.svg'),
                 validator: (value){
                   if(value == null || value.isEmpty){
                     passwordValid = false;
@@ -155,14 +155,14 @@ class _LoginViewState extends State<LoginView> {
               StoreSignUpContainer(
                 color: Colors.white,
                 title: MyLocalizations.of(context)!.loginWithGoogle,
-                svg: "assets/icons/store_app_google.svg",
+                svg: "assets/icons/google.svg",
                 fontColor: Colors.black,
               ),
               SizedBox(height: 16.h),
               StoreSignUpContainer(
                 color: AppColors.darkBlue,
                 title: MyLocalizations.of(context)!.loginWithFacebook,
-                svg: "assets/icons/store_app_facebook.svg",
+                svg: "assets/icons/facebook.svg",
                 fontColor: Colors.white,
               ),
               SizedBox(height: 164.h),

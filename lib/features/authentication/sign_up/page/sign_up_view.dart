@@ -121,7 +121,7 @@ class _SignUpViewState extends State<SignUpView> {
                               return null;
                             },
                           //   suffix: SvgPicture.asset(
-                          //     "assets/icons/store_app_hide.svg",
+                          //     "assets/icons/hide.svg",
                           //   ),
                           ),
                           SizedBox(height: 24.h),
@@ -210,14 +210,14 @@ class _SignUpViewState extends State<SignUpView> {
                           StoreSignUpContainer(
                             color: Colors.white,
                             title: MyLocalizations.of(context)!.signUpGoogle,
-                            svg: "assets/icons/store_app_google.svg",
+                            svg: "assets/icons/google.svg",
                             fontColor: AppColors.primary900,
                           ),
                           SizedBox(height: 16),
                           StoreSignUpContainer(
                             color: AppColors.darkBlue,
                             title: MyLocalizations.of(context)!.signUpFacebook,
-                            svg: "assets/icons/store_app_facebook.svg",
+                            svg: "assets/icons/facebook.svg",
                             fontColor: Colors.white,
                           ),
                           SizedBox(height: 48.h),
