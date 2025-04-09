@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
-import 'package:store_app/features/authentication/login/manager/login_view_model.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
 
 import '../data/repositories/auth_repository.dart';

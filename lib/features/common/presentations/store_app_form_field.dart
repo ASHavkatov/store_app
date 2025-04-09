@@ -11,7 +11,7 @@ class StoreAppFormField extends StatelessWidget {
     required this.hintText,
     required this.validator,
     required this.isValid,
-    this.autoValidateMode = AutovalidateMode.onUnfocus, required this.fontWeight, required this.color, required this.size
+    this.autoValidateMode = AutovalidateMode.onUnfocus, required this.fontWeight, required this.color, required this.size,
   });
 
   final TextEditingController controller;
