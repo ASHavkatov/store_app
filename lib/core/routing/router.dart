@@ -6,6 +6,7 @@ import 'package:store_app/data/repositories/auth_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
 import 'package:store_app/features/home/pages/home_view.dart';
+import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -16,7 +17,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.notification,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -49,5 +50,7 @@ GoRouter router = GoRouter(
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
+    GoRoute(path: Routes.notification, builder: (context, state) => NotificationView()),
+
   ],
 );
