@@ -30,26 +30,25 @@ class _HomeCategoriesState
       scrollDirection: Axis.horizontal,
       child: Row(
         children:
-            categories.map((text) {
-              return Padding(
-                padding: EdgeInsets.only(right: 8.w),
-                child: StoreButtonClickable(
-                  width: text.length * 15.w,
-                  height: 36.h,
-                  text: text,
-                  arrow: false,
-                  callback: () => updateSelected(text),
-                  activeColor:
-                      selected == text ? Colors.black : Colors.white,
-                  inactiveColor:
-                      selected == text ? Colors.black : Colors.white,
-                  activeTextColor:
-                      selected == text ? Colors.white : Colors.black,
-                  inactiveTextColor:
-                      selected == text ? Colors.white : Colors.black,
-                ),
-              );
-            }).toList(),
+        categories.map((text) {
+          return Padding(
+            padding: EdgeInsets.only(right: 8.w),
+            child: StoreButtonClickable(
+              height: 36.h,
+              text: text,
+              arrow: false,
+              callback: () => updateSelected(text),
+              activeColor:
+              selected == text ? Colors.black : Colors.white,
+              inactiveColor:
+              selected == text ? Colors.black : Colors.white,
+              activeTextColor:
+              selected == text ? Colors.white : Colors.black,
+              inactiveTextColor:
+              selected == text ? Colors.white : Colors.black,
+            ),
+          );
+        }).toList(),
       ),
     );
   }

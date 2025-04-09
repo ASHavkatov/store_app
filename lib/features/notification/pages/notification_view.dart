@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
-import 'package:store_app/features/common/presentations/store_app_bottom_navigation_bar.dart';
+import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
 
-import '../../../core/routing/routes.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({super.key});
@@ -65,28 +63,7 @@ class NotificationView extends StatelessWidget {
                 ),
               )
               : NotificationItem(),
-      bottomNavigationBar: StoreAppBottomNavigationBar(
-        selectedIndex: 0,
-        value: (index) {
-          switch (index) {
-            case 0:
-              context.push(Routes.home);
-              break;
-            case 1:
-              context.push(Routes.home);
-              break;
-            case 2:
-              context.push(Routes.home);
-              break;
-            case 3:
-              context.push(Routes.home);
-              break;
-            case 4:
-              context.push(Routes.home);
-              break;
-          }
-        },
-      ),
+      bottomNavigationBar: StoreBottomNavigationBar()
     );
   }
 }

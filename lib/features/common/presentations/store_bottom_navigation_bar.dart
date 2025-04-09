@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/features/home/presentations/pages/bottom_navigation_button.dart';
+import 'package:store_app/features/common/presentations/bottom_navigation_button.dart';
 
-import '../../../../core/routing/routes.dart';
+import '../../../core/routing/routes.dart';
 
 class StoreBottomNavigationBar extends StatelessWidget {
   const StoreBottomNavigationBar({super.key});
@@ -15,9 +15,7 @@ class StoreBottomNavigationBar extends StatelessWidget {
       height: 88.h,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.symmetric(
-          vertical: BorderSide(color: Colors.grey.withValues(alpha: 0.3)),
-        ),
+        border: Border.all(color: Colors.black.withValues(alpha: 0.2),),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
