@@ -5,6 +5,7 @@ import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
+import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
@@ -17,12 +18,13 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.checkout,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
+    GoRoute(path: Routes.checkout, builder: (context, state)=> CheckoutView()),
     GoRoute(
       path: Routes.signUp,
       builder:
