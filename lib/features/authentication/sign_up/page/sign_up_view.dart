@@ -111,6 +111,7 @@ class _SignUpViewState extends State<SignUpView> {
                             fontWeight: FontWeight.w500,
                             color: AppColors.primary900,
                             size: 16,
+                            svg: "assets/icons/store_app_hide.svg",
                             controller: vm.passwordController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -122,9 +123,6 @@ class _SignUpViewState extends State<SignUpView> {
                               setState(() {});
                               return null;
                             },
-                            //   suffix: SvgPicture.asset(
-                            //     "assets/icons/store_app_hide.svg",
-                            //   ),
                           ),
                           SizedBox(height: 24.h),
                           Center(
@@ -186,52 +184,7 @@ class _SignUpViewState extends State<SignUpView> {
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
                             color: vm.getBackgroundColor(),
-                            callback: () async {
-                              if (vm.formKey.currentState!.validate() && context.mounted) {
-                                final status =
-                                    await Permission.notification.request();
-                                if (status.isGranted) {
-                                  context.go(Routes.home);
-                                } else if (status.isPermanentlyDenied) {
-                                  showDialog(
-                                    context: context,
-                                    builder:
-                                        (context) => AlertDialog(
-                                          title: Text(
-                                            'Notification Permission',
-                                            style: TextStyle(
-                                              color: AppColors.primary900,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 20,
-                                            ),
-                                          ),
-                                          content: Text(
-                                            'Please enable notifications manually in settings to receive alerts.',
-                                            style: TextStyle(
-                                              color: AppColors.primary500,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text("Cancel"),
-                                            ),
-                                            TextButton(
-                                              onPressed: () {
-                                                openAppSettings();
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text("Open Settings"),
-                                            ),
-                                          ],
-                                        ),
-                                  );
-                                }
-                              }
-                            },
+                            callback: () => vm.signUp(context)
                           ),
                           SizedBox(height: 24.h),
                           Row(

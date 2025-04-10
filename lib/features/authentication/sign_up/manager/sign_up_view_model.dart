@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:store_app/features/authentication/sign_up/widgets/sign_up_successfully.dart';
 
+import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../data/repositories/auth_repository.dart';
 
@@ -23,7 +26,6 @@ class SignUpViewModel extends ChangeNotifier {
 
     return AppColors.primary900;
   }
-
 
   String? validateFullName(String? name) {
     if (name == null || name.isEmpty) {
@@ -56,22 +58,29 @@ class SignUpViewModel extends ChangeNotifier {
       return "Iltimos parolni kiriting";
     } else if (password.length < 8) {
       return "Parol 8 tadan kam bulmasligi kerak";
-    } else if (!RegExp(
-      r'^(?=.*[A-Z])(?=.*[0-9]).{6,}$',
-    ).hasMatch(password)) {
+    } else if (!RegExp(r'^(?=.*[A-Z])(?=.*[0-9]).{6,}$').hasMatch(password)) {
       return "Parolda 1 ta katta harf va 1 ta raqam bulishi shart";
     }
     return null;
   }
 
-
-  Future<bool> signUp() async {
+  Future signUp(BuildContext context) async {
     final result = await _authRepo.signUp(
       fullName: fullNameController.text,
       email: emailController.text,
       password: passwordController.text,
     );
-    return result;
+    if (formKey.currentState!.validate()) {
+      if (result && context.mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => SuccessfulSignUpDialog(),
+        );
+        Future.delayed(
+          Duration(seconds: 3),
+        ).then((value) => context.go(Routes.home));
+      }
+    }
   }
 
   Locale _currentLocale = Locale("en");
