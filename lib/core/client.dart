@@ -5,29 +5,27 @@ import 'package:store_app/data/repositories/auth_repositories_models/forgot_pass
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
+  late final Dio dio;
 
   ApiClient() {
     dio = Dio(
       BaseOptions(
-        baseUrl: "http://0.0.0.0:8888/api/v1",
+        baseUrl: "http://192.168.0.102:8888/api/v1",
         validateStatus: (status) => true,
       ),
     );
   }
 
-  final dio = Dio(
-    BaseOptions(
-      baseUrl: "http://10.10.0.229:8888/api/v1",
-      validateStatus: (status) => true,
-    ),
-  );
   Future<String> login(String login, String password) async {
-    var response = await dio.post('/auth/login', data: {'login': login, 'password': password});
+    var response = await dio.post(
+      '/auth/login',
+      data: {'login': login, 'password': password},
+    );
     if (response.statusCode == 200) {
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
     } else {
-      throw Exception("Login qilib beomdi, xullasi nimadur no'to'g'ri ketgan");
+      throw Exception("Login xatoligi");
     }
   }
 
