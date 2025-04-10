@@ -4,7 +4,7 @@ import 'package:store_app/features/authentication/sign_up/widgets/sign_up_succes
 
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/colors.dart';
-import '../../../../data/repositories/auth_repository.dart';
+import '../../../../data/repositories/auth_repositories_models/auth_repository.dart';
 
 class SignUpViewModel extends ChangeNotifier {
   SignUpViewModel({required AuthRepository authRepo}) : _authRepo = authRepo;
@@ -15,17 +15,7 @@ class SignUpViewModel extends ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   bool? fullNameValid, emailValid, passwordValid;
 
-  Color getBackgroundColor() {
-    if (fullNameValid == null || emailValid == null || passwordValid == null) {
-      return AppColors.primary200;
-    }
 
-    if (!fullNameValid! || !emailValid! || !passwordValid!) {
-      return AppColors.primary200;
-    }
-
-    return AppColors.primary900;
-  }
 
   String? validateFullName(String? name) {
     if (name == null || name.isEmpty) {
