@@ -17,12 +17,24 @@ class SignUpView extends StatefulWidget {
   const SignUpView({super.key, required this.vm});
 
   final SignUpViewModel vm;
+  Color getBackgroundColor() {
+    if (vm.fullNameValid == null || vm.emailValid == null || vm.passwordValid == null) {
+      return AppColors.primary200;
+    }
+    if (!vm.fullNameValid! || !vm.emailValid! || !vm.passwordValid!) {
+      return AppColors.primary200;
+    }
+
+    return AppColors.primary900;
+  }
 
   @override
   State<SignUpView> createState() => _SignUpViewState();
 }
 
 class _SignUpViewState extends State<SignUpView> {
+
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SignUpViewModel>(
@@ -183,7 +195,7 @@ class _SignUpViewState extends State<SignUpView> {
                           StoreFloatingButton(
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
-                            color: vm.getBackgroundColor(),
+                            color: widget.getBackgroundColor(),
                             callback: () => vm.signUp(context)
                           ),
                           SizedBox(height: 24.h),

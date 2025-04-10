@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../../data/repositories/auth_repository.dart';
+import '../../../../data/repositories/auth_repositories_models/auth_repository.dart';
 import 'login_event.dart';
 import 'login_state.dart';
 
