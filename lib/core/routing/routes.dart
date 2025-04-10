@@ -12,6 +12,5 @@ class Routes{
   static const notification = '/notification';
   static const forgotPassword = '/forgot-password';
   static const checkout = '/checkout';
-  static const forgotPassword = "/forgotPassword";
 
 }

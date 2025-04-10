@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import '../data/models/auth_model.dart';
+import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final dio = Dio(

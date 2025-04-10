@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:store_app/data/repositories/auth_repository.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_event.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_state.dart';
+
+import '../../../../data/repositories/auth_repositories_models/auth_repository.dart';
 
 class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   final AuthRepository _repo;
