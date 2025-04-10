@@ -111,6 +111,7 @@ class _SignUpViewState extends State<SignUpView> {
                             fontWeight: FontWeight.w500,
                             color: AppColors.primary900,
                             size: 16,
+                            svg: "assets/icons/store_app_hide.svg",
                             controller: vm.passwordController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -122,9 +123,6 @@ class _SignUpViewState extends State<SignUpView> {
                               setState(() {});
                               return null;
                             },
-                            //   suffix: SvgPicture.asset(
-                            //     "assets/icons/store_app_hide.svg",
-                            //   ),
                           ),
                           SizedBox(height: 24.h),
                           Center(
@@ -186,16 +184,7 @@ class _SignUpViewState extends State<SignUpView> {
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
                             color: vm.getBackgroundColor(),
-                            callback: () async {
-                              if (vm.formKey.currentState!.validate() &&
-                                  context.mounted) {
-                                final status =
-                                    await Permission.notification.request();
-                                if (status.isGranted) {
-                                  context.push(Routes.home);
-                                }
-                              }
-                            },
+                            callback: () => vm.signUp(context)
                           ),
                           SizedBox(height: 24.h),
                           Row(
