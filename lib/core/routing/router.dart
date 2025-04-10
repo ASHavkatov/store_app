@@ -4,8 +4,7 @@ import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/auth_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
-import 'package:store_app/features/authentication/reset_password/pages/forgot_password_view.dart';
-import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
+import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
@@ -13,12 +12,13 @@ import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
 import '../../features/authentication/terms_and_privacy/terms_view.dart';
+import '../../features/authentication/verification/pages/verification_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.forgotPassword,
+  initialLocation: Routes.verification,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -45,13 +45,19 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.verification,
-      builder: (context, state) => VerificationView(),
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => VerificationBloc(repo: context.read()),
+            child: VerificationView(),
+          ),
     ),
     GoRoute(path: Routes.home, builder: (context, state) => HomeView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
-    GoRoute(path: Routes.notification, builder: (context, state) => NotificationView()),
-    GoRoute(path: Routes.forgotPassword, builder: (context, state) => ForgotPasswordView()),
+    GoRoute(
+      path: Routes.notification,
+      builder: (context, state) => NotificationView(),
+    ),
   ],
 );
