@@ -46,7 +46,8 @@ class SuccessfulSignUpDialog extends StatelessWidget {
                   color: AppColors.primary500,
                   fontSize: 13,
                 ),
-              )
+              ),
+              SvgPicture.asset("assets/icons/store_app_tick.svg")
             ],
           ),
         ),
