@@ -11,5 +11,6 @@ class Routes{
   static const verification = '/verification';
   static const notification = '/notification';
   static const checkout = '/checkout';
+  static const forgotPassword = "/forgotPassword";
 
 }
