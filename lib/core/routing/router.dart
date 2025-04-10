@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
-import 'package:store_app/features/authentication/reset_password/pages/verification_view.dart';
+import 'package:store_app/features/authentication/reset_password/pages/reset_password_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/forgot_password/pages/forgot_password_view.dart';
@@ -13,12 +13,13 @@ import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
 import '../../features/authentication/terms_and_privacy/terms_view.dart';
+import '../../features/authentication/verification/pages/verification_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.resetPassword,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -58,6 +59,14 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.forgotPassword,
       builder: (context, state) => ForgotPasswordView(),
+    ),
+    GoRoute(
+      path: Routes.verification,
+      builder: (context, state) => VerificationView(),
+    ),
+    GoRoute(
+      path: Routes.resetPassword,
+      builder: (context, state) => ResetPasswordView(),
     ),
   ],
 );

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
-import 'package:store_app/features/authentication/reset_password/widgets/reset_password_app_bar.dart';
 import 'package:pinput/pinput.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 import '../../../../core/routing/routes.dart';
+import '../widgets/reset_password_app_bar.dart';
 
 class VerificationView extends StatelessWidget {
   const VerificationView({super.key});
@@ -91,7 +91,7 @@ class VerificationView extends StatelessWidget {
                   ),
                   SizedBox(height: 171.h,),
                   StoreFloatingButton(text: "Continue", arrow: false, callback: (){
-                      context.go(Routes.resetPassword);
+                      context.go(Routes.verification);
                   }, color: Colors.black)
                 ],
               ),

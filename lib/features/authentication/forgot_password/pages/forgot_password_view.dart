@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/features/authentication/reset_password/widgets/reset_password_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_app_form_field.dart';
 import 'package:store_app/features/common/presentations/store_app_text.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
+
+import '../../verification/widgets/reset_password_app_bar.dart';
 
 class ForgotPasswordView extends StatelessWidget {
   ForgotPasswordView({super.key});

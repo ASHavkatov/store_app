@@ -125,7 +125,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    context.push(Routes.resetPassword);
+                    context.push(Routes.verification);
                   },
                   child: Text(
                     MyLocalizations.of(context)!.resetPassword,
