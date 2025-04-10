@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:store_app/data/models/auth_models/fotgot_password_model.dart';
+import 'package:store_app/data/repositories/auth_repositories_models/forgot_password_repository.dart';
 
-import '../data/models/auth_model.dart';
+import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
 
@@ -27,5 +29,12 @@ class ApiClient {
     } else {
       return false;
     }
+  }
+  Future<bool> forgotPassword(ForgotPasswordModel model) async{
+    var response = await dio.post('/auth/reset-password/email', data: model.toJson());
+    if (response.data == 200) {
+      return true;
+    }
+    return false;
   }
 }

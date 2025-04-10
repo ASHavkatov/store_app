@@ -10,6 +10,7 @@ class Routes{
   static const splashScreen = '/splash-screen';
   static const validation = '/validation';
   static const notification = '/notification';
+  static const forgotPassword = '/forgot-password';
   static const checkout = '/checkout';
 
 }

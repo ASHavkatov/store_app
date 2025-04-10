@@ -1,4 +1,3 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
@@ -17,6 +16,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
+  initialLocation: Routes.forgotPassword,
   initialLocation: Routes.home,
   routes: [
     GoRoute(
@@ -51,6 +51,8 @@ GoRouter router = GoRouter(
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
     GoRoute(path: Routes.notification, builder: (context, state) => NotificationView()),
+    GoRoute(path: Routes.forgotPassword, builder: (context, state) => ForgotPasswordView()),
+
 
   ],
 );

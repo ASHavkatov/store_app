@@ -1,6 +1,6 @@
-import '../../../../core/client.dart';
-import '../../../../core/secure_storege.dart';
-import '../models/auth_model.dart';
+import '../../../../../core/client.dart';
+import '../../../../../core/secure_storege.dart';
+import '../../models/auth_models/auth_model.dart';
 
 class AuthRepository {
   AuthRepository({required this.client});
