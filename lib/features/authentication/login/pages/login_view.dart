@@ -145,10 +145,10 @@ class _LoginViewState extends State<LoginView> {
               color: getBackgroundColor(),
               callback: () {
                 context.read<LoginBloc>().add(LoginLoad());
-                // if (formKey.currentState!.validate()) {
-                //   context.read<LoginBloc>().add(LoginLoad());
-                //   context.go(Routes.home);
-                // }
+                if (formKey.currentState!.validate()) {
+                  context.read<LoginBloc>().add(LoginLoad());
+                  context.go(Routes.home);
+                }
               },
             ),
             SizedBox(height: 34.h),

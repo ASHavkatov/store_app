@@ -8,8 +8,9 @@ class Routes{
   static const cookieUse = "/cookieUse";
   static const resetPassword = "/reset-password";
   static const splashScreen = '/splash-screen';
-  static const validation = '/validation';
+  static const verification = '/verification';
   static const notification = '/notification';
   static const checkout = '/checkout';
+  static const forgotPassword = "/forgotPassword";
 
 }
