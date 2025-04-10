@@ -6,6 +6,15 @@ import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
 
+  ApiClient() {
+    dio = Dio(
+      BaseOptions(
+        baseUrl: "http://0.0.0.0:8888/api/v1",
+        validateStatus: (status) => true,
+      ),
+    );
+  }
+
   final dio = Dio(
     BaseOptions(
       baseUrl: "http://10.10.0.229:8888/api/v1",
