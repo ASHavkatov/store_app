@@ -11,14 +11,15 @@ class StoreAppFormField extends StatefulWidget {
     required this.hintText,
     required this.validator,
     required this.isValid,
-    this.autoValidateMode = AutovalidateMode.onUnfocus, required this.fontWeight, required this.color, required this.size,  this.svg = "assets/icons/store_app_hide.svg"
+     this.autoValidateMode = AutovalidateMode.onUnfocus, required this.fontWeight, required this.color, required this.size,  this.svg = "assets/icons/store_app_hide.svg"
+
   });
 
   final TextEditingController controller;
   final String title, hintText;
   final String? Function(String?) validator;
   final FontWeight fontWeight;
-final Color color;
+  final Color color;
   final bool? isValid;
   final AutovalidateMode autoValidateMode;
   final double size;
@@ -76,6 +77,7 @@ class _StoreAppFormFieldState extends State<StoreAppFormField> {
                 padding: EdgeInsets.only(right: 20.w),
                 child: SvgPicture.asset(
                   "assets/icons/store_app_validation_${widget.isValid != null && widget.isValid! ? 'success' : 'error'}.svg",
+
                   width: 20.w,
                   height: 20.h,
                   fit: BoxFit.cover,
