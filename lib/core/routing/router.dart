@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
+import 'package:store_app/features/authentication/reset_password/pages/forgot_password_view.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
@@ -18,7 +19,7 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.verification,
+  initialLocation: Routes.resetPassword,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -51,7 +52,14 @@ GoRouter router = GoRouter(
             child: VerificationView(),
           ),
     ),
-    // GoRoute(path: Routes.resetPassword, builder: (context state)=> BlocProvider(create: context.read(),child: Rese,))
+    GoRoute(
+      path: Routes.resetPassword,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => VerificationBloc(repo: context.read()),
+            child: ForgotPasswordView(),
+          ),
+    ),
     GoRoute(path: Routes.home, builder: (context, state) => HomeView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),

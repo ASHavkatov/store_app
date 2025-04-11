@@ -18,92 +18,82 @@ class ForgotPasswordView extends StatelessWidget {
 
   final emailController = TextEditingController();
   bool? emailValid;
-  final formKey = GlobalKey<FormState>();
-
   bool isEmailValid(String email) => email.endsWith('gmail.com');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ResetPasswordAppBar(),
-      body: BlocBuilder<VerificationBloc, VerificationState>(
-        builder: (context, state) {
+      body: BlocListener<VerificationBloc, VerificationState>(
+        listener: (context, state) {
           if (state.status == VerificationStatus.success) {
-            Future.microtask(() => context.push(Routes.resetPassword));
+            context.push(Routes.resetPassword);
           }
-          return switch (state.status) {
-            VerificationStatus.loading => Center(
-              child: CircularProgressIndicator(),
-            ),
-            VerificationStatus.error => Center(child: Text("Xatolik bor")),
-            _ => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  StoreAppText(
-                    title: "Forgot Password",
-                    color: AppColors.primary900,
-                    fontWeight: FontWeight.w600,
-                    size: 32,
-                  ),
-                  SizedBox(height: 10.h),
-                  StoreAppText(
-                    title:
-                        "Enter your email for the verification process. We will send 4 digits code to your email.",
-                    color: AppColors.primary500,
-                    fontWeight: FontWeight.w400,
-                    size: 16,
-                  ),
-                  SizedBox(height: 24.h),
-                  StoreAppFormField(
-                    controller:
-                        context.read<VerificationBloc>().emailController,
-                    title: "Email",
-                    hintText: "cody.fisher45@example.com",
-                    isValid: emailValid,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.primary900,
-                    size: 16,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        emailValid = false;
-                        return "This field is required.";
-                      }
-                      final emailRegex = RegExp(
-                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                      );
-                      if (!emailRegex.hasMatch(value)) {
-                        emailValid = false;
-                        return "Enter a valid email address.";
-                      }
-                      emailValid = true;
-                      return null;
-                    },
-                  ),
-                  SizedBox(height: 150.h),
-                  StoreFloatingButton(
-                    text: "Send Code",
-                    arrow: false,
-                    color: AppColors.primary900,
-                    callback: () {
-                      context.read<VerificationBloc>().add(
-                        VerificationEmailEvent(
-                          email:
-                              context
-                                  .read<VerificationBloc>()
-                                  .emailController
-                                  .text
-                                  .trim(),
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-          };
         },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StoreAppText(
+                title: "Forgot Password",
+                color: AppColors.primary900,
+                fontWeight: FontWeight.w600,
+                size: 32,
+              ),
+              SizedBox(height: 10.h),
+              StoreAppText(
+                title:
+                "Enter your email for the verification process. We will send 4 digits code to your email.",
+                color: AppColors.primary500,
+                fontWeight: FontWeight.w400,
+                size: 16,
+              ),
+              SizedBox(height: 24.h),
+              StoreAppFormField(
+                controller:
+                context.read<VerificationBloc>().emailController,
+                title: "Email",
+                hintText: "cody.fisher45@example.com",
+                isValid: emailValid,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primary900,
+                size: 16,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    emailValid = false;
+                    return "This field is required.";
+                  }
+                  final emailRegex = RegExp(
+                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                  );
+                  if (!emailRegex.hasMatch(value)) {
+                    emailValid = false;
+                    return "Enter a valid email address.";
+                  }
+                  emailValid = true;
+                  return null;
+                },
+              ),
+              SizedBox(height: 150.h),
+              StoreFloatingButton(
+                text: "Send Code",
+                arrow: false,
+                color: AppColors.primary900,
+                callback: () {
+                  if (emailValid == true) {
+                    context.read<VerificationBloc>().add(VerificationEmailEvent(
+                      email: context.read<VerificationBloc>().emailController.text.trim(),
+                    ),
+                    );
+                  }  else {
+                    return;
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
