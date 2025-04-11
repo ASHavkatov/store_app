@@ -14,12 +14,13 @@ import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
 import '../../features/authentication/terms_and_privacy/terms_view.dart';
 import '../../features/authentication/verification/pages/verification_view.dart';
+import '../../features/detail/pages/detail_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.resetPassword,
+  initialLocation: Routes.forgotPassword,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -67,6 +68,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.resetPassword,
       builder: (context, state) => ResetPasswordView(),
+    ),
+    GoRoute(
+      path: Routes.detail,
+      builder: (context, state) => DetailView(),
     ),
   ],
 );

@@ -173,14 +173,14 @@ class _LoginViewState extends State<LoginView> {
             StoreSignUpContainer(
               color: Colors.white,
               title: MyLocalizations.of(context)!.loginWithGoogle,
-              svg: "assets/icons/store_app_google.svg",
+              svg: "assets/icons/google_logo.svg",
               fontColor: Colors.black,
             ),
             SizedBox(height: 16.h),
             StoreSignUpContainer(
               color: AppColors.darkBlue,
               title: MyLocalizations.of(context)!.loginWithFacebook,
-              svg: "assets/icons/store_app_facebook.svg",
+              svg: "assets/icons/facebook_logo.svg",
               fontColor: Colors.white,
             ),
             SizedBox(height: 32.h),

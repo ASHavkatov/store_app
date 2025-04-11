@@ -75,9 +75,6 @@ class MyLocalizationsEn extends MyLocalizations {
   String get join => 'Join';
 
   @override
-  String get resetPassword => 'Reset Password';
-
-  @override
   String get fourDigit => 'Enter 4 Digit Code';
 
   @override
@@ -88,4 +85,28 @@ class MyLocalizationsEn extends MyLocalizations {
 
   @override
   String get resendCode => 'Resend Code';
+
+  @override
+  String get forgotPasswordTitle => 'Forgot Password';
+
+  @override
+  String get forgotPasswordSubtitle => 'Enter your email for the verification process. We will send 4 digits code to your email.';
+
+  @override
+  String get sendCode => 'Send Code';
+
+  @override
+  String get resetPassword => 'Reset Password';
+
+  @override
+  String get resetPasswordSubtitle => 'Set the new password for your account so you can login and access all the features.';
+
+  @override
+  String get continues => 'Continue';
+
+  @override
+  String get passwordChanged => 'Password Changed!';
+
+  @override
+  String get passwordChangedSubtitle => 'Your can now use your new password to login to your account.';
 }

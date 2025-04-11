@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_form_field.dart';
 import 'package:store_app/features/common/presentations/store_app_text.dart';
@@ -24,7 +25,7 @@ class ForgotPasswordView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StoreAppText(
-              title: "Forgot Password",
+              title: MyLocalizations.of(context)!.forgotPasswordTitle,
               color: AppColors.primary900,
               fontWeight: FontWeight.w600,
               size: 32,
@@ -32,7 +33,7 @@ class ForgotPasswordView extends StatelessWidget {
             SizedBox(height: 10.h),
             StoreAppText(
               title:
-                  "Enter your email for the verification process. We will send 4 digits code to your email.",
+                  MyLocalizations.of(context)!.forgotPasswordSubtitle,
               color: AppColors.primary500,
               fontWeight: FontWeight.w400,
               size: 16,
@@ -62,7 +63,7 @@ class ForgotPasswordView extends StatelessWidget {
             ),
             SizedBox(height: 150.h),
             StoreFloatingButton(
-              text: "Send Code",
+              text: MyLocalizations.of(context)!.sendCode,
               arrow: false,
               callback: () {},
               color: AppColors.primary900,

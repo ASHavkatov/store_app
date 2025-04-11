@@ -13,6 +13,7 @@ class Routes{
   static const forgotPassword = '/forgot-password';
   static const checkout = '/checkout';
   static const resetPassword = '/reset-password';
+  static const detail = '/detail';
 
 
 }

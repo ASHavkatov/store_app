@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/authentication/verification/widgets/reset_password_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_app_form_field.dart';
@@ -7,7 +8,7 @@ import 'package:store_app/features/common/presentations/store_app_text.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 class ResetPasswordView extends StatefulWidget {
-  ResetPasswordView({super.key});
+  const ResetPasswordView({super.key});
 
   @override
   State<ResetPasswordView> createState() => _ResetPasswordViewState();
@@ -30,7 +31,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StoreAppText(
-              title: "Reset Password",
+              title: MyLocalizations.of(context)!.resetPassword,
               color: AppColors.primary900,
               fontWeight: FontWeight.w600,
               size: 32,
@@ -38,7 +39,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             SizedBox(height: 4),
             StoreAppText(
               title:
-                  "Set the new password for your account so you can login and access all the features.",
+                  MyLocalizations.of(context)!.resetPasswordSubtitle,
               color: AppColors.primary500,
               size: 18,
             ),
@@ -46,8 +47,8 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
             StoreAppFormField(
               controller: passwordController,
               svg: "assets/icons/hide_password.svg" ,
-              title: "Password",
-              hintText: "Enter Password",
+              title: MyLocalizations.of(context)!.password,
+              hintText:MyLocalizations.of(context)!.enterPassword,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   passwordValid = false;
@@ -85,7 +86,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               size: 16,
             ),
             SizedBox(height: 100.h),
-            StoreFloatingButton(text: "Continue", arrow: false, callback: (){}, color: AppColors.primary900)
+            StoreFloatingButton(text: MyLocalizations.of(context)!.continues, arrow: false, callback: (){}, color: AppColors.primary900)
           ],
         ),
       ),
