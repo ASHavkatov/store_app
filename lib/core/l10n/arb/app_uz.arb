@@ -25,5 +25,12 @@
   "fourDigit": "4 tali kodni kiriting",
   "fourDigitExample": "(cody.fisher45@example.com) emailingizga borgan 4 talik kodni kiriting",
   "emailNorReceived": "Email yetib kelmadi?",
-  "resendCode": "Kodni boshqatan jo'natish"
+  "resendCode": "Kodni boshqatan jo'natish",
+  "forgotPasswordTitle": "Parolni unutdingizmi",
+  "forgotPasswordSubtitle" : "Tasdiqlash jarayoni uchun elektron pochtangizni kiriting. Elektron pochtangizga 4 raqamli kod yuboramiz.",
+  "sendCode": "Kodni Jo'natish",
+  "resetPasswordSubtitle": "Hisobingizga kirish va barcha funksiyalarga kirishingiz uchun yangi parolni o'rnating.",
+  "continues": "Davom etish",
+  "passwordChanged": "Parol Yangilandi!",
+  "passwordChangedSubtitle": "Endi siz hisobingizga kirish uchun yangi parolingizdan foydalanishingiz mumkin."
 }

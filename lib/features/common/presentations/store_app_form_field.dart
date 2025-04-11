@@ -76,7 +76,7 @@ class _StoreAppFormFieldState extends State<StoreAppFormField> {
               child: Padding(
                 padding: EdgeInsets.only(right: 20.w),
                 child: SvgPicture.asset(
-                  "assets/icons/store_app_validation_${widget.isValid != null && widget.isValid! ? 'success' : 'error'}.svg",
+                  "assets/icons/validation_${widget.isValid != null && widget.isValid! ? 'success' : 'error'}.svg",
 
                   width: 20.w,
                   height: 20.h,

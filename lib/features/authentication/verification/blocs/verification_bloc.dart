@@ -7,6 +7,7 @@ import '../../../../data/repositories/auth_repositories_models/auth_repository.d
 
 class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   final AuthRepository _repo;
+  final formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
@@ -20,17 +21,20 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   }
 
   Future<void> _sendEmail(
-    VerificationEmailEvent event,
-    Emitter<VerificationState> emit,
-  ) async {
+      VerificationEmailEvent event,
+      Emitter<VerificationState> emit,
+      ) async {
+    print("nimadir ${event.email}");
+    emit(state.copyWith(status: VerificationStatus.loading)); // loading holat
     final result = await _repo.resetPassword(event.email);
+    print(result);
     if (result) {
       emit(state.copyWith(status: VerificationStatus.success));
     } else {
       emit(
         state.copyWith(
           status: VerificationStatus.error,
-          message: "passwordni reset qilishda hatolik bor",
+          message: "Parolni reset qilishda xatolik bor",
         ),
       );
     }
