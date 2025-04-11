@@ -227,12 +227,6 @@ abstract class MyLocalizations {
   /// **'Join'**
   String get join;
 
-  /// No description provided for @resetPassword.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset Password'**
-  String get resetPassword;
-
   /// No description provided for @fourDigit.
   ///
   /// In en, this message translates to:
@@ -256,6 +250,54 @@ abstract class MyLocalizations {
   /// In en, this message translates to:
   /// **'Resend Code'**
   String get resendCode;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot Password'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email for the verification process. We will send 4 digits code to your email.'**
+  String get forgotPasswordSubtitle;
+
+  /// No description provided for @sendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Code'**
+  String get sendCode;
+
+  /// No description provided for @resetPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPassword;
+
+  /// No description provided for @resetPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the new password for your account so you can login and access all the features.'**
+  String get resetPasswordSubtitle;
+
+  /// No description provided for @continues.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continues;
+
+  /// No description provided for @passwordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password Changed!'**
+  String get passwordChanged;
+
+  /// No description provided for @passwordChangedSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your can now use your new password to login to your account.'**
+  String get passwordChangedSubtitle;
 }
 
 class _MyLocalizationsDelegate extends LocalizationsDelegate<MyLocalizations> {
