@@ -1,14 +1,15 @@
 import 'package:dio/dio.dart';
+import 'package:store_app/core/interceptor.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
-  final dio = Dio(
+  final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://10.10.0.229:8888/api/v1",
+      baseUrl: "http://0.0.0.0:8888/api/v1",
       validateStatus: (status) => true,
     ),
-  );
+  )..interceptors.add(AuthInterceptor());
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
@@ -78,6 +79,15 @@ class ApiClient {
       }
     }catch(e){
       throw Exception("Error at reset email code");
+    }
+  }
+  Future<List<dynamic>>fetchProduct()async{
+    var response = await dio.get('/products/list');
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    }else{
+      throw Exception("/product/list error");
     }
   }
 }

@@ -2,7 +2,7 @@ class ProductModel {
   final int id;
   final String image;
   final String title;
-  final double price, discount;
+  final num price, discount;
   final bool isLiked;
 
   ProductModel({
@@ -14,14 +14,14 @@ class ProductModel {
     required this.isLiked,
   });
 
-  Map<String, dynamic> toJson() {
-    return {
-      "id" : id,
-      "image" : image,
-      "title" : title,
-      "price" : price,
-      "isLiked" : isLiked,
-      "discount" : discount,
-    };
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      id: json['id'],
+      image: json['image'],
+      title: json['title'],
+      price: json['price'],
+      isLiked: json['isLiked'],
+      discount: json['discount']
+    );
   }
 }

@@ -8,6 +8,9 @@ import 'package:store_app/core/l10n/localization_view_model.dart';
 import 'package:store_app/core/routing/router.dart';
 import 'package:store_app/core/utils/themes.dart';
 
+final navigatorKey = GlobalKey<NavigatorState>();
+
+
 void main() {
   runApp(MyApp());
 }

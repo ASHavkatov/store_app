@@ -2,96 +2,119 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
+import 'package:store_app/features/authentication/verification/blocs/verification_event.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_state.dart';
-import 'package:store_app/features/common/presentations/store_app_form_field.dart';
-import 'package:store_app/features/common/presentations/store_app_text.dart';
+import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 import '../../../../core/routing/routes.dart';
-import '../blocs/verification_event.dart';
-import '../widgets/reset_password_app_bar.dart';
+import '../../../common/presentations/store_app_form_field.dart';
+import '../../verification/widgets/reset_password_app_bar.dart';
 
-class ForgotPasswordView extends StatelessWidget {
-  ForgotPasswordView({super.key});
+class ForgotPasswordView extends StatefulWidget {
+  const ForgotPasswordView({super.key});
 
+  @override
+  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+}
+
+class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   final emailController = TextEditingController();
+
   bool? emailValid;
-  bool isEmailValid(String email) => email.endsWith('gmail.com');
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ResetPasswordAppBar(),
+      appBar: StoreAppAppBar(title: ""),
       body: BlocListener<VerificationBloc, VerificationState>(
         listener: (context, state) {
           if (state.status == VerificationStatus.success) {
-            context.push(Routes.resetPassword);
+            context.go(Routes.verification, extra: emailController.text.trim());
+          } else if (state.status == VerificationStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.message ?? 'Noma’lum xatolik')),
+            );
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              StoreAppText(
-                title: "Forgot Password",
-                color: AppColors.primary900,
-                fontWeight: FontWeight.w600,
-                size: 32,
-              ),
-              SizedBox(height: 10.h),
-              StoreAppText(
-                title:
-                "Enter your email for the verification process. We will send 4 digits code to your email.",
-                color: AppColors.primary500,
-                fontWeight: FontWeight.w400,
-                size: 16,
-              ),
-              SizedBox(height: 24.h),
-              StoreAppFormField(
-                controller:
-                context.read<VerificationBloc>().emailController,
-                title: "Email",
-                hintText: "cody.fisher45@example.com",
-                isValid: emailValid,
-                fontWeight: FontWeight.w500,
-                color: AppColors.primary900,
-                size: 16,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    emailValid = false;
-                    return "This field is required.";
-                  }
-                  final emailRegex = RegExp(
-                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                  );
-                  if (!emailRegex.hasMatch(value)) {
-                    emailValid = false;
-                    return "Enter a valid email address.";
-                  }
-                  emailValid = true;
-                  return null;
-                },
-              ),
-              SizedBox(height: 150.h),
-              StoreFloatingButton(
-                text: "Send Code",
-                arrow: false,
-                color: AppColors.primary900,
-                callback: () {
-                  if (emailValid == true) {
-                    context.read<VerificationBloc>().add(VerificationEmailEvent(
-                      email: context.read<VerificationBloc>().emailController.text.trim(),
-                    ),
+        child: Form(
+          key: formKey,
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(24.w, 14.h, 24.w, 24.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Forgot password",
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "GeneralSans",
+                    fontSize: 32,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                Text(
+                  "Enter your email for the verification process. We will send 4 digits code to your email.",
+                  style: TextStyle(
+                    fontFamily: "GeneralSans",
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16,
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                StoreAppFormField(
+                  fontWeight: FontWeight.w600,
+                  size: 24,
+                  color: AppColors.primary900,
+                  controller: emailController,
+                  isValid: emailValid,
+                  autoValidateMode: AutovalidateMode.disabled,
+                  title: "Email",
+                  hintText: "Enter your email address",
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      emailValid = false;
+                      return "This field is required.";
+                    }
+                    final emailRegex = RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                     );
-                  }  else {
-                    return;
-                  }
-                },
-              ),
-            ],
+                    if (!emailRegex.hasMatch(value)) {
+                      emailValid = false;
+                      return "Enter a valid email address.";
+                    }
+                    emailValid = true;
+                    return null;
+                  },
+                ),
+                const Spacer(),
+                BlocBuilder<VerificationBloc, VerificationState>(
+                  builder: (context, state) {
+                    return StoreFloatingButton(
+                      arrow: false,
+                      text: state.status == VerificationStatus.loading ? "Sending..." : "Send Code",
+                      width: double.infinity,
+                      height: 54.h,
+                      color: AppColors.primary900,
+                      callback: () {
+                        if (formKey.currentState!.validate()) {
+                          context.read<VerificationBloc>().add(
+                            VerificationEmailEvent(
+                              email: emailController.text.trim(),
+                            ),
+                          );
+                          setState(() {});
+                        }
+                      },
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
