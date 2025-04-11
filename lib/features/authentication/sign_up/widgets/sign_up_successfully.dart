@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/utils/colors.dart';
 
@@ -47,7 +47,7 @@ class SuccessfulSignUpDialog extends StatelessWidget {
                   fontSize: 13,
                 ),
               ),
-              SvgPicture.asset("assets/icons/store_app_tick.svg")
+              Lottie.asset('assets/tick_animation.json',width: 50,height: 50 )
             ],
           ),
         ),

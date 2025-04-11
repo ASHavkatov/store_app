@@ -19,7 +19,7 @@ class ApiClient {
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
     } else {
-      throw Exception("Login qilib beomdi, xullasi nimadur no'to'g'ri ketgan");
+      throw Exception("Can't login ");
     }
   }
 
@@ -60,7 +60,7 @@ class ApiClient {
         return false;
       }
     } catch (e) {
-      throw Exception("Reset email kodda xato bor");
+      throw Exception("Error at reset email");
     }
   }
 
@@ -77,7 +77,7 @@ class ApiClient {
         return false;
       }
     }catch(e){
-      throw Exception("Xato bor reset emailCodeda");
+      throw Exception("Error at reset email code");
     }
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
@@ -123,7 +122,7 @@ class _SignUpViewState extends State<SignUpView> {
                             fontWeight: FontWeight.w500,
                             color: AppColors.primary900,
                             size: 16,
-                            svg: "assets/icons/store_app_hide.svg",
+                            svg: "assets/icons/hide_password.svg",
                             controller: vm.passwordController,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -196,7 +195,7 @@ class _SignUpViewState extends State<SignUpView> {
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
                             color: widget.getBackgroundColor(),
-                            callback: () => vm.signUp(context)
+                            callback: () => widget.vm.signUp(context)
                           ),
                           SizedBox(height: 24.h),
                           Row(
@@ -219,14 +218,14 @@ class _SignUpViewState extends State<SignUpView> {
                           StoreSignUpContainer(
                             color: Colors.white,
                             title: MyLocalizations.of(context)!.signUpGoogle,
-                            svg: "assets/icons/store_app_google.svg",
+                            svg: "assets/icons/google_logo.svg",
                             fontColor: AppColors.primary900,
                           ),
                           SizedBox(height: 16),
                           StoreSignUpContainer(
                             color: AppColors.darkBlue,
                             title: MyLocalizations.of(context)!.signUpFacebook,
-                            svg: "assets/icons/store_app_facebook.svg",
+                            svg: "assets/icons/facebook_logo.svg",
                             fontColor: Colors.white,
                           ),
                           SizedBox(height: 48.h),
