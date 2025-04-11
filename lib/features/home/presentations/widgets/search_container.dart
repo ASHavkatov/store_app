@@ -111,7 +111,7 @@ class _SearchContainerState extends State<SearchContainer> {
             child: Padding(
               padding: EdgeInsets.all(12.w),
               child: SvgPicture.asset(
-                "assets/icons/mic.svg",
+                "assets/icons/microphone.svg",
                 color: _isListening ? Colors.blue: Colors.grey,
                 width: 24.w,
                 height: 24.w,
