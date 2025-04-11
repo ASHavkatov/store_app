@@ -48,7 +48,7 @@ class _StoreButtonClickableState extends State<StoreButtonClickable> {
         decoration: BoxDecoration(
           color: _isActive ? widget.activeColor : widget.inactiveColor,
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color:Colors.black)
+          border:Border.all(color:_isActive ? Colors.black: Colors.black.withValues(alpha: 0.3))
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

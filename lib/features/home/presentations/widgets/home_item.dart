@@ -3,9 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeItem extends StatefulWidget {
-  const HomeItem({super.key, required this.title});
+  const HomeItem({
+    super.key,
+    required this.title,
+    required this.image,
+    required this.price,
+  });
 
-  final String title;
+  final String title, image;
+  final num price;
 
   @override
   State<HomeItem> createState() => _HomeItemState();
@@ -22,13 +28,15 @@ class _HomeItemState extends State<HomeItem> {
         Stack(
           clipBehavior: Clip.none,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(14),
-              child: Image.asset(
-                "assets/images/t-shirt.png",
-                width: 161.w,
-                height: 174.h,
-                fit: BoxFit.cover,
+            SizedBox(
+              width: 161.w,
+              height: 174.h,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: Image.network(
+                  widget.image,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Positioned(
@@ -71,7 +79,7 @@ class _HomeItemState extends State<HomeItem> {
           ),
         ),
         Text(
-          "\$ 1,190",
+          "\$${widget.price.toInt()}",
           style: TextStyle(
             fontFamily: "GeneralSans",
             fontSize: 12,
