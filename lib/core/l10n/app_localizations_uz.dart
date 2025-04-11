@@ -75,9 +75,6 @@ class MyLocalizationsUz extends MyLocalizations {
   String get join => 'Qo\'shilish';
 
   @override
-  String get resetPassword => 'Parolni yangilash';
-
-  @override
   String get fourDigit => '4 tali kodni kiriting';
 
   @override
@@ -88,4 +85,28 @@ class MyLocalizationsUz extends MyLocalizations {
 
   @override
   String get resendCode => 'Kodni boshqatan jo\'natish';
+
+  @override
+  String get forgotPasswordTitle => 'Parolni unutdingizmi';
+
+  @override
+  String get forgotPasswordSubtitle => 'Tasdiqlash jarayoni uchun elektron pochtangizni kiriting. Elektron pochtangizga 4 raqamli kod yuboramiz.';
+
+  @override
+  String get sendCode => 'Kodni Jo\'natish';
+
+  @override
+  String get resetPassword => 'Parolni yangilash';
+
+  @override
+  String get resetPasswordSubtitle => 'Hisobingizga kirish va barcha funksiyalarga kirishingiz uchun yangi parolni o\'rnating.';
+
+  @override
+  String get continues => 'Davom etish';
+
+  @override
+  String get passwordChanged => 'Parol Yangilandi!';
+
+  @override
+  String get passwordChangedSubtitle => 'Endi siz hisobingizga kirish uchun yangi parolingizdan foydalanishingiz mumkin.';
 }

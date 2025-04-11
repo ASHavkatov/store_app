@@ -23,7 +23,6 @@ class StoreAppText extends StatelessWidget {
         fontWeight: fontWeight,
         fontSize: size,
         letterSpacing: -1,
-        height: 1,
       ),
     );
   }

@@ -21,9 +21,16 @@
   "doNotHaveAccount": "Don't have an account?",
   "or": "or",
   "join": "Join",
-  "resetPassword": "Reset Password",
   "fourDigit": "Enter 4 Digit Code",
   "fourDigitExample": "Enter 4 digit code that your receive on your email (cody.fisher45@example.com).",
   "emailNorReceived": "Email not received?",
-  "resendCode": "Resend Code"
+  "resendCode": "Resend Code",
+  "forgotPasswordTitle": "Forgot Password",
+  "forgotPasswordSubtitle" : "Enter your email for the verification process. We will send 4 digits code to your email.",
+  "sendCode": "Send Code",
+  "resetPassword": "Reset Password",
+  "resetPasswordSubtitle": "Set the new password for your account so you can login and access all the features.",
+  "continues": "Continue",
+  "passwordChanged": "Password Changed!",
+  "passwordChangedSubtitle": "Your can now use your new password to login to your account."
 }
