@@ -91,7 +91,7 @@ class VerificationView extends StatelessWidget {
                   ),
                   SizedBox(height: 171.h,),
                   StoreFloatingButton(text: "Continue", arrow: false, callback: (){
-                      context.go(Routes.verification);
+                      context.go(Routes.resetPassword);
                   }, color: Colors.black)
                 ],
               ),
