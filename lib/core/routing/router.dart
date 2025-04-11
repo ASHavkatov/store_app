@@ -6,6 +6,7 @@ import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/pages/forgot_password_view.dart';
 import 'package:store_app/features/authentication/verification/pages/reset_password_view.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
+import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
@@ -72,6 +73,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
+    ),
+    GoRoute(
+      path: Routes.checkout ,
+      builder: (context, state) => CheckoutView(),
     ),
   ],
 );
