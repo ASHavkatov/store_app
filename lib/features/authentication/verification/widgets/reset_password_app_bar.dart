@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../core/routing/routes.dart';
-
 class ResetPasswordAppBar extends StatelessWidget implements PreferredSizeWidget {
   const ResetPasswordAppBar({super.key});
 

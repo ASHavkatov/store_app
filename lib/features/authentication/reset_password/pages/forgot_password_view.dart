@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/features/common/presentations/store_app_form_field.dart';
@@ -8,7 +7,6 @@ import '../../../../core/l10n/app_localizations.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../onboarding/onboarding/widgets/store_floating_button.dart';
-import '../../login/blocs/login_bloc.dart';
 import '../../verification/widgets/reset_password_app_bar.dart';
 
 class ForgotPasswordView extends StatefulWidget {
@@ -35,7 +33,6 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
   }
   @override
   Widget build(BuildContext context) {
-    TextEditingController controllerE;
     return Scaffold(
       appBar: ResetPasswordAppBar(),
       body: ListView(
