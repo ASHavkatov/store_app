@@ -65,9 +65,9 @@ class SignUpViewModel extends ChangeNotifier {
           context: context,
           builder: (context) => SuccessfulSignUpDialog(),
         );
-        Future.delayed(
-          Duration(seconds: 3),
-        ).then((value) => context.go(Routes.home));
+        // Future.delayed(
+        //   Duration(seconds: 3),
+        // ).then((value) => context.go(Routes.home));
       }
     }
   }
