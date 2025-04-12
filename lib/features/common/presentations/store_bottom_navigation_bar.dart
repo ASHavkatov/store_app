@@ -24,35 +24,35 @@ class StoreBottomNavigationBar extends StatelessWidget {
           children: [
             BottomNavigationButton(
               callback: () {
-                context.go(Routes.home);
+                context.push(Routes.home);
               },
               text: "Home",
               icon: "assets/icons/home.svg",
             ),
             BottomNavigationButton(
               callback: () {
-                context.go(Routes.home);
+                context.push(Routes.home);
               },
               text: "Search",
               icon: "assets/icons/search.svg",
             ),
             BottomNavigationButton(
               callback: () {
-                context.go(Routes.home);
+                context.push(Routes.search);
               },
               text: "Saved",
               icon: "assets/icons/saved.svg",
             ),
             BottomNavigationButton(
               callback: () {
-                context.go(Routes.home);
+                context.push(Routes.home);
               },
               text: "Cart",
               icon: "assets/icons/cart.svg",
             ),
             BottomNavigationButton(
               callback: () {
-                context.go(Routes.home);
+                context.push(Routes.home);
               },
               text: "Account",
               icon: "assets/icons/account.svg",

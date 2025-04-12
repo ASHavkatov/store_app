@@ -13,6 +13,5 @@ class Routes{
   static const checkout = '/checkout';
   static const resetPassword = '/reset-password';
   static const detail = '/detail';
-
-
+  static const search = '/search';
 }

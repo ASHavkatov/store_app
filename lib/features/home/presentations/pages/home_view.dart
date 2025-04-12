@@ -28,6 +28,7 @@ class HomeView extends StatelessWidget {
                   title: vm.products![index].title,
                   price: vm.products![index].price,
                   image: vm.products![index].image,
+                  isLiked: vm.products![index].isLiked,
                 );
               }, childCount: vm.products!.length),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

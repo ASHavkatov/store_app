@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           StoreIconButtonContainer(
             image: "assets/icons/notification.svg",
             callback: () {
-              context.go(Routes.notification);
+              context.push(Routes.notification);
             },
             iconWidth: 24.w,
             iconHeight: 24.h,
