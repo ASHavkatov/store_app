@@ -8,6 +8,7 @@ import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/home/managers/home_view_model.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
@@ -23,7 +24,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.search,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -75,5 +76,6 @@ GoRouter router = GoRouter(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
     ),
+    GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
   ],
 );
