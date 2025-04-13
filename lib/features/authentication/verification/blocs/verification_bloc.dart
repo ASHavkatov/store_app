@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:store_app/core/secure_storege.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_event.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_state.dart';
 
@@ -7,10 +8,6 @@ import '../../../../data/repositories/auth_repositories_models/auth_repository.d
 
 class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   final AuthRepository _repo;
-  final formKey = GlobalKey<FormState>();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController codeController = TextEditingController();
 
   VerificationBloc({required AuthRepository repo})
     : _repo = repo,
@@ -21,13 +18,12 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
   }
 
   Future<void> _sendEmail(
-      VerificationEmailEvent event,
-      Emitter<VerificationState> emit,
-      ) async {
-    print("nimadir ${event.email}");
-    emit(state.copyWith(status: VerificationStatus.loading)); // loading holat
+    VerificationEmailEvent event,
+    Emitter<VerificationState> emit,
+  ) async {
+    emit(state.copyWith(status: VerificationStatus.loading));
     final result = await _repo.resetPassword(event.email);
-    print(result);
+    await SecureStorage.saveEmail(event.email);
     if (result) {
       emit(state.copyWith(status: VerificationStatus.success));
     } else {
@@ -44,22 +40,34 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     VerificationPasswordEvent event,
     Emitter<VerificationState> emit,
   ) async {
+    final email = await SecureStorage.getEmail();
+    final code = await SecureStorage.getCode();
     final result = await _repo.postResetEmailCodeReset(
-      emailController.text.trim(),
-      codeController.text.trim(),
+      email["email"]!,
+      code["code"]!,
       event.password,
     );
     if (result) {
       emit(state.copyWith(status: VerificationStatus.success));
-    }  else{
+    } else {
+      print("1111111111111111111111111111111111111111");
       emit(state.copyWith(status: VerificationStatus.error));
     }
   }
-  Future<void> _sendCode(VerificationCodeEvent event,Emitter<VerificationState> emit)async{
-    final result = await _repo.postResetEmailCode(emailController.text.trim(), event.code);
+
+  Future<void> _sendCode(
+    VerificationCodeEvent event,
+    Emitter<VerificationState> emit,
+  ) async {
+    final email  = await SecureStorage.getEmail();
+    final result = await _repo.postResetEmailCode(
+      email["email"]!,
+      event.code,
+    );
+    await SecureStorage.saveCode(event.code);
     if (result) {
       emit(state.copyWith(status: VerificationStatus.success));
-    }  else{
+    } else {
       emit(state.copyWith(status: VerificationStatus.error));
       throw Exception("Kod xato ketti");
     }

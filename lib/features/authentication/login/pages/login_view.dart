@@ -59,7 +59,7 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: 8.h),
             StoreAppText(
               title: MyLocalizations.of(context)!.itsGreat,
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black.withValues(alpha:0.5),
               size: 16,
               fontWeight: FontWeight.w400,
             ),
@@ -117,14 +117,14 @@ class _LoginViewState extends State<LoginView> {
                 Text(
                   MyLocalizations.of(context)!.forgotPassword,
                   style: TextStyle(
-                    color: Colors.black.withOpacity(0.5),
+                    color: Colors.black.withValues(alpha:0.5),
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    context.push(Routes.verification);
+                    context.push(Routes.forgotPassword);
                   },
                   child: Text(
                     MyLocalizations.of(context)!.resetPassword,
@@ -213,25 +213,6 @@ class _LoginViewState extends State<LoginView> {
         ),
       ),
     ),
-        // builder: (context, state) {
-          // return switch (state.status) {
-          //   LoginStatus.success => () {
-          //     WidgetsBinding.instance.addPostFrameCallback((_) {
-          //       context.go(Routes.home);
-          //     });
-          //     return const Center(child: CircularProgressIndicator());
-          //   }(),
-          //   LoginStatus.loading => const Center(child: CircularProgressIndicator()),
-          //   LoginStatus.error => const Center(child: Text("Ma'lumotni olib kelishda xatolik bor")),
-          //   LoginStatus.idle =>  Form(
-          //     key: formKey,
-          //     child: ,
-          //
-          //   ),
-          //   null => throw UnimplementedError(),
-          // };
-
-        // }
       ),
     );
   }

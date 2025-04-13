@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
@@ -5,10 +6,14 @@ import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/product_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
+
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
+
+
+
 
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
@@ -51,12 +56,48 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.verification,
+      builder: (context, state) {
+        final email = state.extra as String;
+        return BlocProvider.value(
+          value: VerificationBloc(repo: context.read()),
+          child: VerificationView(email: email),
+        );
+      },
+    ),
+
+    // GoRoute(path: Routes.resetPassword, builder: (context state)=> BlocProvider(create: context.read(),child: Rese,))
+    GoRoute(
+      path: Routes.home,
       builder:
-          (context, state) => BlocProvider(
-            create: (context) => VerificationBloc(repo: context.read()),
-            child: VerificationView(),
+          (context, state) => ChangeNotifierProvider(
+            create:
+                (context) => HomeViewModel(
+                  productRepo: ProductRepository(client: ApiClient()),
+                ),
+            child: HomeView(),
           ),
     ),
+    GoRoute(
+      path: Routes.resetPassword,
+      builder: (context, state) {
+        final extra = state.extra;
+        if (extra is Map<String, String>) {
+          final email = extra["email"]!;
+          final code = extra["code"]!;
+          return BlocProvider.value(
+            value: VerificationBloc(repo: context.read()),
+            child: ResetPasswordView(email: email, code: code),
+          );
+        } else {
+          return const Scaffold(
+            body: Center(child: Text('Invalid parameters')),
+          );
+        }
+      },
+    ),
+
+    GoRoute(path: Routes.home, builder: (context, state) => HomeView()),
+
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
