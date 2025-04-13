@@ -14,4 +14,5 @@ class Routes{
   static const resetPassword = '/reset-password';
   static const detail = '/detail';
   static const search = '/search';
+  static const fake = '/fake';
 }

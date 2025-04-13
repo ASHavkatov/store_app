@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/product_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 
-import 'package:store_app/features/authentication/verification/pages/forgot_password_view.dart';
-import 'package:store_app/features/authentication/verification/pages/reset_password_view.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/search/presentation/pages/search_view.dart';
+import 'package:store_app/main.dart';
+
+
+
 
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
@@ -29,7 +32,7 @@ import '../../main.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.search,
+  initialLocation: Routes.login,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -64,6 +67,7 @@ GoRouter router = GoRouter(
         );
       },
     ),
+
     // GoRoute(path: Routes.resetPassword, builder: (context state)=> BlocProvider(create: context.read(),child: Rese,))
     GoRoute(
       path: Routes.home,
@@ -105,5 +109,15 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
     GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
+    GoRoute(
+      path: Routes.home,
+      builder:
+          (context, state) => BlocProvider(
+        create:
+            (context) =>
+            HomeBloc(productRepo: ProductRepository(client: ApiClient())),
+        child: HomeView(),
+      ),
+    ),
   ],
 );
