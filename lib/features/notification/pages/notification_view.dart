@@ -29,7 +29,7 @@ class NotificationView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
-                        "assets/icons/store_app_full_big-ben.svg",
+                        "assets/icons/no_notification.svg",
                         width: 64.w,
                         height: 64.h,
                         fit: BoxFit.cover,
