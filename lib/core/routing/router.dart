@@ -20,9 +20,12 @@ import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
 import '../../features/authentication/terms_and_privacy/terms_view.dart';
 import '../../features/authentication/verification/pages/verification_view.dart';
+import '../../features/home/managers/home_view_model.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
+import '../../features/search/presentation/pages/search_view.dart';
+import '../../main.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
