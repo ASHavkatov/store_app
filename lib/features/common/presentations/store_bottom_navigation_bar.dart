@@ -31,14 +31,14 @@ class StoreBottomNavigationBar extends StatelessWidget {
             ),
             BottomNavigationButton(
               callback: () {
-                context.push(Routes.home);
+                context.push(Routes.search);
               },
               text: "Search",
               icon: "assets/icons/search.svg",
             ),
             BottomNavigationButton(
               callback: () {
-                context.push(Routes.search);
+                context.push(Routes.home);
               },
               text: "Saved",
               icon: "assets/icons/saved.svg",
