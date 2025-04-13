@@ -6,7 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://0.0.0.0:8888/api/v1",
+      baseUrl: "http://192.168.10.87:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -65,16 +65,18 @@ class ApiClient {
     }
   }
 
-  Future<bool>postResetEmailCodeReset(String email, String password, String code)async{
+  Future<bool>postResetEmailCodeReset(String email, String code, String password)async{
     try{
-      var response = await dio.post("auth/reset-password/reset", data: {
+      var response = await dio.post("/auth/reset-password/reset", data: {
         "email": email,
-        "password": password,
         "code": code,
+        "password": password,
+
       },);
       if (response.statusCode==200) {
         return true;
       }else{
+        print( "${response.statusCode} 111111111111111111111111111");
         return false;
       }
     }catch(e){
