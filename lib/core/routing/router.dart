@@ -1,12 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
+import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/authentication/verification/pages/forgot_password_view.dart';
 import 'package:store_app/features/authentication/verification/pages/reset_password_view.dart';
-import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
@@ -47,11 +49,13 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.verification,
-      builder:
-          (context, state) => BlocProvider(
-            create: (context) => VerificationBloc(repo: context.read()),
-            child: VerificationView(),
-          ),
+      builder: (context, state) {
+        final email = state.extra as String;
+        return BlocProvider.value(
+          value: VerificationBloc(repo: context.read()),
+          child: VerificationView(email: email),
+        );
+      },
     ),
     GoRoute(
       path: Routes.forgotPassword,
@@ -63,8 +67,23 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.resetPassword,
-      builder: (context, state) => ResetPasswordView(),
+      builder: (context, state) {
+        final extra = state.extra;
+        if (extra is Map<String, String>) {
+          final email = extra["email"]!;
+          final code = extra["code"]!;
+          return BlocProvider.value(
+            value: VerificationBloc(repo: context.read()),
+            child: ResetPasswordView(email: email, code: code),
+          );
+        } else {
+          return const Scaffold(
+            body: Center(child: Text('Invalid parameters')),
+          );
+        }
+      },
     ),
+
     GoRoute(path: Routes.home, builder: (context, state) => HomeView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
