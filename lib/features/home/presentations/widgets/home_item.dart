@@ -25,8 +25,6 @@ class HomeItem extends StatefulWidget {
 class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<HomeViewModel>();
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

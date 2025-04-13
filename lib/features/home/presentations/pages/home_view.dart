@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:store_app/features/common/presentations/no_something_body.dart';
-import 'package:store_app/features/home/managers/home_view_model.dart';
 import 'package:store_app/features/home/presentations/widgets/home_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
 import '../../managers/home_bloc.dart';
@@ -16,8 +14,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vm = context.read<HomeViewModel>();
-
     return Scaffold(
       appBar: HomeAppBar(),
       body: BlocBuilder<HomeBloc, HomeState>(
@@ -25,12 +21,11 @@ class HomeView extends StatelessWidget {
             (context, state) => switch (state.status) {
               HomeStatus.idle => CustomScrollView(
                 slivers: [
-                  const HomeSliverAppBar(),
+                  HomeSliverAppBar(),
                   SliverPadding(
                     padding: const EdgeInsets.all(25),
                     sliver: SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
-                        final item = vm.products![index];
                         return HomeItem(
                           title: state.products![index].title,
                           price: state.products![index].price,
