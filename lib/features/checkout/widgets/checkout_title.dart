@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../core/utils/colors.dart';
 class CheckoutTitle extends StatelessWidget {
-  const CheckoutTitle({super.key, required this.title});
+  CheckoutTitle({super.key, required this.title,this.fontSize=16,this.fontWeight=FontWeight.w600});
   final String title;
+  double fontSize;
+  FontWeight fontWeight;
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +13,8 @@ class CheckoutTitle extends StatelessWidget {
       title,
       style: TextStyle(
         color: AppColors.primary900,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
+        fontSize: fontSize,
+        fontWeight: fontWeight,
       ),
     );
   }
