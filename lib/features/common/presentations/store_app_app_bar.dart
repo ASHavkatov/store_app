@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_icon_button.dart';
+
+import '../../home/presentations/widgets/store_icon_button_container.dart';
 
 class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
   const StoreAppAppBar({
     super.key,
     this.toolbarHeight = 64,
     required this.title,
+    this.isTrue = false,
   });
 
   final double toolbarHeight;
   final String title;
+  final bool isTrue;
 
   @override
   Size get preferredSize => Size(double.infinity, toolbarHeight);
@@ -33,7 +37,8 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
             callback: () => context.pop(),
           ),
         ),
-      ),centerTitle: true,
+      ),
+      centerTitle: true,
       title: Text(
         title,
         style: TextStyle(
@@ -43,10 +48,23 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       toolbarHeight: toolbarHeight.h,
-      actions: [Padding(
-        padding:  EdgeInsets.only(right: 25.w),
-        child: SvgPicture.asset("assets/icons/store_app_big-ben.svg"),
-      )],
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(right: 25.w),
+          child: StoreIconButtonContainer(
+            image: "assets/icons/notification.svg",
+            callback: () {
+              context.push(Routes.notification);
+            },
+            iconWidth: 24.w,
+            iconHeight: 24.h,
+          ),
+        ),
+      ],
+      bottom: isTrue ? PreferredSize(
+        preferredSize: preferredSize,
+        child: Divider(height: 1, color: AppColors.primary100),
+      ) : null,
     );
   }
 }

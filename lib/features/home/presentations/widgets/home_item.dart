@@ -3,23 +3,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeItem extends StatefulWidget {
-  const HomeItem({
+   HomeItem({
     super.key,
     required this.title,
     required this.image,
     required this.price,
+    required this.isLiked,
   });
 
   final String title, image;
   final num price;
+
+   bool isLiked;
 
   @override
   State<HomeItem> createState() => _HomeItemState();
 }
 
 class _HomeItemState extends State<HomeItem> {
-  bool isLiked = false;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -45,7 +46,7 @@ class _HomeItemState extends State<HomeItem> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    isLiked = !isLiked;
+                    widget.isLiked = !widget.isLiked;
                   });
                 },
                 child: Container(
@@ -58,7 +59,7 @@ class _HomeItemState extends State<HomeItem> {
                   child: Padding(
                     padding: const EdgeInsets.all(5),
                     child: SvgPicture.asset(
-                      isLiked
+                      widget.isLiked
                           ? "assets/icons/heart_filled.svg"
                           : "assets/icons/heart.svg",
                       fit: BoxFit.contain,

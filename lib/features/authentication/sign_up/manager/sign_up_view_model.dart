@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:store_app/features/authentication/sign_up/widgets/sign_up_successfully.dart';
 
-import '../../../../core/routing/routes.dart';
 import '../../../../data/repositories/auth_repositories_models/auth_repository.dart';
 
 class SignUpViewModel extends ChangeNotifier {

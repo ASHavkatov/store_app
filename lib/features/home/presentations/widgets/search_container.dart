@@ -78,7 +78,6 @@ class _SearchContainerState extends State<SearchContainer> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 281.w,
       height: 52.h,
       child: TextFormField(
         controller: _controller,
