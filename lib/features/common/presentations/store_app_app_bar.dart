@@ -13,10 +13,12 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.toolbarHeight = 64,
     required this.title,
+    this.isTrue = false,
   });
 
   final double toolbarHeight;
   final String title;
+  final bool isTrue;
 
   @override
   Size get preferredSize => Size(double.infinity, toolbarHeight);
@@ -60,6 +62,10 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ],
+      bottom: isTrue ? PreferredSize(
+        preferredSize: preferredSize,
+        child: Divider(height: 1, color: AppColors.primary100),
+      ) : null,
     );
   }
 }
