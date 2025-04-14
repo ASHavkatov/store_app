@@ -21,10 +21,11 @@ import '../../features/authentication/verification/pages/verification_view.dart'
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
+import '../../features/product_detail/presentation/pages/product_detail_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.productDetail,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -65,6 +66,7 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
     GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
+    GoRoute(path: Routes.productDetail, builder: (context, state) => ProductDetailView()),
     GoRoute(
       path: Routes.home,
       builder:
