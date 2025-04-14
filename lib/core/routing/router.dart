@@ -11,6 +11,7 @@ import 'package:store_app/features/authentication/verification/blocs/verificatio
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
 
@@ -31,7 +32,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.checkout,
+  initialLocation: Routes.detail,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -105,6 +106,7 @@ GoRouter router = GoRouter(
           ),
     ),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
+    GoRoute(path: Routes.detail, builder: (context, state) => ProductDetailView()),
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
