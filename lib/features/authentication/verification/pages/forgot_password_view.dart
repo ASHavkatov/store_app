@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_event.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_state.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
-
 import '../../../../core/routing/routes.dart';
 import '../../../common/presentations/store_app_form_field.dart';
-import '../../verification/widgets/reset_password_app_bar.dart';
+import '../widgets/forget_text.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});
@@ -48,23 +46,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Forgot password",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontFamily: "GeneralSans",
-                    fontSize: 32,
-                  ),
-                ),
-                SizedBox(height: 8.h),
-                Text(
-                  "Enter your email for the verification process. We will send 4 digits code to your email.",
-                  style: TextStyle(
-                    fontFamily: "GeneralSans",
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                ),
+                ForgetText(title: "Forgot password", text: "Enter your email for the verification process. We will send 4 digits code to your email.",),
                 SizedBox(height: 24.h),
                 StoreAppFormField(
                   fontWeight: FontWeight.w600,
@@ -88,6 +70,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                       return "Enter a valid email address.";
                     }
                     emailValid = true;
+                    setState(() {});
                     return null;
                   },
                 ),
@@ -96,7 +79,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                   builder: (context, state) {
                     return StoreFloatingButton(
                       arrow: false,
-                      text: state.status == VerificationStatus.loading ? "Sending..." : "Send Code",
+                      text: state.status == VerificationStatus.loading ? "Send Code" : "Sending...",
                       width: double.infinity,
                       height: 54.h,
                       color: AppColors.primary900,
@@ -121,3 +104,4 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
     );
   }
 }
+

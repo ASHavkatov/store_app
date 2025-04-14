@@ -54,23 +54,26 @@ class SignUpViewModel extends ChangeNotifier {
   }
 
   Future signUp(BuildContext context) async {
+    if (!formKey.currentState!.validate()) return;
+
     final result = await _authRepo.signUp(
       fullName: fullNameController.text,
       email: emailController.text,
       password: passwordController.text,
     );
-    if (formKey.currentState!.validate()) {
-      if (result && context.mounted) {
-        showDialog(
-          context: context,
-          builder: (context) => SuccessfulSignUpDialog(),
-        );
-        // Future.delayed(
-        //   Duration(seconds: 3),
-        // ).then((value) => context.go(Routes.home));
-      }
+
+    if (result && context.mounted) {
+      showDialog(
+        context: context,
+        builder: (context) => const SuccessfulSignUpDialog(),
+      );
+      Future.delayed(
+        Duration(seconds: 3),
+      ).then((value) => context.go(Routes.home));
     }
   }
+
+
 
   Locale _currentLocale = Locale("en");
 

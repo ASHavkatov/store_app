@@ -46,7 +46,7 @@ class _SignUpViewState extends State<SignUpView> {
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             child: SingleChildScrollView(
               child: Form(
-                key: context.read<SignUpViewModel>().formKey,
+                key: widget.vm.formKey,
                 child: Consumer<SignUpViewModel>(
                   builder:
                       (context, vm, _) => Column(
@@ -196,7 +196,10 @@ class _SignUpViewState extends State<SignUpView> {
                             text: MyLocalizations.of(context)!.createAccount,
                             arrow: false,
                             color: widget.getBackgroundColor(),
-                            callback: () => widget.vm.signUp(context)
+                              callback: () {
+                                FocusScope.of(context).unfocus();
+                                widget.vm.signUp(context);
+                              }
                           ),
                           SizedBox(height: 24.h),
                           Row(

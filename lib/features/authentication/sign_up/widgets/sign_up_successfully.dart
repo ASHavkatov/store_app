@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
-
 import '../../../../core/utils/colors.dart';
 
 class SuccessfulSignUpDialog extends StatelessWidget {
@@ -47,7 +45,6 @@ class SuccessfulSignUpDialog extends StatelessWidget {
                   fontSize: 13,
                 ),
               ),
-              Lottie.asset('assets/tick_animation.json',width: 50,height: 50 )
             ],
           ),
         ),
