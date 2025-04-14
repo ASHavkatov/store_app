@@ -10,10 +10,10 @@ class NotificationView extends StatelessWidget {
   NotificationView({super.key});
 
   final item = [
-    NotificationItem(),
-    NotificationItem(),
-    NotificationItem(),
-    NotificationItem(),
+    // NotificationItem(),
+    // NotificationItem(),
+    // NotificationItem(),
+    // NotificationItem(),
   ];
 
   @override
