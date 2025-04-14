@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:store_app/core/secure_storege.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_event.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_state.dart';

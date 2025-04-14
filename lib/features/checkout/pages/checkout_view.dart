@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/checkout/widgets/checkout_title.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
+import '../../../core/routing/routes.dart';
 import '../widgets/add_promo.dart';
 import '../widgets/card_pay.dart';
 import '../widgets/cash_pay.dart';
@@ -26,7 +28,7 @@ class _CheckoutViewState extends State<CheckoutView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppAppBar(title: "Checkout", isTrue: true,),
+      appBar: StoreAppAppBar(title: "Checkout", isTrue: true),
       body: ListView(
         children: [
           Padding(
@@ -39,12 +41,18 @@ class _CheckoutViewState extends State<CheckoutView>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     CheckoutTitle(title: 'Delivery Address'),
-                    Text(
-                      'Change',
-                      style: TextStyle(
-                        color: AppColors.primary900,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+                    InkWell(
+                      onTap: (){},
+                      child: Text(
+                        'Change',
+
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: AppColors.primary900,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+
+                        ),
                       ),
                     ),
                   ],
