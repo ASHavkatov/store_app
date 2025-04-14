@@ -15,6 +15,7 @@ class Routes{
   static const detail = '/detail';
   static const address = '/address';
   static const newAddress = '/new-address';
+  static const saved = '/saved';
 
 
 

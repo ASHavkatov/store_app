@@ -42,10 +42,9 @@ class _CheckoutViewState extends State<CheckoutView>
                   children: [
                     CheckoutTitle(title: 'Delivery Address'),
                     InkWell(
-                      onTap: (){},
+                      onTap: (){context.push(Routes.address);},
                       child: Text(
                         'Change',
-
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: AppColors.primary900,

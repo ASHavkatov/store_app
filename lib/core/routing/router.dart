@@ -11,10 +11,12 @@ import 'package:store_app/features/authentication/verification/blocs/verificatio
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
 
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
+import '../../data/repositories/product_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -30,7 +32,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.checkout,
+  initialLocation: Routes.saved ,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -108,6 +110,7 @@ GoRouter router = GoRouter(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
     ),
+    GoRoute(path: Routes.saved, builder: (context, state) => SavedView()),
     GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
@@ -117,12 +120,9 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
+    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
-      path: Routes.address ,
-      builder: (context, state) => AddressView(),
-    ),
-    GoRoute(
-      path: Routes.newAddress ,
+      path: Routes.newAddress,
       builder: (context, state) => NewAddressView(),
     ),
   ],
