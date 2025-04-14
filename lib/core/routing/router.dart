@@ -2,6 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
+import 'package:store_app/features/address/pages/address_view.dart';
+import 'package:store_app/features/address/pages/new_address_view.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/pages/forgot_password_view.dart';
 import 'package:store_app/features/authentication/verification/pages/reset_password_view.dart';
@@ -77,6 +79,14 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.checkout ,
       builder: (context, state) => CheckoutView(),
+    ),
+    GoRoute(
+      path: Routes.address ,
+      builder: (context, state) => AddressView(),
+    ),
+    GoRoute(
+      path: Routes.newAddress ,
+      builder: (context, state) => NewAddressView(),
     ),
   ],
 );
