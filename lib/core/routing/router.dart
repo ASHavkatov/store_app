@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
-import 'package:store_app/data/repositories/product_repository.dart';
+import 'package:store_app/features/address/pages/address_view.dart';
+import 'package:store_app/features/address/pages/new_address_view.dart';
+
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
@@ -110,5 +112,18 @@ GoRouter router = GoRouter(
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
+    GoRoute(
+      path: Routes.notification,
+      builder: (context, state) => NotificationView(),
+    ),
+
+    GoRoute(
+      path: Routes.address ,
+      builder: (context, state) => AddressView(),
+    ),
+    GoRoute(
+      path: Routes.newAddress ,
+      builder: (context, state) => NewAddressView(),
+    ),
   ],
 );

@@ -13,6 +13,12 @@ class Routes{
   static const checkout = '/checkout';
   static const resetPassword = '/reset-password';
   static const detail = '/detail';
+  static const address = '/address';
+  static const newAddress = '/new-address';
+
+
+
+
   static const search = '/search';
-  static const fake = '/fake';
+
 }
