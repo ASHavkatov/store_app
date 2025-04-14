@@ -6,6 +6,7 @@ import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/data/repositories/product_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
+import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
@@ -27,7 +28,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.checkout,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -99,6 +100,9 @@ GoRouter router = GoRouter(
         create: (context) => VerificationBloc(repo: context.read()),
         child: ForgotPasswordView(),
       ),
+    ),
+    GoRoute(path: Routes.checkout,
+      builder: (context, state) => CheckoutView()
     ),
 
 
