@@ -97,15 +97,11 @@ GoRouter router = GoRouter(
       path: Routes.forgotPassword,
       builder:
           (context, state) => BlocProvider(
-        create: (context) => VerificationBloc(repo: context.read()),
-        child: ForgotPasswordView(),
-      ),
+            create: (context) => VerificationBloc(repo: context.read()),
+            child: ForgotPasswordView(),
+          ),
     ),
-    GoRoute(path: Routes.checkout,
-      builder: (context, state) => CheckoutView()
-    ),
-
-
+    GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
