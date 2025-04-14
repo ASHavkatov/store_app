@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
-  final dio = Dio(
+  final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.0.102:8888/api/v1",
+      baseUrl: "http://0.0.0.0:8888/api/v1",
       validateStatus: (status) => true,
     ),
   );
@@ -78,6 +78,15 @@ class ApiClient {
       }
     }catch(e){
       throw Exception("Error at reset email code");
+    }
+  }
+  Future<List<dynamic>>fetchProduct()async{
+    var response = await dio.get('/products/list');
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    }else{
+      throw Exception("/product/list error");
     }
   }
 }
