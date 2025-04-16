@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
+import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
 import 'package:store_app/features/address/pages/new_address_view.dart';
-
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
@@ -13,8 +13,8 @@ import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
-
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
+import '../../data/repositories/product_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -30,7 +30,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.checkout,
+  initialLocation: Routes.newAddress,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -123,7 +123,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.newAddress ,
-      builder: (context, state) => NewAddressView(),
+      builder: (context, state) => BlocProvider(create:(context)=> NewAddressBloc(), child: NewAddressView(),),
     ),
   ],
 );
