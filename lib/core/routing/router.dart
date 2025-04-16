@@ -13,6 +13,8 @@ import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
+import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
 import '../../data/repositories/auth_repositories_models/auth_repository.dart';
@@ -33,6 +35,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: Routes.account,
+
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -106,10 +109,12 @@ GoRouter router = GoRouter(
           ),
     ),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
+    GoRoute(path: Routes.detail, builder: (context, state) => ProductDetailView()),
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
     ),
+    GoRoute(path: Routes.saved, builder: (context, state) => SavedView()),
     GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
@@ -119,7 +124,9 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
+    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
+
       path: Routes.address ,
       builder: (context, state) => AddressView(),
     ),
@@ -134,6 +141,7 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.myOrders ,
       builder: (context, state) => MyOrderView(),
+
     ),
   ],
 );

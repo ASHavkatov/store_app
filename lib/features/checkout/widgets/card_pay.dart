@@ -28,7 +28,7 @@ class CardPay extends StatelessWidget {
             " **** **** **** 2512",
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
-          SizedBox(width: 90.w),
+          SizedBox(width: 77.w),
           GestureDetector(
             onTap: onTap,
             child: SvgPicture.asset("assets/icons/edit.svg"),
