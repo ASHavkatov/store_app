@@ -5,7 +5,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.10.87:8888/api/v1",
+      baseUrl: "http://192.168.100.15:8888/api/v1",
       validateStatus: (status) => true,
     ),
   );
@@ -16,6 +16,7 @@ class ApiClient {
       data: {'login': login, 'password': password},
     );
     if (response.statusCode == 200) {
+      // print(response.statusCode);
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
     } else {

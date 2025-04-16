@@ -15,11 +15,10 @@ class Routes{
   static const detail = '/detail';
   static const address = '/address';
   static const newAddress = '/new-address';
+  static const account = '/account';
   static const saved = '/saved';
-
-
-
-
   static const search = '/search';
+  static const myOrders = '/my-orders';
+
 
 }

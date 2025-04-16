@@ -22,7 +22,7 @@ class StoreAppText extends StatelessWidget {
         color: color,
         fontWeight: fontWeight,
         fontSize: size,
-        letterSpacing: -1,
+        letterSpacing: 0.2,
       ),
     );
   }
