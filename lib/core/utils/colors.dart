@@ -9,6 +9,7 @@ class AppColors{
   static const darkBlue = Color(0xFF1877F2);
   static const successGreen = Color(0xFF0C9409);
   static const primary300 = Color(0xFFB3B3B3);
+  static const error = Color(0xFFED1010);
   static const primaryRed = Color(0xffED1010);
 
 
