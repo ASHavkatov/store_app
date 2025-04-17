@@ -199,6 +199,7 @@ class _SignUpViewState extends State<SignUpView> {
                               callback: () {
                                 FocusScope.of(context).unfocus();
                                 widget.vm.signUp(context);
+                                context.go(Routes.login);
                               }
                           ),
                           SizedBox(height: 24.h),

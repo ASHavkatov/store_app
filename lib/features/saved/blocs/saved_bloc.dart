@@ -17,7 +17,7 @@ class SavedBloc extends Bloc<SavedEvent, SavedState> {
   }
 
   Future<void> _onLoading(SavedLoading event, Emitter<SavedState> emit) async {
-    final saved = await _repo.fetchProducts();
+    final saved = await _repo.fetchSavedProducts();
     emit(state.copyWith(status: SavedStatus.idle, saved: saved));
   }
 
