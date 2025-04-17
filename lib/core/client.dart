@@ -64,30 +64,33 @@ class ApiClient {
     }
   }
 
-  Future<bool>postResetEmailCodeReset(String email, String code, String password)async{
-    try{
-      var response = await dio.post("/auth/reset-password/reset", data: {
-        "email": email,
-        "code": code,
-        "password": password,
-
-      },);
-      if (response.statusCode==200) {
+  Future<bool> postResetEmailCodeReset(
+    String email,
+    String code,
+    String password,
+  ) async {
+    try {
+      var response = await dio.post(
+        "/auth/reset-password/reset",
+        data: {"email": email, "code": code, "password": password},
+      );
+      if (response.statusCode == 200) {
         return true;
-      }else{
-        print( "${response.statusCode} 111111111111111111111111111");
+      } else {
+        print("${response.statusCode} 111111111111111111111111111");
         return false;
       }
-    }catch(e){
+    } catch (e) {
       throw Exception("Error at reset email code");
     }
   }
-  Future<List<dynamic>>fetchProduct()async{
+
+  Future<List<dynamic>> fetchProduct() async {
     var response = await dio.get('/products/list');
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       return data;
-    }else{
+    } else {
       throw Exception("/product/list error");
     }
   }
