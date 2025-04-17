@@ -23,7 +23,6 @@ class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
     final product = widget.product;
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

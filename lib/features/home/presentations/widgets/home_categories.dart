@@ -1,54 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_app/data/models/category_model.dart';
 import 'package:store_app/features/home/presentations/widgets/store_button_clickable.dart';
 
+import '../../managers/home_bloc.dart';
+import '../../managers/home_event.dart';
+
 class HomeCategories extends StatefulWidget {
-  const HomeCategories({
-    super.key,
-  });
+  final List<CategoryModel> categories;
+
+  const HomeCategories({super.key, required this.categories});
 
   @override
-  State<HomeCategories> createState() =>
-      _HomeCategoriesState();
+  State<HomeCategories> createState() => _HomeCategoriesState();
 }
 
-class _HomeCategoriesState
-    extends State<HomeCategories> {
-  String selected = "All";
-
-  void updateSelected(String newSelection) {
-    setState(() {
-      selected = newSelection;
-    });
-  }
-
-  final categories = ["All", "T-shirt", "Jeans", "Shoes", "Hoodies", "Long-Sleeve"];
+class _HomeCategoriesState extends State<HomeCategories> {
+  int? selectedId;
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children:
-        categories.map((text) {
-          return Padding(
+        children: [
+          Padding(
             padding: EdgeInsets.only(right: 8.w),
             child: StoreButtonClickable(
               height: 36.h,
-              text: text,
+              text: "All",
               arrow: false,
-              callback: () => updateSelected(text),
-              activeColor:
-              selected == text ? Colors.black : Colors.white,
-              inactiveColor:
-              selected == text ? Colors.black : Colors.white,
-              activeTextColor:
-              selected == text ? Colors.white : Colors.black,
-              inactiveTextColor:
-              selected == text ? Colors.white : Colors.black,
+              callback:
+                  () => setState(() {
+                    selectedId = null;
+                  }),
+              isSelected: selectedId == null,
             ),
-          );
-        }).toList(),
+          ),
+          for (var category in widget.categories)
+            Padding(
+              padding: EdgeInsets.only(right: 8.w),
+              child: StoreButtonClickable(
+                height: 36.h,
+                text: category.title,
+                arrow: false,
+                callback:
+                    () => setState(() {
+                      selectedId = category.id;
+                      context.read<HomeBloc>().add(
+                        HomeLoad(categoryId: category.id),
+                      );
+                    }),
+                isSelected: selectedId == category.id,
+              ),
+            ),
+        ],
       ),
     );
   }
