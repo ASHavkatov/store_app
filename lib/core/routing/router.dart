@@ -112,22 +112,8 @@ GoRouter router = GoRouter(
     ),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
     GoRoute(
-      path: Routes.detail,
-      builder: (context, state) => ProductDetailView(),
-    ),
-    GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
-    ),
-    GoRoute(
-      path: Routes.saved,
-      builder:
-          (context, state) => BlocProvider(
-            create:
-                (context) =>
-                    SavedBloc(repo: ProductRepository(client: context.read())),
-            child: SavedView(),
-          ),
     ),
     GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
@@ -138,18 +124,21 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
-    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
-    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
-      path: Routes.newAddress,
-      builder:
-          (context, state) => BlocProvider(
-            create: (context) => NewAddressBloc(),
-            child: NewAddressView(),
-          ),
+      path: Routes.address ,
+      builder: (context, state) => AddressView(),
     ),
-    GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
-    GoRoute(path: Routes.myOrders, builder: (context, state) => MyOrderView()),
-    GoRoute(path: Routes.myCard, builder: (context, state) => MyCartView()),
+    GoRoute(
+      path: Routes.newAddress ,
+      builder: (context, state) => BlocProvider(create:(context)=> NewAddressBloc(), child: NewAddressView(),),
+    ),
+    GoRoute(
+      path: Routes.account ,
+      builder: (context, state) => AccountView(),
+    ),
+    GoRoute(
+      path: Routes.myOrders ,
+      builder: (context, state) => MyOrderView(),
+    ),
   ],
 );
