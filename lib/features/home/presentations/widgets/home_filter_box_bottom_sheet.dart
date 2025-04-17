@@ -6,9 +6,8 @@ import 'package:store_app/features/home/presentations/widgets/store_icon_button_
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 class HomeFilterBoxBottomSheet extends StatefulWidget {
-  const HomeFilterBoxBottomSheet({super.key,required this.products});
+  const HomeFilterBoxBottomSheet({super.key});
 
-  final List<ProductModel> products;
   @override
   State<HomeFilterBoxBottomSheet> createState() => _HomeFilterBoxBottomSheet();
 }

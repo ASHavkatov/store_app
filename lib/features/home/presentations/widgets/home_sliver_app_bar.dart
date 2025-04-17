@@ -7,9 +7,8 @@ import 'package:store_app/features/home/presentations/widgets/search_container.d
 import 'home_filter_box.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key, required this.categories,required this.product});
+  const HomeSliverAppBar({super.key, required this.categories});
 
-  final List<ProductModel> product;
   final List<CategoryModel> categories;
 
   @override
@@ -27,7 +26,7 @@ class HomeSliverAppBar extends StatelessWidget {
             children: [
               Expanded(child: SearchContainer()),
               SizedBox(width: 8.w),
-              HomeFilterBox(products: product,),
+              HomeFilterBox(),
             ],
           ),
           SizedBox(height: 16.h),

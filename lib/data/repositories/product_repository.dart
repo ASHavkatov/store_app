@@ -9,6 +9,8 @@ class ProductRepository {
 
   List<ProductModel>? products;
 
+  List<ProductModel>? savedProducts;
+
   List<CategoryModel>? categories;
 
   Future<List<ProductModel>> fetchProduct(
@@ -35,5 +37,10 @@ class ProductRepository {
             .map((categories) => CategoryModel.fromJson(categories))
             .toList();
     return categories!;
+  }
+  Future<List<ProductModel>> fetchSavedProducts()async{
+    var rawSavedProduct = await client.fetchSavedProducts();
+    savedProducts = rawSavedProduct.map((products)=>ProductModel.fromJson(products)).toList();
+    return savedProducts!;
   }
 }

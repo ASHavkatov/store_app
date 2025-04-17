@@ -6,28 +6,35 @@ import '../../../data/models/category_model.dart';
 enum HomeStatus { idle, error, loading }
 
 class HomeState extends Equatable {
-  const HomeState({required this.status, required this.products, required this.categories});
+  const HomeState(
+      {required this.status, required this.products, required this.categories, this.isSuccess});
 
   final HomeStatus? status;
-  final List<ProductModel> products;
   final List<CategoryModel> categories;
 
+  final List<ProductModel>? products;
+  final bool ?isSuccess;
+
   factory HomeState.initial() {
-    return HomeState(status: HomeStatus.loading, products: [], categories: []);  // Initialize categories as an empty list
+    return HomeState(status: HomeStatus.loading,
+        products: [],
+        categories: [],
+        isSuccess: null); // Initialize categories as an empty list
   }
 
-  HomeState copyWith({
-    HomeStatus? status,
+  HomeState copyWith({required HomeStatus? status,
     List<ProductModel>? products,
-    List<CategoryModel>? categories,  // Add categories to copyWith method
+    bool? isLike,
+    List<CategoryModel>? categories,
   }) {
     return HomeState(
       status: status ?? this.status,
       products: products ?? this.products,
-      categories: categories ?? this.categories,  // Include categories in copyWith
+      isSuccess: isLike ?? isSuccess,
+      categories: categories ?? this.categories,
     );
   }
 
   @override
-  List<Object?> get props => [status, products, categories];  // Include categories in Equatable props
+  List<Object?> get props => [status, products, categories, isSuccess];
 }

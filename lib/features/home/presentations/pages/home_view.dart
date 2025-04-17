@@ -34,24 +34,13 @@ class _HomeViewState extends State<HomeView> {
             (context, state) => switch (state.status) {
               HomeStatus.idle => CustomScrollView(
                 slivers: [
-                  HomeSliverAppBar(categories: state.categories,product: state.products,),
+                  HomeSliverAppBar(categories: state.categories),
                   SliverPadding(
                     padding: const EdgeInsets.all(25),
                     sliver: SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
-                        return GestureDetector(
-                          onTap: (){
-                            context.push(Routes.detail,extra: state.products[index]);
-                          },
-                          child: HomeItem(
-                            title: state.products[index].title,
-                            price: state.products[index].price,
-                            image: state.products[index].image,
-                            isLiked: state.products[index].isLiked,
-                            discount: state.products[index].discount,
-                          ),
-                        );
-                      }, childCount: state.products.length),
+                         return GestureDetector(onTap: (){context.push(Routes.detail);},child: HomeItem(product: state.products![index]));
+                      }, childCount: state.products!.length),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 19,

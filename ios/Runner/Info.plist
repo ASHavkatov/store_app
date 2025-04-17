@@ -4,13 +4,10 @@
 <dict>
     <key>UIUserNotificationUsageDescription</key>
     <string>We need notification permission to send you updates and alerts about your activity.</string>
-
-    <!-- ✅ Location permissions -->
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>We need your location to provide better services when the app is in use.</string>
     <key>NSLocationAlwaysUsageDescription</key>
     <string>We need your location even when the app is in background for better functionality.</string>
-
     <key>CFBundleDevelopmentRegion</key>
     <string>$(DEVELOPMENT_LANGUAGE)</string>
     <key>CFBundleDisplayName</key>
