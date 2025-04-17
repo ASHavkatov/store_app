@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:store_app/data/models/product_model.dart';
 
 import 'home_filter_box_bottom_sheet.dart';
 
 class HomeFilterBox extends StatefulWidget {
-  const HomeFilterBox({super.key});
+  const HomeFilterBox({super.key,required this.products});
 
+  final List<ProductModel> products;
   @override
   _HomeFilterBoxState createState() => _HomeFilterBoxState();
 }
@@ -21,8 +23,7 @@ class _HomeFilterBoxState extends State<HomeFilterBox> {
         showModalBottomSheet(
           context: context,
           builder: (context) {
-            return HomeFilterBoxBottomSheet(
-            );
+            return HomeFilterBoxBottomSheet(products: widget.products,);
           },
         );
       },

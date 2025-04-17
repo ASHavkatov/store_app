@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:store_app/data/models/category_model.dart';
+import 'package:store_app/data/models/product_model.dart';
 import 'package:store_app/features/home/presentations/widgets/home_categories.dart';
 import 'package:store_app/features/home/presentations/widgets/search_container.dart';
 import 'home_filter_box.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
-  const HomeSliverAppBar({super.key});
+  const HomeSliverAppBar({super.key, required this.categories,required this.product});
+
+  final List<ProductModel> product;
+  final List<CategoryModel> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +27,13 @@ class HomeSliverAppBar extends StatelessWidget {
             children: [
               Expanded(child: SearchContainer()),
               SizedBox(width: 8.w),
-              HomeFilterBox(),
+              HomeFilterBox(products: product,),
             ],
           ),
           SizedBox(height: 16.h),
-          HomeCategories(),
+          HomeCategories(categories: categories),
         ],
       ),
     );
   }
 }
-

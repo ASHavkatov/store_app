@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_app/features/home/presentations/widgets/sort_by_buttons.dart';
+import 'package:store_app/data/models/product_model.dart';
+import 'package:store_app/features/common/presentations/buttons_row.dart';
 import 'package:store_app/features/home/presentations/widgets/store_icon_button_container.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 class HomeFilterBoxBottomSheet extends StatefulWidget {
-  const HomeFilterBoxBottomSheet({super.key});
+  const HomeFilterBoxBottomSheet({super.key,required this.products});
 
+  final List<ProductModel> products;
   @override
   State<HomeFilterBoxBottomSheet> createState() => _HomeFilterBoxBottomSheet();
 }
@@ -57,7 +59,7 @@ class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
                   fontSize: 16,
                 ),
               ),
-              SortByButtons(),
+              ButtonsRow(items: ['Relevance','Price:Low-High','Price:High-Low'],),
               Divider(color: Colors.black.withValues(alpha: 0.3)),
               Text(
                 "Price",

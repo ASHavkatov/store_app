@@ -9,10 +9,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required ProductRepository productRepo})
     : _productRepo = productRepo,
       super(HomeState.initial()) {
-    on<HomeLoad>((event, emit)async {
-      final products = await _productRepo.fetchProduct();
-      emit(state.copyWith(status: HomeStatus.idle,products: products));
-    });
-    add(HomeLoad());
+    on<HomeLoad>(_onLoad);
+    add(HomeLoad(title: null, categoryId: null));
+  }
+
+  Future _onLoad(HomeLoad event, Emitter<HomeState> emit) async {
+    print("nimadalfsjdfjf   ${event.minPrice}");
+    final products = await _productRepo.fetchProduct(
+      event.title,
+      event.categoryId,
+      event.sizeId,
+      event.minPrice,
+      event.maxPrice,
+        event.orderBy
+    );
+    emit(state.copyWith(products: products, status: HomeStatus.idle));
+    final categories = await _productRepo.fetchCategories();
+    emit(state.copyWith(categories: categories, status: HomeStatus.idle));
   }
 }

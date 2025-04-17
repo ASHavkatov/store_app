@@ -5,7 +5,6 @@ import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
 import 'package:store_app/features/address/pages/new_address_view.dart';
-
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
@@ -32,7 +31,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.detail,
+  initialLocation: Routes.login,
   routes: [
     GoRoute(
       path: Routes.onBoarding,

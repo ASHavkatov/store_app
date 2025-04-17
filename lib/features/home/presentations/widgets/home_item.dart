@@ -9,10 +9,11 @@ class HomeItem extends StatefulWidget {
     required this.image,
     required this.price,
     required this.isLiked,
+     required this.discount,
   });
 
   final String title, image;
-  final num price;
+  final num price,discount;
 
    bool isLiked;
 
@@ -79,13 +80,26 @@ class _HomeItemState extends State<HomeItem> {
             fontFamily: "GeneralSans",
           ),
         ),
-        Text(
-          "\$${widget.price.toInt()}",
-          style: TextStyle(
-            fontFamily: "GeneralSans",
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
+        Row(
+          children: [
+            Text(
+              "\$${widget.price.toInt()}",
+              style: TextStyle(
+                fontFamily: "GeneralSans",
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Text(
+              widget.discount != 0 ? "\-${widget.discount.toInt()}\%" : "",
+              style: TextStyle(
+                color:Colors.red,
+                fontFamily: "GeneralSans",
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
         ),
       ],
     );

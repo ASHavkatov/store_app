@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
+import 'package:store_app/features/home/managers/home_event.dart';
 
 class SearchContainer extends StatefulWidget {
   const SearchContainer({super.key});
@@ -95,11 +98,16 @@ class _SearchContainerState extends State<SearchContainer> {
           fillColor: Colors.white,
           prefixIcon: Padding(
             padding: EdgeInsets.all(12.w),
-            child: SvgPicture.asset(
-              "assets/icons/search.svg",
-              color: Colors.grey,
-              width: 24.w,
-              height: 24.w,
+            child: GestureDetector(
+              onTap: () {
+                context.read<HomeBloc>().add(HomeLoad(title: _controller.text.trim(), categoryId: null));
+              },
+              child: SvgPicture.asset(
+                "assets/icons/search.svg",
+                color: Colors.grey,
+                width: 24.w,
+                height: 24.w,
+              ),
             ),
           ),
           suffixIcon: GestureDetector(
