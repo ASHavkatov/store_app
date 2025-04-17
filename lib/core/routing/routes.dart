@@ -19,6 +19,7 @@ class Routes{
   static const saved = '/saved';
   static const search = '/search';
   static const myOrders = '/my-orders';
+  static const myCard = '/my-cart';
 
 
 }

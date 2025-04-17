@@ -1,14 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:store_app/core/interceptor.dart';
+import 'package:store_app/data/models/product_model.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.100.15:8888/api/v1",
+      baseUrl: "http://192.168.10.237:8888/api/v1",
       validateStatus: (status) => true,
     ),
-  );
+  )..interceptors.add(AuthInterceptor());
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
@@ -89,7 +91,34 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     }else{
-      throw Exception("/product/list error");
+      print("${response.statusCode} 11111111111111111111");
+      throw Exception("/products/list error");
+    }
+  }
+  Future<List<dynamic>>fetchProducts()async{
+    var response = await dio.get('/products/saved-products');
+    if (response.statusCode == 200) {
+      return List.from(response.data);
+    }else{
+      print("${response.statusCode} 11111111111111111111");
+      throw Exception("/products/list error");
+    }
+  }
+
+  Future<bool>fetchIsLike(int id)async{
+    final response = await dio.post("/auth/save/$id");
+    if (response.statusCode == 200) {
+      return true;
+    }  else{
+      return false;
+    }
+  }
+  Future<bool>fetchUnLike(int id)async{
+    final response = await dio.post("/auth/unsave/$id");
+    if (response.statusCode == 200) {
+      return true;
+    }  else{
+      return false;
     }
   }
 }

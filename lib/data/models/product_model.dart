@@ -21,7 +21,25 @@ class ProductModel {
       title: json['title'],
       price: json['price'],
       isLiked: json['isLiked'],
-      discount: json['discount']
+      discount: json['discount'],
+    );
+  }
+
+  ProductModel copyWith({
+    int? id,
+    int? discount,
+    String? image,
+    String? title,
+    num? price,
+    bool? isLike,
+  }) {
+    return ProductModel(
+      id: id ?? this.id,
+      image: image ?? this.image,
+      title: title ?? this.title,
+      price: price ?? this.price,
+      discount: discount ?? this.discount,
+      isLiked: isLike ?? isLiked,
     );
   }
 }
