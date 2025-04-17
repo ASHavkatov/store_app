@@ -26,12 +26,7 @@ class HomeView extends StatelessWidget {
                     padding: const EdgeInsets.all(25),
                     sliver: SliverGrid(
                       delegate: SliverChildBuilderDelegate((context, index) {
-                        return HomeItem(
-                          title: state.products![index].title,
-                          price: state.products![index].price,
-                          image: state.products![index].image,
-                          isLiked: state.products![index].isLiked,
-                        );
+                         return HomeItem(product: state.products![index]);
                       }, childCount: state.products!.length),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,

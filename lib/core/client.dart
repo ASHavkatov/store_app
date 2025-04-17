@@ -1,14 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:store_app/core/interceptor.dart';
+import 'package:store_app/data/models/product_model.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.10.87:8888/api/v1",
+      baseUrl: "http://192.168.10.237:8888/api/v1",
       validateStatus: (status) => true,
     ),
-  );
+  )..interceptors.add(AuthInterceptor());
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
@@ -16,6 +18,7 @@ class ApiClient {
       data: {'login': login, 'password': password},
     );
     if (response.statusCode == 200) {
+      // print(response.statusCode);
       Map<String, String> data = Map<String, String>.from(response.data);
       return data['accessToken']!;
     } else {
@@ -64,34 +67,58 @@ class ApiClient {
     }
   }
 
-  Future<bool> postResetEmailCodeReset(
-    String email,
-    String code,
-    String password,
-  ) async {
-    try {
-      var response = await dio.post(
-        "/auth/reset-password/reset",
-        data: {"email": email, "code": code, "password": password},
-      );
-      if (response.statusCode == 200) {
+  Future<bool>postResetEmailCodeReset(String email, String code, String password)async{
+    try{
+      var response = await dio.post("/auth/reset-password/reset", data: {
+        "email": email,
+        "code": code,
+        "password": password,
+
+      },);
+      if (response.statusCode==200) {
         return true;
-      } else {
-        print("${response.statusCode} 111111111111111111111111111");
+      }else{
+        print( "${response.statusCode} 111111111111111111111111111");
         return false;
       }
-    } catch (e) {
+    }catch(e){
       throw Exception("Error at reset email code");
     }
   }
-
-  Future<List<dynamic>> fetchProduct() async {
+  Future<List<dynamic>>fetchProduct()async{
     var response = await dio.get('/products/list');
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       return data;
-    } else {
-      throw Exception("/product/list error");
+    }else{
+      print("${response.statusCode} 11111111111111111111");
+      throw Exception("/products/list error");
+    }
+  }
+  Future<List<dynamic>>fetchProducts()async{
+    var response = await dio.get('/products/saved-products');
+    if (response.statusCode == 200) {
+      return List.from(response.data);
+    }else{
+      print("${response.statusCode} 11111111111111111111");
+      throw Exception("/products/list error");
+    }
+  }
+
+  Future<bool>fetchIsLike(int id)async{
+    final response = await dio.post("/auth/save/$id");
+    if (response.statusCode == 200) {
+      return true;
+    }  else{
+      return false;
+    }
+  }
+  Future<bool>fetchUnLike(int id)async{
+    final response = await dio.post("/auth/unsave/$id");
+    if (response.statusCode == 200) {
+      return true;
+    }  else{
+      return false;
     }
   }
 }
