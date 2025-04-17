@@ -36,7 +36,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.home,
+  initialLocation: Routes.myCard,
 
   routes: [
     GoRoute(
@@ -138,7 +138,6 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
-    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
       path: Routes.newAddress,
