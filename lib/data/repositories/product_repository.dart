@@ -13,4 +13,9 @@ class ProductRepository{
     products = rawProduct.map((products)=>ProductModel.fromJson(products)).toList();
     return products!;
   }
+  Future<List<ProductModel>> fetchProducts()async{
+    var rawProduct = await client.fetchProducts();
+    products = rawProduct.map((products)=>ProductModel.fromJson(products)).toList();
+    return products!;
+  }
 }

@@ -38,7 +38,7 @@ class StoreBottomNavigationBar extends StatelessWidget {
             ),
             BottomNavigationButton(
               callback: () {
-                context.push(Routes.home);
+                context.push(Routes.saved);
               },
               text: "Saved",
               icon: "assets/icons/saved.svg",

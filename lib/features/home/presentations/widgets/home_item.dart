@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
+import 'package:store_app/features/home/managers/home_state.dart';
+import '../../../../data/models/product_model.dart';
+import '../../managers/home_event.dart';
 
 class HomeItem extends StatefulWidget {
-   HomeItem({
+  final ProductModel product;
+
+  const HomeItem({
     super.key,
-    required this.title,
-    required this.image,
-    required this.price,
-    required this.isLiked,
+    required this.product,
   });
-
-  final String title, image;
-  final num price;
-
-   bool isLiked;
 
   @override
   State<HomeItem> createState() => _HomeItemState();
@@ -23,6 +22,8 @@ class HomeItem extends StatefulWidget {
 class _HomeItemState extends State<HomeItem> {
   @override
   Widget build(BuildContext context) {
+    final product = widget.product;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,7 +36,7 @@ class _HomeItemState extends State<HomeItem> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(14),
                 child: Image.network(
-                  widget.image,
+                  product.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -43,36 +44,48 @@ class _HomeItemState extends State<HomeItem> {
             Positioned(
               top: 8,
               right: 8,
-              child: GestureDetector(
-                onTap: () {
-                  setState(() {
-                    widget.isLiked = !widget.isLiked;
-                  });
-                },
-                child: Container(
-                  width: 34.w,
-                  height: 34.h,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: SvgPicture.asset(
-                      widget.isLiked
-                          ? "assets/icons/heart_filled.svg"
-                          : "assets/icons/heart.svg",
-                      fit: BoxFit.contain,
+              child: BlocBuilder<HomeBloc, HomeState>(
+                builder: (context, state) {
+                  final isLike = product.isLiked;
+
+                  return GestureDetector(
+                    onTap: () {
+                      if (isLike) {
+                        context
+                            .read<HomeBloc>()
+                            .add(UnSavedLoad(unLike: product.id));
+                      } else {
+                        context
+                            .read<HomeBloc>()
+                            .add(SavedLoad(like: product.id));
+                      }
+                    },
+                    child: Container(
+                      width: 34.w,
+                      height: 34.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(5),
+                        child: SvgPicture.asset(
+                          isLike
+                              ? "assets/icons/heart_filled.svg"
+                              : "assets/icons/heart.svg",
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
           ],
         ),
         const SizedBox(height: 8),
         Text(
-          widget.title,
+          product.title,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -80,8 +93,8 @@ class _HomeItemState extends State<HomeItem> {
           ),
         ),
         Text(
-          "\$${widget.price.toInt()}",
-          style: TextStyle(
+          "\$${product.price.toInt()}",
+          style: const TextStyle(
             fontFamily: "GeneralSans",
             fontSize: 12,
             fontWeight: FontWeight.w500,

@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_text.dart';
 
-import '../../../../core/routing/routes.dart';
 
 class LogoutContainer extends StatelessWidget {
   const LogoutContainer({super.key});
