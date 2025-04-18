@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_text.dart';
 
-class OngoingItem extends StatelessWidget {
-  const OngoingItem({super.key});
+class CompletedItems extends StatelessWidget {
+  const CompletedItems({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +62,14 @@ class OngoingItem extends StatelessWidget {
                 height: 20.h,
                 width: 60.w,
                 decoration: BoxDecoration(
-                  color: AppColors.primary100,
+                  color: AppColors.completedContainer.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Center(
                   child: Text(
-                    "In Transit",
+                    "Completed",
                     style: TextStyle(
-                      color: AppColors.primary900,
+                      color: AppColors.successGreen,
                       fontSize: 10,
                       fontWeight: FontWeight.w500,
                     ),
@@ -86,7 +86,7 @@ class OngoingItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    "Track Order",
+                    "Leave Review",
                     style: TextStyle(
                       color:Colors.white,
                       fontSize: 10,

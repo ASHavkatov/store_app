@@ -11,7 +11,5 @@ class AppColors{
   static const primary300 = Color(0xFFB3B3B3);
   static const error = Color(0xFFED1010);
   static const primaryRed = Color(0xffED1010);
-
-
-
+  static const completedContainer = Color(0xff0C9409);
 }
