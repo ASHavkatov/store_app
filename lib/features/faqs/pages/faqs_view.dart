@@ -7,17 +7,51 @@ import 'package:store_app/features/faqs/widgets/categories.dart';
 import 'package:store_app/features/faqs/widgets/expanded_container.dart';
 import 'package:store_app/features/home/presentations/widgets/search_container.dart';
 
-class FaqsView extends StatelessWidget {
-   FaqsView({super.key});
+class FaqsView extends StatefulWidget {
+  const FaqsView({super.key});
 
-  List<Widget> items = [
-    ExpandedContainer(title: "How do I make a purchase?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
-    ExpandedContainer(title: "What payment methods are accepted?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
-    ExpandedContainer(title: "How do I track my orders?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
-    ExpandedContainer(title: "Can I cancel or return an order?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
-    ExpandedContainer(title: "How can I contact customer support for assistance?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
-    ExpandedContainer(title: "How do I create an account?",subtitle: "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information."),
+  @override
+  State<FaqsView> createState() => _FaqsViewState();
+}
+
+class _FaqsViewState extends State<FaqsView> {
+  List<Widget> generalItems = [
+    ExpandedContainer(
+      title: "How do I make a purchase?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
+    ExpandedContainer(
+      title: "What payment methods are accepted?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
+    ExpandedContainer(
+      title: "How do I track my orders?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
+    ExpandedContainer(
+      title: "Can I cancel or return an order?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
+    ExpandedContainer(
+      title: "How can I contact customer support for assistance?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
+    ExpandedContainer(
+      title: "How do I create an account?",
+      subtitle:
+          "When you find a product you want to purchase, tap on it to view the product details. Check the price, description, and available options (if applicable), and then tap the 'Add to Cart ' button. Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
+    ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,32 +66,19 @@ class FaqsView extends StatelessWidget {
           SizedBox(height: 16.h),
           SearchContainer(),
           SizedBox(height: 16.h),
-          ListView.builder(shrinkWrap: true,physics: NeverScrollableScrollPhysics(),itemCount: items.length,itemBuilder: (context, index){
-            return Column(
-              children: [
-                items[index],
-                SizedBox(height: 14.h)
-              ],
-            );
-
-          })
+          ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: generalItems.length,
+            itemBuilder: (context, index) {
+              return Column(
+                children: [generalItems[index], SizedBox(height: 14.h)],
+              );
+            },
+          ),
         ],
       ),
       bottomNavigationBar: StoreBottomNavigationBar(),
     );
   }
 }
-
-// ExpansionTile(
-// title: Text("How do I make a purchase?"),
-// children: [
-// Padding(
-// padding: const EdgeInsets.all(16.0),
-// child: Text(
-// "When you find a product you want to purchase, tap on it to view the product details. "
-// "Check the price, description, and available options (if applicable), and then tap the 'Add to Cart' button. "
-// "Follow the on-screen instructions to complete the purchase, including providing shipping details and payment information.",
-// ),
-// ),
-// ],
-// )

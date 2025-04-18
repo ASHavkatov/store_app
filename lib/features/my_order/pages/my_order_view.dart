@@ -17,18 +17,18 @@ class MyOrderView extends StatefulWidget {
 class _MyOrderViewState extends State<MyOrderView> {
   bool selected = true;
   List<Widget> ongoingItems = [
-    // OngoingItem(),
-    // OngoingItem(),
-    // OngoingItem(),
-    // OngoingItem(),
+    OngoingItem(),
+    OngoingItem(),
+    OngoingItem(),
+    OngoingItem(),
   ];
   List<Widget> completedItems = [
-    // CompletedItems(),
-    // CompletedItems(),
-    // CompletedItems(),
-    // CompletedItems(),
-    // CompletedItems(),
-    // CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
   ];
 
   @override
