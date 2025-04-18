@@ -10,6 +10,7 @@ import 'package:store_app/features/address/pages/new_address_view.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
+import 'package:store_app/features/faqs/pages/faqs_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
@@ -160,6 +161,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.notificationSettings,
       builder: (context, state) => NotificationSettingsView(),
+    ),
+    GoRoute(
+      path: Routes.faqs ,
+      builder: (context, state) => FaqsView(),
     ),
   ],
 );

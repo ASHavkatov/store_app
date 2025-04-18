@@ -37,7 +37,7 @@ class AccountView extends StatelessWidget {
             child: MainContainer(
               svg: 'assets/icons/detail.svg',
               title: "My Details",
-              onTap: () {},
+              onTap: () => context.go(Routes.detail),
             ),
           ),
           Padding(

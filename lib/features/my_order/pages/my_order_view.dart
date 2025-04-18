@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
+import 'package:store_app/features/my_order/widgets/completed_items.dart';
+import 'package:store_app/features/my_order/widgets/empty_view.dart';
 import 'package:store_app/features/my_order/widgets/ongoing_item.dart';
 
 class MyOrderView extends StatefulWidget {
@@ -14,6 +16,20 @@ class MyOrderView extends StatefulWidget {
 
 class _MyOrderViewState extends State<MyOrderView> {
   bool selected = true;
+  List<Widget> ongoingItems = [
+    OngoingItem(),
+    OngoingItem(),
+    OngoingItem(),
+    OngoingItem(),
+  ];
+  List<Widget> completedItems = [
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+    CompletedItems(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +52,7 @@ class _MyOrderViewState extends State<MyOrderView> {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         setState(() {
                           selected = true;
                         });
@@ -63,7 +79,7 @@ class _MyOrderViewState extends State<MyOrderView> {
                   ),
                   Expanded(
                     child: GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         setState(() {
                           selected = false;
                         });
@@ -72,7 +88,8 @@ class _MyOrderViewState extends State<MyOrderView> {
                         width: 162.w,
                         height: 38.h,
                         decoration: BoxDecoration(
-                          color: !selected ? Colors.white : AppColors.primary100,
+                          color:
+                              !selected ? Colors.white : AppColors.primary100,
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Center(
@@ -92,7 +109,24 @@ class _MyOrderViewState extends State<MyOrderView> {
               ),
             ),
             SizedBox(height: 20.h),
-            Expanded(child: ListView(children: [OngoingItem()],))
+            Expanded(
+              child:
+                  (selected ? ongoingItems : completedItems).isEmpty
+                      ? EmptyView()
+                      : ListView.separated(
+                        itemCount:
+                            selected
+                                ? ongoingItems.length
+                                : completedItems.length,
+                        itemBuilder:
+                            (context, index) =>
+                                selected
+                                    ? ongoingItems[index]
+                                    : completedItems[index],
+                        separatorBuilder:
+                            (context, index) => SizedBox(height: 8.h),
+                      ),
+            ),
           ],
         ),
       ),
