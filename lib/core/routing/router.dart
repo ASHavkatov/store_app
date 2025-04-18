@@ -38,7 +38,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.faqs,
+  initialLocation: Routes.myOrders,
 
   routes: [
     GoRoute(

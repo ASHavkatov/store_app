@@ -9,62 +9,43 @@ class Categories extends StatefulWidget {
 }
 
 class _CategoriesState extends State<Categories> {
-int? isSelected;
+  int? isSelected;
+
+  List<String> categories = [
+    "Generals",
+    "Account",
+    "Service",
+    "Payment"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
+        scrollDirection: Axis.horizontal,
+        child: Row(
         spacing: 8,
-        children: [
-          StoreButtonClickable(
-            text: "Generals",
-            arrow: false,
-            callback: () {
-                  () => setState(() {
-                isSelected = null;
-              });
-            },
-            isSelected: isSelected == null,
-            height: 36,
-            width: 99,
-          ),
-          StoreButtonClickable(
-            text: "Account",
-            arrow: false,
-            callback: () {
-                  () => setState(() {
-                isSelected = null;
-              });
-            },
-            isSelected: isSelected == null,
-            height: 36,
-            width: 99,
-          ),StoreButtonClickable(
-            text: "Service",
-            arrow: false,
-            callback: () {
-                  () => setState(() {
-                isSelected = null;
-              });
-            },
-            isSelected: isSelected == null,
-            height: 36,
-            width: 99,
-          ),StoreButtonClickable(
-            text: "Payment",
-            arrow: false,
-            callback: () {
-                  () => setState(() {
-                isSelected = null;
-              });
-            },
-            isSelected: isSelected == null,
-            height: 36,
-            width: 99,
-          ),
-        ],
-      ),
+        children: List.generate(categories.length, (index) {
+          return Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: StoreButtonClickable(
+              text: categories[index],
+              arrow: false,
+              callback: () {
+                setState(() {
+                  isSelected = index;
+                });
+              },
+              isSelected: isSelected == index,
+              height: 36,
+              width: 99,
+            ),
+
+          );
+        }
+    )
+    ,
+    )
+    ,
     );
   }
-}
+  }
