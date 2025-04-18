@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:permission_handler/permission_handler.dart';
+import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 
@@ -85,13 +86,13 @@ class _SearchContainerState extends State<SearchContainer> {
       child: TextFormField(
         controller: _controller,
         style: TextStyle(
-          color: Colors.black,
+          color: AppColors.primary100,
           fontSize: 16.sp,
         ),
         decoration: InputDecoration(
           hintText: "Search for clothes...",
           hintStyle: TextStyle(
-            color: Colors.grey,
+            color: AppColors.primary400,
             fontSize: 14.sp,
           ),
           filled: true,
