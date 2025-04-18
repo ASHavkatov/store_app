@@ -30,7 +30,7 @@ class StoreButtonClickable extends StatelessWidget {
           color: isSelected ? Colors.black : Colors.white,
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
-            color: isSelected ? AppColors.primary100 : Colors.black,
+            color: isSelected ? Colors.black26 : AppColors.primary100,
           ),
         ),
         child: Row(

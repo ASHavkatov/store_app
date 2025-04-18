@@ -22,6 +22,8 @@ class Routes{
   static const myCard = '/my-cart';
   static const notificationSettings = '/notification-settings';
   static const myDetails ='/my-details';
+  static const faqs = '/faqs';
+
 
 
 }
