@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,11 +9,20 @@ import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/l10n/localization_view_model.dart';
 import 'package:store_app/core/routing/router.dart';
 import 'package:store_app/core/utils/themes.dart';
+import 'package:store_app/firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
+  final fcmToken = await FirebaseMessaging.instance.getToken();
+  print(fcmToken);
+  FirebaseMessaging.onMessage.listen((RemoteMessage event){
+    print(event.notification!.title);
+    print(event.notification!.body);
+  });
   runApp(MyApp());
 }
 
