@@ -11,6 +11,7 @@ import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
+import 'package:store_app/features/help_center/pages/help_center_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
@@ -40,7 +41,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.home,
+  initialLocation: Routes.helpCenter,
 
   routes: [
     GoRoute(
@@ -77,6 +78,10 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      path: Routes.helpCenter,
+      builder: (context, state) => HelpCenterView(),
+    ),
+    GoRoute(
       path: Routes.myDetails,
       builder: (context, state) => MyDetailsView(),
     ),
@@ -102,6 +107,7 @@ GoRouter router = GoRouter(
             child: HomeView(),
           ),
     ),
+    GoRoute(path: Routes.myCard, builder: (context, state) => MyCartView()),
 
     GoRoute(
       path: Routes.resetPassword,
@@ -162,9 +168,6 @@ GoRouter router = GoRouter(
       path: Routes.notificationSettings,
       builder: (context, state) => NotificationSettingsView(),
     ),
-    GoRoute(
-      path: Routes.faqs ,
-      builder: (context, state) => FaqsView(),
-    ),
+    GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
   ],
 );
