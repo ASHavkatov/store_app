@@ -43,60 +43,63 @@ class _MyDetailsViewState extends State<MyDetailsView> {
       appBar: StoreAppAppBar(title: "My Details", isTrue: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-        child: Column(
-          spacing: 16.h,
-          children: [
-            StoreAppFormField(
-              controller: fullNameController,
-              title: "Full Name",
-              hintText: "Cody Fisher",
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  fullNameValid = false;
+        child: ListView(
+          children:[ Column(
+            spacing: 16.h,
+            children: [
+              StoreAppFormField(
+                controller: fullNameController,
+                title: "Full Name",
+                hintText: "Cody Fisher",
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    fullNameValid = false;
+                    setState(() {});
+                    return "This field is required";
+                  }
+                  fullNameValid = true;
                   setState(() {});
-                  return "This field is required";
-                }
-                fullNameValid = true;
-                setState(() {});
-                return null;
-              },
-              isValid: fullNameValid,
-              fontWeight: FontWeight.w500,
-              color: AppColors.primary900,
-              size: 16,
-            ),
-            StoreAppFormField(
-              controller: emailController,
-              title: "Email Address",
-              hintText: "cody.fisher45@example",
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  emailValid = false;
+                  return null;
+                },
+                isValid: fullNameValid,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primary900,
+                size: 16,
+              ),
+              StoreAppFormField(
+                controller: emailController,
+                title: "Email Address",
+                hintText: "cody.fisher45@example",
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    emailValid = false;
+                    setState(() {});
+                    return "This field is required";
+                  }
+                  emailValid = true;
                   setState(() {});
-                  return "This field is required";
-                }
-                emailValid = true;
-                setState(() {});
-                return null;
-              },
-              isValid: emailValid,
-              fontWeight: FontWeight.w500,
-              color: AppColors.primary900,
-              size: 16,
-            ),
-            MyDetailsDateBirth(title: "Date of Birth"),
-            MyDetailGender(),
-            PhoneNumber(controller: phoneNumber),
-            SizedBox(height: 78.h),
-            StoreFloatingButton(
-              text: 'Submit',
-              arrow: false,
-              callback: () {
+                  return null;
+                },
+                isValid: emailValid,
+                fontWeight: FontWeight.w500,
+                color: AppColors.primary900,
+                size: 16,
+              ),
+              MyDetailsDateBirth(title: "Date of Birth"),
+              MyDetailGender(),
+              PhoneNumber(controller: phoneNumber),
+              SizedBox(height: 78.h),
+              StoreFloatingButton(
+                text: 'Submit',
+                arrow: false,
+                callback: () {
 
-              },
-              color: AppColors.primary900,
-            ),
-          ],
+                },
+                color: AppColors.primary900,
+              ),
+            ],
+          ),
+        ]
         ),
       ),
       bottomNavigationBar: StoreBottomNavigationBar(),
