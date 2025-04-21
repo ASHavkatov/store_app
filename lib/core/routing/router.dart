@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
@@ -11,6 +12,7 @@ import 'package:store_app/features/authentication/verification/blocs/verificatio
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
 import 'package:store_app/features/help_center/pages/help_center_view.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
@@ -115,7 +117,9 @@ GoRouter router = GoRouter(
       path: Routes.home,
       pageBuilder:
           (context, state) => CustomTransitionPage(
-            child: HomeView(),
+            child: BlocProvider(
+              create: (context)=> HomeBloc(productRepo: ProductRepository(client: ApiClient())),
+                child: HomeView()),
             transitionsBuilder: (
               context,
               animation,
