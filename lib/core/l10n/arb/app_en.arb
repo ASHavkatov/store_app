@@ -32,5 +32,14 @@
   "resetPasswordSubtitle": "Set the new password for your account so you can login and access all the features.",
   "continues": "Continue",
   "passwordChanged": "Password Changed!",
-  "passwordChangedSubtitle": "Your can now use your new password to login to your account."
+  "passwordChangedSubtitle": "Your can now use your new password to login to your account.",
+  "home": "Home",
+  "search": "Search",
+  "saved": "Saved",
+  "cart": "Cart",
+  "account": "Account",
+  "notifications": "Notifications",
+  "tShirts": "T-shirts",
+  "jeans": "Jeans",
+  "shoes": "Shoes"
 }

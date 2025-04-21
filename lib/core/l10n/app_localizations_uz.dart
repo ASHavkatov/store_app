@@ -109,4 +109,31 @@ class MyLocalizationsUz extends MyLocalizations {
 
   @override
   String get passwordChangedSubtitle => 'Endi siz hisobingizga kirish uchun yangi parolingizdan foydalanishingiz mumkin.';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get saved => 'Saved';
+
+  @override
+  String get cart => 'Cart';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get tShirts => 'T-shirts';
+
+  @override
+  String get jeans => 'Jeans';
+
+  @override
+  String get shoes => 'Shoes';
 }

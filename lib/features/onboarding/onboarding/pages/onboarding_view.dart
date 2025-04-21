@@ -58,7 +58,7 @@ class OnboardingView extends StatelessWidget {
             top: 20,
             left: 35,
             child: IgnorePointer(
-              child: Image.asset("assets/images/onboarding.png"),
+              child: Image.asset("assets/images/onboarding_person.png"),
             ),
           ),
         ],

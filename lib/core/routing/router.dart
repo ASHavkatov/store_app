@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
 import 'package:store_app/features/address/pages/new_address_view.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
+import 'package:store_app/features/authentication/sign_up/blocs/signup_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
-import 'package:store_app/features/home/managers/home_bloc.dart';
-import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
@@ -20,11 +18,8 @@ import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
-
-import '../../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../../data/repositories/product_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
-import '../../features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
 import '../../features/authentication/terms_and_privacy/privacy_view.dart';
@@ -38,7 +33,7 @@ import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.myOrders,
+  initialLocation: Routes.signUp,
 
   routes: [
     GoRoute(
@@ -48,21 +43,36 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.signUp,
       builder:
-          (context, state) => SignUpView(
-            vm: SignUpViewModel(authRepo: AuthRepository(client: ApiClient())),
+          (context, state) => BlocProvider(
+            create: (context) => SignUpBloc(repo: context.read()),
+            child: SignUpView(),
           ),
     ),
     GoRoute(
       path: Routes.login,
-      builder:
-          (context, state) => BlocProvider(
-            create: (context) => LoginBloc(repo: context.read()),
-            child: LoginView(),
-          ),
-    ),
-    GoRoute(
-      path: Routes.splashScreen,
-      builder: (context, state) => SplashScreen(),
+        pageBuilder:
+            (context, state) => CustomTransitionPage(
+          child: LoginView(),
+          transitionDuration: Duration(milliseconds: 500),
+          transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+              ) {
+            final curve = CurvedAnimation(
+              parent: animation,
+              curve: Curves.decelerate,
+            );
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(1, 0),
+                end: Offset.zero,
+              ).animate(curve),
+              child: child,
+            );
+          },
+        )
     ),
     GoRoute(
       path: Routes.verification,
@@ -78,25 +88,38 @@ GoRouter router = GoRouter(
       path: Routes.saved,
       builder:
           (context, state) => BlocProvider(
-        create:
-            (context) =>
-            SavedBloc(repo: ProductRepository(client: context.read())),
-        child: SavedView(),
-      ),
+            create:
+                (context) =>
+                    SavedBloc(repo: ProductRepository(client: context.read())),
+            child: SavedView(),
+          ),
     ),
 
     GoRoute(
       path: Routes.home,
-      builder:
-          (context, state) => BlocProvider(
-            create:
-                (context) => HomeBloc(
-                  productRepo: ProductRepository(client: ApiClient()),
-                ),
+      pageBuilder:
+          (context, state) => CustomTransitionPage(
             child: HomeView(),
+            transitionsBuilder: (
+              context,
+              animation,
+              secondaryAnimation,
+              child,
+            ) {
+              final curve = CurvedAnimation(
+                parent: animation,
+                curve: Curves.bounceIn,
+              );
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(1, 0),
+                  end: Offset.zero,
+                ).animate(curve),
+                child: child,
+              );
+            },
           ),
     ),
-
     GoRoute(
       path: Routes.resetPassword,
       builder: (context, state) {
@@ -124,7 +147,10 @@ GoRouter router = GoRouter(
           ),
     ),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
-    GoRoute(path: Routes.detail, builder: (context, state) => ProductDetailView()),
+    GoRoute(
+      path: Routes.detail,
+      builder: (context, state) => ProductDetailView(),
+    ),
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
@@ -138,25 +164,17 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
+    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
-      path: Routes.address ,
-      builder: (context, state) => AddressView(),
+      path: Routes.newAddress,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => NewAddressBloc(),
+            child: NewAddressView(),
+          ),
     ),
-    GoRoute(
-      path: Routes.newAddress ,
-      builder: (context, state) => BlocProvider(create:(context)=> NewAddressBloc(), child: NewAddressView(),),
-    ),
-    GoRoute(
-      path: Routes.account ,
-      builder: (context, state) => AccountView(),
-    ),
-    GoRoute(
-      path: Routes.myOrders ,
-      builder: (context, state) => MyOrderView(),
-    ),
-    GoRoute(
-      path: Routes.faqs ,
-      builder: (context, state) => FaqsView(),
-    ),
+    GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
+    GoRoute(path: Routes.myOrders, builder: (context, state) => MyOrderView()),
+    GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
   ],
 );
