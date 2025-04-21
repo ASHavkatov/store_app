@@ -34,6 +34,7 @@ class _HomeCategoriesState extends State<HomeCategories> {
               callback:
                   () => setState(() {
                     selectedId = null;
+                    context.read<HomeBloc>().add(HomeLoad());
                   }),
               isSelected: selectedId == null,
             ),
