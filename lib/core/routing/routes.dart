@@ -20,7 +20,11 @@ class Routes{
   static const search = '/search';
   static const myOrders = '/my-orders';
   static const myCard = '/my-cart';
+  static const notificationSettings = '/notification-settings';
+  static const myDetails ='/my-details';
   static const faqs = '/faqs';
+  static const helpCenter = '/help-center';
+
 
 
 

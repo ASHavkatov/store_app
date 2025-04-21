@@ -11,8 +11,13 @@ import 'package:store_app/features/authentication/sign_up/blocs/signup_bloc.dart
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
+import 'package:store_app/features/help_center/pages/help_center_view.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
+import 'package:store_app/features/my_card/page/my_card_view.dart';
+import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
 import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
@@ -85,6 +90,14 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      path: Routes.helpCenter,
+      builder: (context, state) => HelpCenterView(),
+    ),
+    GoRoute(
+      path: Routes.myDetails,
+      builder: (context, state) => MyDetailsView(),
+    ),
+    GoRoute(
       path: Routes.saved,
       builder:
           (context, state) => BlocProvider(
@@ -120,6 +133,8 @@ GoRouter router = GoRouter(
             },
           ),
     ),
+    GoRoute(path: Routes.myCard, builder: (context, state) => MyCartView()),
+
     GoRoute(
       path: Routes.resetPassword,
       builder: (context, state) {
@@ -175,6 +190,12 @@ GoRouter router = GoRouter(
     ),
     GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
     GoRoute(path: Routes.myOrders, builder: (context, state) => MyOrderView()),
+    ),
+
+    GoRoute(
+      path: Routes.notificationSettings,
+      builder: (context, state) => NotificationSettingsView(),
+    ),
     GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
   ],
 );
