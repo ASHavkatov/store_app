@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:store_app/features/checkout/widgets/checkout_title.dart';
 import 'package:store_app/features/common/presentations/buttons_row.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/product_detail/presentation/widgets/add_to_cart_bottom.dart';
 import 'package:store_app/features/product_detail/presentation/widgets/detail_item.dart';
+
+import '../../../../core/routing/routes.dart';
 
 class ProductDetailView extends StatefulWidget {
   const ProductDetailView({super.key});
@@ -34,33 +37,38 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   spacing: 13.h,
                   children: [
                     CheckoutTitle(title: "Regular Fit Slogan", fontSize: 24),
-                    SizedBox(
-                      height: 22.h,
-                      child: Row(
-                        spacing: 6,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SvgPicture.asset("assets/icons/star_filled.svg"),
-                          Text(
-                            "4.0/5",
-                            style: TextStyle(
-                              fontFamily: "GeneralSans",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline,
+                    GestureDetector(
+                      onTap: (){
+                        context.push(Routes.reviews);
+                      },
+                      child: SizedBox(
+                        height: 22.h,
+                        child: Row(
+                          spacing: 6,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SvgPicture.asset("assets/icons/star_filled.svg"),
+                            Text(
+                              "4.0/5",
+                              style: TextStyle(
+                                fontFamily: "GeneralSans",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
-                          ),
-                          Text(
-                            "(45 reviews)",
-                            style: TextStyle(
-                              color: Colors.grey,
-                              fontFamily: "GeneralSans",
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                              decoration: TextDecoration.underline,
+                            Text(
+                              "(45 reviews)",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontFamily: "GeneralSans",
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Text(
