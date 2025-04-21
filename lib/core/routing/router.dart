@@ -10,10 +10,14 @@ import 'package:store_app/features/address/pages/new_address_view.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
+import 'package:store_app/features/faqs/pages/faqs_view.dart';
+import 'package:store_app/features/help_center/pages/help_center_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
+import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
+import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
 import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
@@ -38,7 +42,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.helpCenter,
 
   routes: [
     GoRoute(
@@ -79,14 +83,22 @@ GoRouter router = GoRouter(
       },
     ),
     GoRoute(
+      path: Routes.helpCenter,
+      builder: (context, state) => HelpCenterView(),
+    ),
+    GoRoute(
+      path: Routes.myDetails,
+      builder: (context, state) => MyDetailsView(),
+    ),
+    GoRoute(
       path: Routes.saved,
       builder:
           (context, state) => BlocProvider(
-        create:
-            (context) =>
-            SavedBloc(repo: ProductRepository(client: context.read())),
-        child: SavedView(),
-      ),
+            create:
+                (context) =>
+                    SavedBloc(repo: ProductRepository(client: context.read())),
+            child: SavedView(),
+          ),
     ),
 
     GoRoute(
@@ -100,6 +112,7 @@ GoRouter router = GoRouter(
             child: HomeView(),
           ),
     ),
+    GoRoute(path: Routes.myCard, builder: (context, state) => MyCartView()),
 
     GoRoute(
       path: Routes.resetPassword,
@@ -128,7 +141,10 @@ GoRouter router = GoRouter(
           ),
     ),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
-    GoRoute(path: Routes.detail, builder: (context, state) => ProductDetailView()),
+    GoRoute(
+      path: Routes.detail,
+      builder: (context, state) => ProductDetailView(),
+    ),
     GoRoute(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
@@ -142,21 +158,21 @@ GoRouter router = GoRouter(
       builder: (context, state) => NotificationView(),
     ),
 
+    GoRoute(path: Routes.address, builder: (context, state) => AddressView()),
     GoRoute(
-      path: Routes.address ,
-      builder: (context, state) => AddressView(),
+      path: Routes.newAddress,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => NewAddressBloc(),
+            child: NewAddressView(),
+          ),
     ),
+    GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
+    GoRoute(path: Routes.myOrders, builder: (context, state) => MyOrderView()),
     GoRoute(
-      path: Routes.newAddress ,
-      builder: (context, state) => BlocProvider(create:(context)=> NewAddressBloc(), child: NewAddressView(),),
+      path: Routes.notificationSettings,
+      builder: (context, state) => NotificationSettingsView(),
     ),
-    GoRoute(
-      path: Routes.account ,
-      builder: (context, state) => AccountView(),
-    ),
-    GoRoute(
-      path: Routes.myOrders ,
-      builder: (context, state) => MyOrderView(),
-    ),
+    GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
   ],
 );

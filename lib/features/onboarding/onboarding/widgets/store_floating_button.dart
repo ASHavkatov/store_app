@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:store_app/core/utils/colors.dart';
 
 class StoreFloatingButton extends StatelessWidget {
   const StoreFloatingButton({
@@ -33,6 +34,7 @@ class StoreFloatingButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: AppColors.primary200),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.3),

@@ -21,27 +21,27 @@ class MainContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 68.h,
-      decoration: BoxDecoration(color: Colors.white),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SvgPicture.asset(svg),
-          // SizedBox(width: 16.w),
-          StoreAppText(
-            title: title,
-            color: AppColors.primary900,
-            fontWeight: FontWeight.w400,
-            size: 16,
-          ),
-          SizedBox(width: 150.w),
-          GestureDetector(
-            onTap: onTap,
-            child: SvgPicture.asset("assets/icons/arrow-right.svg"),
-          ),
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: double.infinity,
+        height: 68.h,
+        decoration: BoxDecoration(color: Colors.white),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset(svg),
+            // SizedBox(width: 16.w),
+            StoreAppText(
+              title: title,
+              color: AppColors.primary900,
+              fontWeight: FontWeight.w400,
+              size: 16,
+            ),
+            SizedBox(width: 150.w),
+            SvgPicture.asset("assets/icons/arrow-right.svg"),
+          ],
+        ),
       ),
     );
   }
