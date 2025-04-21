@@ -35,11 +35,8 @@ dependencies:
   firebase_core: ^3.13.0
   firebase_messaging: ^15.2.5
   flutter_switch: ^0.3.2
-<<<<<<< HEAD
-=======
   birth_picker: ^1.1.2+1
   intl_phone_field: ^3.2.0
->>>>>>> caf60789062e6416415b5e743cca1810b698ce2e
 
 
 dev_dependencies:
