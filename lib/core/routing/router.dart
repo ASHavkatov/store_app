@@ -6,13 +6,11 @@ import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
 import 'package:store_app/features/address/pages/new_address_view.dart';
-import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/blocs/signup_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
 import 'package:store_app/features/help_center/pages/help_center_view.dart';
-import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
@@ -23,6 +21,7 @@ import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
+
 import '../../data/repositories/product_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -34,7 +33,6 @@ import '../../features/authentication/verification/pages/reset_password_view.dar
 import '../../features/authentication/verification/pages/verification_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
-import '../../features/onboarding/screen_splash/screen_splash_view.dart';
 import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
