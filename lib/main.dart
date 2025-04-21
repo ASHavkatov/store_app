@@ -13,6 +13,9 @@ import 'package:store_app/firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
+void main() async {
+
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,22 +34,20 @@ class MyApp extends StatelessWidget {
     ScreenUtil.init(context, designSize: const Size(390, 844));
     return MultiProvider(
       providers: providers,
-      builder:(context, child)=> MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: router,
-        theme: AppThemes.lightTheme,
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          MyLocalizations.delegate
-        ],
-        supportedLocales: [
-          Locale("uz"),
-          Locale("en")
-        ],
-        locale: context.watch<LocalizationViewModel>().currentLocale,
-      ),
+      builder:
+          (context, child) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            routerConfig: router,
+            theme: AppThemes.lightTheme,
+            localizationsDelegates: [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              MyLocalizations.delegate,
+            ],
+            supportedLocales: [Locale("uz"), Locale("en")],
+            locale: context.watch<LocalizationViewModel>().currentLocale,
+          ),
     );
   }
 }

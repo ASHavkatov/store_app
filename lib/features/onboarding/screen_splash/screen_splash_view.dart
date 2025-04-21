@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 import 'package:store_app/core/routing/routes.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -16,10 +18,7 @@ class SplashScreen extends StatelessWidget {
               child: GestureDetector(
                 onTap: (){context.go(Routes.onBoarding);},
                 child:
-                Image.asset(
-                  'assets/images/Splash.jpg',
-                  fit: BoxFit.cover,
-                ),
+                Lottie.asset("assets/animation.json",width: 100.w,height: 100.h)
               ),
             ),
             SizedBox(height: 20),

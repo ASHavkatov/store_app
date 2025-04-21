@@ -109,4 +109,31 @@ class MyLocalizationsEn extends MyLocalizations {
 
   @override
   String get passwordChangedSubtitle => 'Your can now use your new password to login to your account.';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get saved => 'Saved';
+
+  @override
+  String get cart => 'Cart';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get tShirts => 'T-shirts';
+
+  @override
+  String get jeans => 'Jeans';
+
+  @override
+  String get shoes => 'Shoes';
 }
