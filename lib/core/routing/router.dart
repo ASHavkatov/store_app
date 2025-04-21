@@ -39,7 +39,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.signUp,
+  initialLocation: Routes.login,
 
   routes: [
     GoRoute(
