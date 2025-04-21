@@ -190,7 +190,6 @@ GoRouter router = GoRouter(
     ),
     GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
     GoRoute(path: Routes.myOrders, builder: (context, state) => MyOrderView()),
-    ),
 
     GoRoute(
       path: Routes.notificationSettings,
