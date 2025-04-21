@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
@@ -67,7 +66,7 @@ class _SettingsDetailState extends State<SettingsDetail> {
                 fontSize: 16.sp,
               ),
             ),
-            FlutterSwitch(
+            FlutteSwitch(
               width: 45.w,
               height: 21.h,
               borderRadius: 40,

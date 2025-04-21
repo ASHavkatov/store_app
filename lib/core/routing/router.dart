@@ -35,6 +35,7 @@ import '../../features/authentication/verification/pages/verification_view.dart'
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/onboarding/screen_splash/screen_splash_view.dart';
+import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
@@ -44,6 +45,10 @@ GoRouter router = GoRouter(
     GoRoute(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
+    ),
+    GoRoute(
+      path: Routes.reviews,
+      builder: (context, state) => ReviewsView(),
     ),
     GoRoute(
       path: Routes.signUp,

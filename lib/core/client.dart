@@ -6,8 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-
-      baseUrl: "http://10.10.3.62:8888/api/v1",
+      baseUrl: "http://0.0.0.0:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -103,6 +102,19 @@ class ApiClient {
       throw Exception("/products/list error");
     }
   }
+
+  Future<List<dynamic>>fetchSizesList()async{
+    var response = await dio.get('/sizes/list');
+    if (response.statusCode == 200){
+      List<dynamic> data = response.data;
+      return data;
+    }else{
+      print('oxshamadi koding uka, qurib ket:/sizes/list${response.data}');
+      throw Exception("/sizes/list error");
+    }
+  }
+
+
   Future<List<dynamic>>fetchSavedProducts()async{
     var response = await dio.get('/products/saved-products');
     if (response.statusCode == 200) {

@@ -24,8 +24,6 @@ class Routes{
   static const myDetails ='/my-details';
   static const faqs = '/faqs';
   static const helpCenter = '/help-center';
-
-
-
+  static const reviews = '/reviews';
 
 }

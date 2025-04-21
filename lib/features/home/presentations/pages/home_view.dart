@@ -6,6 +6,7 @@ import 'package:store_app/features/common/presentations/no_something_body.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/presentations/widgets/home_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
+import 'package:store_app/features/home/presentations/widgets/home_categories.dart';
 import '../../../../core/routing/routes.dart';
 import '../../managers/home_bloc.dart';
 import '../../managers/home_state.dart';
@@ -32,24 +33,35 @@ class _HomeViewState extends State<HomeView> {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder:
             (context, state) => switch (state.status) {
-              HomeStatus.idle => CustomScrollView(
-                slivers: [
-                  HomeSliverAppBar(categories: state.categories),
-                  SliverPadding(
-                    padding: const EdgeInsets.all(25),
-                    sliver: SliverGrid(
-                      delegate: SliverChildBuilderDelegate((context, index) {
-                         return GestureDetector(onTap: (){context.push(Routes.detail);},child: HomeItem(product: state.products![index]));
-                      }, childCount: state.products!.length),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 19,
-                        mainAxisSpacing: 20,
-                        childAspectRatio: 161.w / 230.h,
+              HomeStatus.idle => RefreshIndicator(
+                onRefresh: () async {
+                  context.read<HomeBloc>().add(HomeLoad());
+                },
+                child: CustomScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  slivers: [
+                    HomeSliverAppBar(categories: state.categories,sizesList: state.sizesList,),
+                    SliverPadding(
+                      padding: const EdgeInsets.all(25),
+                      sliver: SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              context.push(Routes.detail);
+                            },
+                            child: HomeItem(product: state.products![index]),
+                          );
+                        }, childCount: state.products!.length),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 19,
+                          mainAxisSpacing: 20,
+                          childAspectRatio: 161.w / 230.h,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               HomeStatus.error => NoSomethingBody(
                 mainText: "error",

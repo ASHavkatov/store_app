@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_app/data/models/product_model.dart';
+import 'package:go_router/go_router.dart';
+import 'package:store_app/data/models/sizes_model.dart';
 import 'package:store_app/features/common/presentations/buttons_row.dart';
+import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/presentations/widgets/store_icon_button_container.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
 class HomeFilterBoxBottomSheet extends StatefulWidget {
-  const HomeFilterBoxBottomSheet({super.key});
+  const HomeFilterBoxBottomSheet({super.key,required this.sizesList});
+
+  final List<SizesModel>? sizesList;
+
 
   @override
   State<HomeFilterBoxBottomSheet> createState() => _HomeFilterBoxBottomSheet();
@@ -14,7 +19,7 @@ class HomeFilterBoxBottomSheet extends StatefulWidget {
 
 class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
   double _minValue = 0;
-  double _maxValue = 19;
+  double _maxValue = 4000;
   String _selectedSize = 'L'; // Declare the selected size
 
   @override
@@ -83,8 +88,8 @@ class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
                       child: RangeSlider(
                         values: RangeValues(_minValue, _maxValue),
                         min: 0,
-                        max: 19,
-                        divisions: 19,
+                        max: 4000,
+                        divisions: 40,
                         labels: RangeLabels(
                           '\$${_minValue.toStringAsFixed(0)}',
                           '\$${_maxValue.toStringAsFixed(0)}',
@@ -134,7 +139,9 @@ class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
                   ),
                 ],
               ),
-              StoreFloatingButton(text: "Apply Filters", arrow: false, callback: (){Navigator.pop(context);}, color: Colors.black)
+              StoreFloatingButton(text: "Apply Filters", arrow: false, callback: (){context.pop(
+                HomeLoad(maxPrice: _maxValue,minPrice: _minValue)
+              );}, color: Colors.black)
             ],
           ),
         ],

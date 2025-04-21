@@ -1,6 +1,7 @@
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/category_model.dart';
 import 'package:store_app/data/models/product_model.dart';
+import 'package:store_app/data/models/sizes_model.dart';
 
 class ProductRepository {
   ProductRepository({required this.client});
@@ -12,6 +13,8 @@ class ProductRepository {
   List<ProductModel>? savedProducts;
 
   List<CategoryModel>? categories;
+  
+  List<SizesModel>? sizesList;
 
   Future<List<ProductModel>> fetchProduct(
     String? title,
@@ -33,14 +36,18 @@ class ProductRepository {
   Future<List<CategoryModel>> fetchCategories() async {
     var rawCategories = await client.fetchCategories();
     categories =
-        rawCategories
-            .map((categories) => CategoryModel.fromJson(categories))
-            .toList();
+        rawCategories.map((categories) => CategoryModel.fromJson(categories)).toList();
     return categories!;
   }
   Future<List<ProductModel>> fetchSavedProducts()async{
     var rawSavedProduct = await client.fetchSavedProducts();
     savedProducts = rawSavedProduct.map((products)=>ProductModel.fromJson(products)).toList();
     return savedProducts!;
+  }
+  
+  Future<List<SizesModel>> fetchSizesList()async{
+    var rawSizesList = await client.fetchSizesList();
+    sizesList = rawSizesList.map((sizesList)=>SizesModel.fromJson(sizesList)).toList();
+    return sizesList!;
   }
 }
