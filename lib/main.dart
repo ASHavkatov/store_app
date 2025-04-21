@@ -13,9 +13,6 @@ import 'package:store_app/firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-void main() async {
-
-
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,3 +48,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
