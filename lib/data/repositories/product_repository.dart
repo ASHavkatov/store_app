@@ -16,13 +16,12 @@ class ProductRepository {
   
   List<SizesModel>? sizesList;
 
-  Future<List<ProductModel>> fetchProduct(
-    String? title,
+  Future<List<ProductModel>> fetchProduct({ String? title,
     int? categoryId,
-      int? sizeId,
-      double? minPrice,
-      double? maxPrice,
-      String? orderBy
+    int? sizeId,
+    double? minPrice,
+    double? maxPrice,
+    String? orderBy}
   ) async {
     var rawProduct = await client.fetchProduct(
       queryParams: {"Title": title, "CategoryId": categoryId,"SizeId":sizeId,"MinPrice":minPrice,"MaxPrice": maxPrice,"OrderBy":orderBy},

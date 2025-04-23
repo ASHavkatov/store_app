@@ -16,7 +16,7 @@ class HomeState extends Equatable {
   final List<ProductModel>? products;
 
   final List<SizesModel>? sizesList;
-  final bool ?isSuccess;
+  final bool? isSuccess;
 
   factory HomeState.initial() {
     return HomeState(status: HomeStatus.loading,
@@ -42,5 +42,5 @@ class HomeState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [status, products, categories, isSuccess];
+  List<Object?> get props => [status, products, categories, isSuccess, sizesList];
 }

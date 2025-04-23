@@ -86,7 +86,7 @@ class _SearchContainerState extends State<SearchContainer> {
       child: TextFormField(
         controller: _controller,
         style: TextStyle(
-          color: AppColors.primary100,
+          color: Colors.black,
           fontSize: 16.sp,
         ),
         decoration: InputDecoration(

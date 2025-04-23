@@ -16,32 +16,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future _onLoad(HomeLoad event, Emitter<HomeState> emit) async {
-    print("nimadalfsjdfjf   ${event.minPrice}");
     final products = await _productRepo.fetchProduct(
-      event.title,
-      event.categoryId,
-      event.sizeId,
-      event.minPrice,
-      event.maxPrice,
-      event.orderBy,
+      title:event.title,
+      categoryId: event.categoryId,
+      sizeId:event.sizeId,
+      minPrice:event.minPrice,
+      maxPrice:event.maxPrice,
+      orderBy:event.orderBy,
     );
     emit(state.copyWith(products: products, status: HomeStatus.idle));
     final categories = await _productRepo.fetchCategories();
     emit(state.copyWith(categories: categories, status: HomeStatus.idle));
-    on<HomeLoad>((event, emit) async {
-      final products = await _productRepo.fetchProduct(
-        event.title,
-        event.categoryId,
-        event.sizeId,
-        event.minPrice,
-        event.maxPrice,
-        event.orderBy,
-      );
-      emit(state.copyWith(status: HomeStatus.idle, products: products));
-      final sizesList = await _productRepo.fetchSizesList();
-      emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
-    });
-  }
+
+    final sizesList = await _productRepo.fetchSizesList();
+    print("HomeBloc:${sizesList[0].title}");
+    emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
+    }
+
 
   Future<void> onLike(SavedLoad event, Emitter<HomeState> emit) async {
     final success = await _productRepo.client.fetchIsLike(event.like);
