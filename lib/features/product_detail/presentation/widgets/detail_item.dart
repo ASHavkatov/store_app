@@ -6,7 +6,8 @@ import '../../../../core/utils/colors.dart';
 
 // ignore: must_be_immutable
 class DetailItem extends StatefulWidget {
-  DetailItem({super.key,this.isLiked = false});
+  DetailItem({super.key,required this.isLiked, required this.image});
+  final String image;
 
   bool isLiked;
   @override
@@ -43,7 +44,6 @@ class _DetailItemState extends State<DetailItem> {
           child: PageView(
             controller: _pageController,
             children: [
-              _buildImage(),
               _buildImage(),
               _buildImage(),
             ],
@@ -118,8 +118,8 @@ class _DetailItemState extends State<DetailItem> {
       height: 368.h,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(14),
-        child: Image.asset(
-          "assets/images/t-shirt.png",
+        child: Image.network(
+          widget.image,
           fit: BoxFit.cover,
         ),
       ),

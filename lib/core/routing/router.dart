@@ -18,6 +18,8 @@ import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
+import 'package:store_app/features/product_detail/blocs/detail_bloc.dart';
+import 'package:store_app/features/product_detail/blocs/detail_event.dart';
 import 'package:store_app/features/product_detail/presentation/pages/product_detail_view.dart';
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
@@ -39,17 +41,14 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.home,
+  initialLocation: Routes.login,
 
   routes: [
     GoRoute(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(
-      path: Routes.reviews,
-      builder: (context, state) => ReviewsView(),
-    ),
+    GoRoute(path: Routes.reviews, builder: (context, state) => ReviewsView()),
     GoRoute(
       path: Routes.signUp,
       builder:
@@ -60,29 +59,29 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.login,
-        pageBuilder:
-            (context, state) => CustomTransitionPage(
-          child: LoginView(),
-          transitionDuration: Duration(milliseconds: 500),
-          transitionsBuilder: (
+      pageBuilder:
+          (context, state) => CustomTransitionPage(
+            child: LoginView(),
+            transitionDuration: Duration(milliseconds: 500),
+            transitionsBuilder: (
               context,
               animation,
               secondaryAnimation,
               child,
-              ) {
-            final curve = CurvedAnimation(
-              parent: animation,
-              curve: Curves.decelerate,
-            );
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: Offset(1, 0),
-                end: Offset.zero,
-              ).animate(curve),
-              child: child,
-            );
-          },
-        )
+            ) {
+              final curve = CurvedAnimation(
+                parent: animation,
+                curve: Curves.decelerate,
+              );
+              return SlideTransition(
+                position: Tween<Offset>(
+                  begin: Offset(1, 0),
+                  end: Offset.zero,
+                ).animate(curve),
+                child: child,
+              );
+            },
+          ),
     ),
     GoRoute(
       path: Routes.verification,
@@ -118,8 +117,12 @@ GoRouter router = GoRouter(
       pageBuilder:
           (context, state) => CustomTransitionPage(
             child: BlocProvider(
-              create: (context)=> HomeBloc(productRepo: ProductRepository(client: ApiClient())),
-                child: HomeView()),
+              create:
+                  (context) => HomeBloc(
+                    productRepo: ProductRepository(client: ApiClient()),
+                  ),
+              child: HomeView(),
+            ),
             transitionsBuilder: (
               context,
               animation,
@@ -171,7 +174,14 @@ GoRouter router = GoRouter(
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutView()),
     GoRoute(
       path: Routes.detail,
-      builder: (context, state) => ProductDetailView(),
+      builder:
+          (context, state) => BlocProvider(
+            create:
+                (context) => DetailBloc(repo: context.read())..add(
+                  DetailLoading(id: int.parse(state.pathParameters['id']!)),
+                ),
+            child: ProductDetailView(),
+          ),
     ),
     GoRoute(
       path: Routes.notification,

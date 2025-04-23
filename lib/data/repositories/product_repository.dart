@@ -1,5 +1,6 @@
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/category_model.dart';
+import 'package:store_app/data/models/detail_model.dart';
 import 'package:store_app/data/models/product_model.dart';
 import 'package:store_app/data/models/sizes_model.dart';
 
@@ -15,6 +16,14 @@ class ProductRepository {
   List<CategoryModel>? categories;
   
   List<SizesModel>? sizesList;
+  DetailModel? detail;
+
+  Future<DetailModel>fetchDetail(int id)async{
+    final rawDetails = await client.fetchDetail( id);
+    print("asilbek $rawDetails");
+    detail = DetailModel.fromJson(rawDetails);
+    return detail!;
+  }
 
   Future<List<ProductModel>> fetchProduct({ String? title,
     int? categoryId,
@@ -24,7 +33,14 @@ class ProductRepository {
     String? orderBy}
   ) async {
     var rawProduct = await client.fetchProduct(
-      queryParams: {"Title": title, "CategoryId": categoryId,"SizeId":sizeId,"MinPrice":minPrice,"MaxPrice": maxPrice,"OrderBy":orderBy},
+      queryParams: {
+        "Title": title,
+        "CategoryId": categoryId,
+        "SizeId": sizeId,
+        "MinPrice": minPrice,
+        "MaxPrice": maxPrice,
+        "OrderBy": orderBy,
+      },
     );
     products =
         rawProduct.map((products) => ProductModel.fromJson(products)).toList();
@@ -34,18 +50,27 @@ class ProductRepository {
   Future<List<CategoryModel>> fetchCategories() async {
     var rawCategories = await client.fetchCategories();
     categories =
-        rawCategories.map((categories) => CategoryModel.fromJson(categories)).toList();
+        rawCategories
+            .map((categories) => CategoryModel.fromJson(categories))
+            .toList();
     return categories!;
   }
-  Future<List<ProductModel>> fetchSavedProducts()async{
+
+  Future<List<ProductModel>> fetchSavedProducts() async {
     var rawSavedProduct = await client.fetchSavedProducts();
-    savedProducts = rawSavedProduct.map((products)=>ProductModel.fromJson(products)).toList();
+    savedProducts =
+        rawSavedProduct
+            .map((products) => ProductModel.fromJson(products))
+            .toList();
     return savedProducts!;
   }
-  
-  Future<List<SizesModel>> fetchSizesList()async{
+
+  Future<List<SizesModel>> fetchSizesList() async {
     var rawSizesList = await client.fetchSizesList();
-    sizesList = rawSizesList.map((sizesList)=>SizesModel.fromJson(sizesList)).toList();
+    sizesList =
+        rawSizesList
+            .map((sizesList) => SizesModel.fromJson(sizesList))
+            .toList();
     return sizesList!;
   }
 }

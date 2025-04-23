@@ -7,8 +7,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final ProductRepository _productRepo;
 
   HomeBloc({required ProductRepository productRepo})
-    : _productRepo = productRepo,
-      super(HomeState.initial()) {
+      : _productRepo = productRepo,
+        super(HomeState.initial()) {
     on<HomeLoad>(_onLoad);
     on<SavedLoad>(onLike);
     on<UnSavedLoad>(unLike);
@@ -29,20 +29,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(categories: categories, status: HomeStatus.idle));
 
     final sizesList = await _productRepo.fetchSizesList();
-    print("HomeBloc:${sizesList[0].title}");
     emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
-    }
+  }
 
 
   Future<void> onLike(SavedLoad event, Emitter<HomeState> emit) async {
     final success = await _productRepo.client.fetchIsLike(event.like);
     final products =
-        state.products!.map((e) {
-          if (e.id == event.like) {
-            return e.copyWith(isLike: true);
-          }
-          return e;
-        }).toList();
+    state.products!.map((e) {
+      if (e.id == event.like) {
+        return e.copyWith(isLike: true);
+      }
+      return e;
+    }).toList();
     emit(
       state.copyWith(
         status: HomeStatus.idle,
@@ -55,12 +54,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Future<void> unLike(UnSavedLoad event, Emitter<HomeState> emit) async {
     final success = await _productRepo.client.fetchUnLike(event.unLike);
     final product =
-        state.products!.map((e) {
-          if (e.id == event.unLike) {
-            return e.copyWith(isLike: false);
-          }
-          return e;
-        }).toList();
+    state.products!.map((e) {
+      if (e.id == event.unLike) {
+        return e.copyWith(isLike: false);
+      }
+      return e;
+    }).toList();
     emit(
       state.copyWith(
         status: HomeStatus.idle,

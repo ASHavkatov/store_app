@@ -6,7 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.11.201:8888/api/v1",
+      baseUrl: "http://192.168.11.110:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -65,33 +65,51 @@ class ApiClient {
     }
   }
 
-  Future<bool>postResetEmailCodeReset(String email, String code, String password)async{
-    try{
-      var response = await dio.post("/auth/reset-password/reset", data: {
-        "email": email,
-        "code": code,
-        "password": password,
-
-      },);
-      if (response.statusCode==200) {
+  Future<bool> postResetEmailCodeReset(
+    String email,
+    String code,
+    String password,
+  ) async {
+    try {
+      var response = await dio.post(
+        "/auth/reset-password/reset",
+        data: {"email": email, "code": code, "password": password},
+      );
+      if (response.statusCode == 200) {
         return true;
-      }else{
+      } else {
         return false;
       }
     }catch(e){
       throw Exception("Error at reset email code");
     }
   }
-  Future<List<dynamic>>fetchProduct({Map<String, dynamic>? queryParams})async{
-    var response = await dio.get('/products/list', queryParameters: queryParams);
+
+  Future<dynamic> fetchDetail(int id) async {
+    var response = await dio.get('/products/detail/$id');
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      throw Exception("/products/detail/{id} Olib kelishda hatolik bor");
+    }
+  }
+
+  Future<List<dynamic>> fetchProduct({
+    Map<String, dynamic>? queryParams,
+  }) async {
+    var response = await dio.get(
+      '/products/list',
+      queryParameters: queryParams,
+    );
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
       return data;
-    }else{
+    } else {
       throw Exception("/product/list error");
     }
   }
-  Future<List<dynamic>>fetchCategories()async{
+
+  Future<List<dynamic>> fetchCategories() async {
     var response = await dio.get('/categories/list');
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
@@ -118,6 +136,7 @@ class ApiClient {
     if (response.statusCode == 200) {
       return List.from(response.data);
     }else{
+      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }
