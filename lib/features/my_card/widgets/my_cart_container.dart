@@ -48,13 +48,13 @@ class MyCartContainer extends StatelessWidget {
                 ),
                 SizedBox(width: 16.w),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CheckoutTitle(title: title),
-                        SizedBox(width: 45.w),
                         StoreIconButton(
                           icon: "assets/icons/trash.svg",
                           width: 15.w,
@@ -72,7 +72,6 @@ class MyCartContainer extends StatelessWidget {
                         fontSize: 13,
                       ),
                     ),
-                    SizedBox(height: 18.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

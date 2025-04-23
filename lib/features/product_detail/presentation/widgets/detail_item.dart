@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/utils/colors.dart';
 
+// ignore: must_be_immutable
 class DetailItem extends StatefulWidget {
   DetailItem({super.key,this.isLiked = false});
 

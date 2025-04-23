@@ -28,7 +28,6 @@ class ProductRepository {
     );
     products =
         rawProduct.map((products) => ProductModel.fromJson(products)).toList();
-    print("raw products initialized success");
     return products!;
   }
 

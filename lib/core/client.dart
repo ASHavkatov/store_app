@@ -76,7 +76,6 @@ class ApiClient {
       if (response.statusCode==200) {
         return true;
       }else{
-        print( "${response.statusCode} 111111111111111111111111111");
         return false;
       }
     }catch(e){
@@ -98,7 +97,6 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     }else{
-      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }
@@ -107,7 +105,6 @@ class ApiClient {
     var response = await dio.get('/sizes/list');
     if (response.statusCode == 200){
       List<dynamic> data = response.data;
-      print(data);
       return data;
     }else{
       print('oxshamadi koding uka, qurib ket:/sizes/list${response.data}');
@@ -121,7 +118,6 @@ class ApiClient {
     if (response.statusCode == 200) {
       return List.from(response.data);
     }else{
-      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }

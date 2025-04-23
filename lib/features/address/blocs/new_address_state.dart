@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
+// ignore: must_be_immutable
 class NewAddressState extends Equatable {
   final LatLng? currentLocation;
   final String? address, pickedLocation;

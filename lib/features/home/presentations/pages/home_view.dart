@@ -33,7 +33,6 @@ class _HomeViewState extends State<HomeView> {
       body: BlocBuilder<HomeBloc, HomeState>(
         builder:
             (context, state) => switch (state.status) {
-
               HomeStatus.idle => RefreshIndicator(
                 onRefresh: () async {
                   context.read<HomeBloc>().add(HomeLoad());
@@ -48,7 +47,6 @@ class _HomeViewState extends State<HomeView> {
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return GestureDetector(
                             onTap: () {
-                              print("object3 ${state.sizesList}");
                               context.push(Routes.detail);
                             },
                             child: HomeItem(product: state.products![index]),

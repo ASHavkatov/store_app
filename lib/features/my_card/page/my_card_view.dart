@@ -44,6 +44,7 @@ class MyCartView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 19),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: 16.h,
                   children: [
                     OrderSummary(title: "Sub-total", summary: "\$ 5,870"),
@@ -51,7 +52,6 @@ class MyCartView extends StatelessWidget {
                     OrderSummary(title: "Shipping fee", summary: "\$ 80"),
                     Divider(color: AppColors.primary200),
                     OrderSummary(title: "Total", summary: "\$ 5,870"),
-                    SizedBox(height: 34.h),
                     StoreFloatingButton(
                       text: "Go To Checkout",
                       arrow: true,
