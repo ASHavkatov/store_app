@@ -16,5 +16,7 @@ List<SingleChildWidget> providers = [
   // ChangeNotifierProvider(create: (context)=> LoginViewModel(repo: context.read())),
   ChangeNotifierProvider(create: (context)=> SignUpViewModel(authRepo: context.read())),
   BlocProvider(create: (context)=> LoginBloc(repo: context.read())),
-  BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepository(client: ApiClient())))
+  BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepository(client: ApiClient()))),
+  Provider(create: (context)=> ProductRepository(client: ApiClient())),
+
 ];

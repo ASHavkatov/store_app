@@ -47,7 +47,7 @@ class _HomeViewState extends State<HomeView> {
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return GestureDetector(
                             onTap: () {
-                              context.push(Routes.detail);
+                              context.push(Routes.getDetail(state.products![index].id));
                             },
                             child: HomeItem(product: state.products![index]),
                           );
