@@ -46,7 +46,6 @@ class _HomeItemState extends State<HomeItem> {
               child: BlocBuilder<HomeBloc, HomeState>(
                 builder: (context, state) {
                   final isLike = product.isLiked;
-
                   return GestureDetector(
                     onTap: () {
                       if (isLike) {
