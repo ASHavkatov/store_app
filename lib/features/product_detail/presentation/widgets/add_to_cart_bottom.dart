@@ -5,7 +5,8 @@ import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/checkout/widgets/checkout_title.dart';
 
 class AddToCartBottom extends StatelessWidget {
-  const AddToCartBottom({super.key});
+  const AddToCartBottom({super.key, required this.price});
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class AddToCartBottom extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                CheckoutTitle(title: "\$1,190", fontSize: 24),
+                CheckoutTitle(title: price, fontSize: 24),
               ],
             ),
             GestureDetector(

@@ -12,7 +12,7 @@ class Routes{
   static const forgotPassword = '/forgot-password';
   static const checkout = '/checkout';
   static const resetPassword = '/reset-password';
-  static const detail = '/detail';
+  static const detail = '/detail/:id';
   static const address = '/address';
   static const newAddress = '/new-address';
   static const account = '/account';
@@ -25,5 +25,7 @@ class Routes{
   static const faqs = '/faqs';
   static const helpCenter = '/help-center';
   static const reviews = '/reviews';
+
+  static String getDetail(int id)=> "/detail/$id";
 
 }
