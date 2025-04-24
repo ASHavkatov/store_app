@@ -38,6 +38,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         event.orderBy,
       );
       emit(state.copyWith(status: HomeStatus.idle, products: products));
+      final sizesList = await _productRepo.fetchSizesList();
+      emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
     });
   }
 

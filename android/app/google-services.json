@@ -3,11 +3,13 @@
     "project_number": "667067499966",
     "project_id": "store-app-862a6",
     "storage_bucket": "store-app-862a6.firebasestorage.app"
+
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:667067499966:android:2e4f79b2a23e64e317a5ef",
+
         "android_client_info": {
           "package_name": "com.example.store_app"
         }
@@ -16,6 +18,7 @@
       "api_key": [
         {
           "current_key": "AIzaSyAQi0ORN9j6hxc6siyRHSPwkuW5Ae8W9Lw"
+
         }
       ],
       "services": {

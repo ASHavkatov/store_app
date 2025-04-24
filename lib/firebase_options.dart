@@ -70,6 +70,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '667067499966',
     projectId: 'store-app-862a6',
     storageBucket: 'store-app-862a6.firebasestorage.app',
+
     iosBundleId: 'com.example.storeApp',
   );
 }
