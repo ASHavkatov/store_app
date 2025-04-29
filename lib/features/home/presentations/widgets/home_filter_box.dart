@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:store_app/data/models/sizes_model.dart';
+import 'package:store_app/data/models/size_model/sizes_model.dart';
 
 import '../../managers/home_bloc.dart';
 import '../../managers/home_event.dart';

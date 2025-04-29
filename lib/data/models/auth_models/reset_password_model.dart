@@ -1,13 +1,15 @@
-class ResetPasswordModel {
-  final String email, password, code;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'reset_password_model.freezed.dart';
+part 'reset_password_model.g.dart';
 
-  ResetPasswordModel({
-    required this.email,
-    required this.password,
-    required this.code,
-  });
+@freezed
+abstract class ResetPasswordModel with _$ResetPasswordModel {
 
-  Map<String, dynamic> toJson() {
-    return {"email": email, "password": password, "code": code};
-  }
+  const factory ResetPasswordModel({
+    required String email,
+    required String password,
+    required String code,
+  }) = _ResetPasswordModel;
+
+  factory ResetPasswordModel.fromJson(Map<String, dynamic> json)=> _$ResetPasswordModelFromJson(json);
 }

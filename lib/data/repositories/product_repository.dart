@@ -1,8 +1,8 @@
 import 'package:store_app/core/client.dart';
-import 'package:store_app/data/models/category_model.dart';
-import 'package:store_app/data/models/detail_model.dart';
-import 'package:store_app/data/models/product_model.dart';
-import 'package:store_app/data/models/sizes_model.dart';
+import 'package:store_app/data/models/categories/category_model.dart';
+import 'package:store_app/data/models/detail_model/detail_model.dart';
+import 'package:store_app/data/models/product_model/product_model.dart';
+import 'package:store_app/data/models/size_model/sizes_model.dart';
 
 class ProductRepository {
   ProductRepository({required this.client});
