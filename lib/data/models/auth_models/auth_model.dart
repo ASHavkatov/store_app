@@ -1,17 +1,13 @@
-class AuthModel {
-  final String fullName, email, password;
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'auth_model.freezed.dart';
+part 'auth_model.g.dart';
 
-  AuthModel({
-    required this.fullName,
-    required this.email,
-    required this.password,
-  });
-
-  Map<String, dynamic> toJson() {
-    return {
-      "fullName": fullName,
-      "email": email,
-      "password": password,
-    };
+@freezed
+ abstract class AuthModel with _$AuthModel {
+  const factory AuthModel({
+    required String fullName,
+    required  String email,
+    required String password,
+  }) = _AuthModel;
+  factory AuthModel.fromJson(Map<String, dynamic> json) => _$AuthModelFromJson(json);
   }
-}

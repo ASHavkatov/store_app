@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/data/models/sizes_model.dart';
+import 'package:store_app/data/models/size_model/sizes_model.dart';
 import 'package:store_app/features/common/presentations/buttons_row.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/presentations/widgets/store_icon_button_container.dart';

@@ -1,26 +1,16 @@
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../data/models/detail_model.dart';
+import '../../../data/models/detail_model/detail_model.dart';
+part 'detail_state.freezed.dart';
 
 enum DetailStatus { idle, loading, error }
+@freezed
+abstract class DetailState with _$DetailState{
 
-class DetailState extends Equatable{
-  final DetailStatus? status;
-  final DetailModel? model;
-
-  DetailState({required this.status, required this.model});
+  const factory DetailState({required DetailStatus? status, required DetailModel? model})= _DetailState;
 
   factory DetailState.initial() {
     return DetailState(status: DetailStatus.loading, model: null);
   }
 
-  DetailState copyWith({DetailModel? model, DetailStatus? status}) {
-    return DetailState(
-      status: status ?? this.status,
-      model: model ?? this.model,
-    );
-  }
-
-  @override
-  List<Object?> get props => [status, model];
 }

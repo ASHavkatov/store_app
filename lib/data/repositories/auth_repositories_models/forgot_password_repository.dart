@@ -1,5 +1,5 @@
 // import 'package:store_app/core/client.dart';
-// import 'package:store_app/data/models/auth_models/fotgot_password_model.dart';
+// import 'package:store_app/data/models/auth_models/forgot_password_model.dart';
 //
 // class ForgotPasswordRepository {
 //   final ApiClient client;

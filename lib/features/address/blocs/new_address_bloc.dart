@@ -60,7 +60,6 @@ class NewAddressBloc extends Bloc<NewAddressEvent, NewAddressState> {
               height: 40,
             ),
           ],
-          showBottomSheet: true
         ),
       );
       final placeMark = await placemarkFromCoordinates(
@@ -125,7 +124,7 @@ class NewAddressBloc extends Bloc<NewAddressEvent, NewAddressState> {
     if (placeMarks.isNotEmpty) {
       final place = placeMarks.first;
       final address = '${place.street},${place.locality}, ${place.country}';
-      emit(state.copyWith(pickedLocation: address, showBottomSheet: true));
+      emit(state.copyWith(pickedLocation: address));
     }
   }
 }
