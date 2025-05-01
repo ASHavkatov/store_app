@@ -6,8 +6,9 @@ import '../../../../core/utils/colors.dart';
 
 // ignore: must_be_immutable
 class DetailItem extends StatefulWidget {
-  DetailItem({super.key,required this.isLiked, required this.image});
+  DetailItem({super.key,required this.isLiked, required this.image,required this.imageLength});
   final String image;
+  final int imageLength;
 
   bool isLiked;
   @override
@@ -93,7 +94,7 @@ class _DetailItemState extends State<DetailItem> {
           right: 0,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(3, (index) {
+            children: List.generate(widget.imageLength, (index) {
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: 4),
                 width: 8,
@@ -103,6 +104,7 @@ class _DetailItemState extends State<DetailItem> {
                       ? Colors.black
                       : Colors.grey,
                   shape: BoxShape.circle,
+                  border: Border.all(color:AppColors.primary100)
                 ),
               );
             }),

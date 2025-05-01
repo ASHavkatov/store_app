@@ -15,6 +15,7 @@ class ReviewItem extends StatelessWidget {
     return SizedBox(
       height: 120.h,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 12,
         children: [
           StarsRow(starCount: stars),

@@ -26,17 +26,17 @@ class MyCartView extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder:
                     (context, index) => Column(
-                      children: [
-                        MyCartContainer(
-                          image: "assets/images/t-shirt.png",
-                          title: "Regular Fit Slogan",
-                          callback: () {},
-                          clothsize: "Size L",
-                          price: "1.1111", callbackminus: () {  }, callbackplus: () {  },
-                        ),
-                        SizedBox(height: 14.h),
-                      ],
+                  children: [
+                    MyCartContainer(
+                      image: "assets/images/t-shirt.png",
+                      title: "Regular Fit Slogan",
+                      callback: () {},
+                      clothsize: "Size L",
+                      price: "1.1111", callbackminus: () {  }, callbackplus: () {  },
                     ),
+                    SizedBox(height: 14.h),
+                  ],
+                ),
               ),
             ),
             SizedBox(
@@ -44,7 +44,6 @@ class MyCartView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(top: 15, bottom: 19),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   spacing: 16.h,
                   children: [
                     OrderSummary(title: "Sub-total", summary: "\$ 5,870"),
@@ -52,6 +51,7 @@ class MyCartView extends StatelessWidget {
                     OrderSummary(title: "Shipping fee", summary: "\$ 80"),
                     Divider(color: AppColors.primary200),
                     OrderSummary(title: "Total", summary: "\$ 5,870"),
+                    SizedBox(height: 32.h),
                     StoreFloatingButton(
                       text: "Go To Checkout",
                       arrow: true,
@@ -71,7 +71,3 @@ class MyCartView extends StatelessWidget {
     );
   }
 }
-
-
-
-
