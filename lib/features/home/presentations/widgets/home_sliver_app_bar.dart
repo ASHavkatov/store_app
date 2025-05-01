@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:store_app/data/models/category_model.dart';
+import 'package:store_app/data/models/categories/category_model.dart';
 import 'package:store_app/features/home/presentations/widgets/home_categories.dart';
 import 'package:store_app/features/home/presentations/widgets/search_container.dart';
 

@@ -6,7 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.9.111:8888/api/v1",
+      baseUrl: "http://10.10.2.89:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -65,9 +65,11 @@ class ApiClient {
     }
   }
 
-  Future<bool> postResetEmailCodeReset(String email,
-      String code,
-      String password,) async {
+  Future<bool> postResetEmailCodeReset(
+    String email,
+    String code,
+    String password,
+  ) async {
     try {
       var response = await dio.post(
         "/auth/reset-password/reset",
@@ -76,6 +78,7 @@ class ApiClient {
       if (response.statusCode == 200) {
         return true;
       } else {
+        print("${response.statusCode} 111111111111111111111111111");
         return false;
       }
     } catch (e) {
@@ -113,6 +116,7 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     } else {
+      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }
@@ -127,7 +131,6 @@ class ApiClient {
       throw Exception("/sizes/list error");
     }
   }
-
 
   Future<List<dynamic>> fetchSavedProducts() async {
     var response = await dio.get('/products/saved-products');

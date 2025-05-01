@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../../data/models/product_model.dart';
-
+import '../../../../data/models/product_model/product_model.dart';
 enum SearchStatus { idle, error, loading }
 
 class SearchState extends Equatable {

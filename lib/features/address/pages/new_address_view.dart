@@ -107,7 +107,6 @@ class _NewAddressViewState extends State<NewAddressView> {
                                 // context.read<NewAddressBloc>().add(
                                 //   GoToCurrentLocation(),
                                 // );
-                                state.showBottomSheet = true;
                               },
                               child: Icon(
                                 Icons.my_location,
@@ -117,7 +116,6 @@ class _NewAddressViewState extends State<NewAddressView> {
                           ],
                         ),
                       ),
-                      if (state.showBottomSheet)
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -160,7 +158,6 @@ class _NewAddressViewState extends State<NewAddressView> {
                                         GestureDetector(
                                           onTap: () {
                                             setState(() {
-                                              state.showBottomSheet = false;
                                             });
                                           },
                                           child: SvgPicture.asset(

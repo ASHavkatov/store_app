@@ -114,8 +114,7 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.myDetails,
-
-      builder: (context, state, ) => MyDetailsView(),
+      builder: (context, state) => MyDetailsView(),
     ),
     GoRoute(
       path: Routes.saved,
