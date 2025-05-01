@@ -14,7 +14,7 @@ class ProductRepository {
   List<ProductModel>? savedProducts;
 
   List<CategoryModel>? categories;
-
+  
   List<SizesModel>? sizesList;
   DetailModel? detail;
 
@@ -25,13 +25,12 @@ class ProductRepository {
     return detail!;
   }
 
-  Future<List<ProductModel>> fetchProduct(
-    String? title,
+  Future<List<ProductModel>> fetchProduct({ String? title,
     int? categoryId,
     int? sizeId,
     double? minPrice,
     double? maxPrice,
-    String? orderBy,
+    String? orderBy}
   ) async {
     var rawProduct = await client.fetchProduct(
       queryParams: {
@@ -45,7 +44,6 @@ class ProductRepository {
     );
     products =
         rawProduct.map((products) => ProductModel.fromJson(products)).toList();
-    print("raw products initialized success");
     return products!;
   }
 

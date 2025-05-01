@@ -45,7 +45,7 @@ class StoreBottomNavigationBar extends StatelessWidget {
             ),
             BottomNavigationButton(
               callback: () {
-                context.push(Routes.home);
+                context.push(Routes.myCard);
               },
               text: "Cart",
               icon: "assets/icons/cart.svg",

@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:store_app/data/models/size_model/sizes_model.dart';
-import 'package:store_app/features/common/presentations/buttons_row.dart';
+import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
+import 'package:store_app/features/home/presentations/widgets/sort_by_buttons.dart';
 import 'package:store_app/features/home/presentations/widgets/store_icon_button_container.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
 
-class HomeFilterBoxBottomSheet extends StatefulWidget {
-  const HomeFilterBoxBottomSheet({super.key,required this.sizesList});
+import '../../managers/home_state.dart';
 
-  final List<SizesModel>? sizesList;
+class HomeFilterBoxBottomSheet extends StatefulWidget {
+  const HomeFilterBoxBottomSheet({super.key});
 
 
   @override
@@ -20,7 +21,9 @@ class HomeFilterBoxBottomSheet extends StatefulWidget {
 class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
   double _minValue = 0;
   double _maxValue = 4000;
-  String _selectedSize = 'L'; // Declare the selected size
+  int? _sizeId;
+  int _selectedSortIndex = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +66,13 @@ class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
                   fontSize: 16,
                 ),
               ),
-              ButtonsRow(items: ['Relevance','Price:Low-High','Price:High-Low'],),
+              SortByButtons(
+                onSelected: (index) {
+                  setState(() {
+                    _selectedSortIndex = index;
+                  });
+                },
+              ),
               Divider(color: Colors.black.withValues(alpha: 0.3)),
               Text(
                 "Price",
@@ -117,31 +126,57 @@ class _HomeFilterBoxBottomSheet extends State<HomeFilterBoxBottomSheet> {
                       fontSize: 16,
                     ),
                   ),
-                  DropdownButton<String>(
-                    value: _selectedSize, // The currently selected value
-                    items:
-                        <String>[
-                          'S',
-                          'M',
-                          'L',
-                          'XL',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList(),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        _selectedSize = newValue!;
-                      });
+                  BlocBuilder<HomeBloc, HomeState>(
+                    builder: (context, state) {
+                      if (state.status==HomeStatus.idle) {
+                        return DropdownMenu<int>(
+                          inputDecorationTheme: InputDecorationTheme(
+                            constraints: BoxConstraints.tight(Size(100, 35)),
+                            border: InputBorder.none,
+                          ),
+                          dropdownMenuEntries: List.generate(
+                            state.sizesList!.length,
+                                (index) =>
+                                DropdownMenuEntry(
+                                  value: state.sizesList![index].id,
+                                  label: state.sizesList![index].title,
+                                ),
+                          ),
+                          onSelected:
+                              (int? value) =>
+                              setState(() {
+                                _sizeId = value;
+                              }),
+                          menuStyle: MenuStyle(
+                            padding: WidgetStatePropertyAll(EdgeInsets.zero),
+                          ),
+                          menuHeight: 320.h,
+                        );
+                      }
+                      return SizedBox();
                     },
                   ),
                 ],
               ),
-              StoreFloatingButton(text: "Apply Filters", arrow: false, callback: (){context.pop(
-                HomeLoad(maxPrice: _maxValue,minPrice: _minValue)
-              );}, color: Colors.black)
+              StoreFloatingButton(
+                text: "Apply Filters",
+                arrow: false,
+                callback: () {
+                  String? orderBy;
+                  if (_selectedSortIndex == 1) orderBy = '-price';
+                  if (_selectedSortIndex == 2) orderBy = 'price';
+                  if (_selectedSortIndex == 0) orderBy = null;
+                  context.pop(
+                    HomeLoad(
+                      maxPrice: _maxValue,
+                      minPrice: _minValue,
+                      sizeId: _sizeId,
+                      orderBy: orderBy,
+                    ),
+                  );
+                },
+                color: Colors.black,
+              ),
             ],
           ),
         ],

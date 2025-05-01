@@ -157,7 +157,7 @@
                                   },
                                   color: AppColors.error,
                                 ),
-                                SizedBox(height: 12),
+                                SizedBox(height: 10.h),
                                 StoreFloatingButton(
                                   text: "No, Cancel",
                                   arrow: false,

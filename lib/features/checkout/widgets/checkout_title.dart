@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/utils/colors.dart';
+// ignore: must_be_immutable
 class CheckoutTitle extends StatelessWidget {
   CheckoutTitle({super.key, required this.title,this.fontSize=16,this.fontWeight=FontWeight.w600});
   final String title;

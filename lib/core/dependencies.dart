@@ -5,6 +5,7 @@ import 'package:store_app/data/repositories/product_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
+import '../data/repositories/reviews_repository.dart';
 import '../features/home/managers/home_bloc.dart';
 import 'client.dart';
 import 'l10n/localization_view_model.dart';
@@ -18,5 +19,6 @@ List<SingleChildWidget> providers = [
   BlocProvider(create: (context)=> LoginBloc(repo: context.read())),
   BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepository(client: ApiClient()))),
   Provider(create: (context)=> ProductRepository(client: ApiClient())),
+  Provider(create: (context)=> ReviewsRepository(client: ApiClient())),
 
 ];
