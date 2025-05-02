@@ -18,6 +18,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final fcmToken = await FirebaseMessaging.instance.getToken();
+
   FirebaseMessaging.onMessage.listen((RemoteMessage event){
   });
   runApp(MyApp());

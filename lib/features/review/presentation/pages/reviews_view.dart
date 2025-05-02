@@ -8,6 +8,7 @@ import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/review/presentation/widgets/review_item.dart';
 import 'package:store_app/features/review/presentation/widgets/rating_bar_section.dart';
 import 'package:store_app/features/review/presentation/widgets/stars_row.dart';
+import 'package:store_app/core/utils/format_date.dart';
 
 import '../blocs/review_bloc.dart';
 import '../blocs/review_state.dart';
@@ -125,7 +126,7 @@ class _ReviewsViewState extends State<ReviewsView>{
                                 SizedBox(height: 10),
                                 ReviewItem(
                                   title: state.reviewsList[index].comment,
-                                  date: 6,
+                                  date: formatDate((state.reviewsList[index].created).toString()),
                                   stars: 5,
                                   userName:
                                       state.reviewsList[index].userFullName,
