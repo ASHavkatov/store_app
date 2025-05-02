@@ -50,6 +50,41 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                       height: 22.h,
                       child: Row(
                         children: [
+                          SizedBox(height: 13.h),
+                          CheckoutTitle(title: state.model!.title, fontSize: 24),
+                          GestureDetector(
+                            onTap: () {
+                              context.push(Routes.reviews);
+                            },
+                            child: SizedBox(
+                              height: 22.h,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SvgPicture.asset("assets/icons/star_filled.svg"),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    state.model!.rating.toStringAsFixed(1),
+                                    style: TextStyle(
+                                      fontFamily: "GeneralSans",
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  SizedBox(width: 6),
+                                  Text(
+                                    "(${state.model!.reviewsCount} reviews)",
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontFamily: "GeneralSans",
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ],
+                              ),
                           SvgPicture.asset("assets/icons/star_filled.svg"),
                           SizedBox(width: 6),
                           Text(
@@ -63,8 +98,13 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           ),
                           SizedBox(width: 6),
                           Text(
+                            state.model!.description,
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              fontFamily: "GeneralSans",
                             "(${state.model!.reviewCount} reviews)",
-                            style: const TextStyle(
+                            style: const TextStyle
                               color: Colors.grey,
                               fontFamily: "GeneralSans",
                               fontSize: 16,

@@ -10,10 +10,10 @@ abstract class DetailModel with _$DetailModel {
  const factory DetailModel({
     required int id,
     required String title,
-    required String desc,
+    required String description,
     required int price,
     required bool isLiked,
-    required int reviewCount,
+    required int reviewsCount,
     required num rating,
     @JsonKey(name: 'productImages') required List<DetailImageModel>productImage,
   }) = _DetailModel;
