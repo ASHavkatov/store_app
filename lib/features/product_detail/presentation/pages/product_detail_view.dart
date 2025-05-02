@@ -69,7 +69,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                   ),
                                   SizedBox(width: 6),
                                   Text(
-                                    "(${state.model!.reviewCount} reviews)",
+                                    "(${state.model!.reviewsCount} reviews)",
                                     style: TextStyle(
                                       color: Colors.grey,
                                       fontFamily: "GeneralSans",
@@ -84,7 +84,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           ),
                           SizedBox(height: 13.h),
                           Text(
-                            state.model!.desc,
+                            state.model!.description,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
