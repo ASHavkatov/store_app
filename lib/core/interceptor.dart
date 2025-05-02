@@ -42,10 +42,5 @@ class AuthInterceptor extends Interceptor {
         return handler.reject(err);
       }
     }
-
   }
-
-
-
-
 }

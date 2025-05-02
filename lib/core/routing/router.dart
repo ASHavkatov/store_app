@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
+import 'package:store_app/data/repositories/reviews_repository.dart';
 import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
@@ -37,17 +38,32 @@ import '../../features/authentication/verification/pages/reset_password_view.dar
 import '../../features/authentication/verification/pages/verification_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
+import '../../features/review/presentation/blocs/review_bloc.dart';
+import '../../features/review/presentation/blocs/review_event.dart';
 import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.myCard,
+
   routes: [
     GoRoute(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(path: Routes.reviews, builder: (context, state) => ReviewsView()),
+    GoRoute(
+      path: Routes.reviews,
+      builder: (context, state) {
+
+        return BlocProvider(
+          create:
+              (context) => ReviewBloc(reviewRepo: context.read())..add(
+            ReviewLoad(id: int.parse(state.pathParameters['id']!)),
+          ),
+          child: ReviewsView(),
+        );
+      },
+    ),
     GoRoute(
       path: Routes.signUp,
       builder:

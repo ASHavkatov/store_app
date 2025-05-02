@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
                 child: CustomScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),
                   slivers: [
-                    HomeSliverAppBar(categories: state.categories,sizesList: state.sizesList,),
+                    HomeSliverAppBar(categories: state.categories),
                     SliverPadding(
                       padding: const EdgeInsets.all(25),
                       sliver: SliverGrid(

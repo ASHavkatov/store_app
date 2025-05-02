@@ -9,9 +9,8 @@ import '../../managers/home_event.dart';
 import 'home_filter_box_bottom_sheet.dart';
 
 class HomeFilterBox extends StatefulWidget {
-  const HomeFilterBox({super.key,required this.sizesList});
+  const HomeFilterBox({super.key});
 
-  final List<SizesModel>? sizesList;
   @override
   _HomeFilterBoxState createState() => _HomeFilterBoxState();
 }
@@ -27,7 +26,7 @@ class _HomeFilterBoxState extends State<HomeFilterBox> {
           useSafeArea: true,
           context: context,
           builder: (context) =>
-              HomeFilterBoxBottomSheet(sizesList: widget.sizesList,),);
+              HomeFilterBoxBottomSheet(),);
         if (filters != null) {
           context.read<HomeBloc>().add(filters);}
       },

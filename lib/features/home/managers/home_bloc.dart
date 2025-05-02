@@ -17,12 +17,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future _onLoad(HomeLoad event, Emitter<HomeState> emit) async {
     final products = await _productRepo.fetchProduct(
-      event.title,
-      event.categoryId,
-      event.sizeId,
-      event.minPrice,
-      event.maxPrice,
-      event.orderBy,
+      title:event.title,
+      categoryId: event.categoryId,
+      sizeId:event.sizeId,
+      minPrice:event.minPrice,
+      maxPrice:event.maxPrice,
+      orderBy:event.orderBy,
     );
     emit(state.copyWith(products: products, status: HomeStatus.idle));
     final categories = await _productRepo.fetchCategories();

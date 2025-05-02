@@ -23,27 +23,32 @@ class ProductDetailView extends StatefulWidget {
 class _ProductDetailViewState extends State<ProductDetailView> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DetailBloc, DetailState>(
-      builder: (context, state) {
-        return switch (state.status) {
-          null => throw UnimplementedError(),
-          DetailStatus.loading => Center(child: CircularProgressIndicator()),
-          DetailStatus.error => Center(child: Text("Xatolik bor")),
-          DetailStatus.idle => Scaffold(
-            appBar: StoreAppAppBar(title: "Details"),
-            body: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: ListView(
+    return Scaffold(
+      appBar: StoreAppAppBar(title: "Details"),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: BlocBuilder<DetailBloc, DetailState>(
+          builder: (context, state) {
+            return switch (state.status) {
+              null => throw UnimplementedError(),
+              DetailStatus.loading => const Center(child: CircularProgressIndicator()),
+              DetailStatus.error => const Center(child: Text("Xatolik bor")),
+              DetailStatus.idle => ListView(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      DetailItem(
-                        image: state.model!.productImage.first.image,
-                        isLiked: state.model!.isLiked,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                  DetailItem(
+                    imageLength: state.model!.productImage.length,
+                    image: state.model!.productImage.first.image,
+                    isLiked: state.model!.isLiked,
+                  ),
+                  SizedBox(height: 13.h),
+                  CheckoutTitle(title: state.model!.title, fontSize: 24),
+                  GestureDetector(
+                    onTap: () {
+                      context.push(Routes.getReviews(state.model!.id));
+                    },
+                    child: SizedBox(
+                      height: 22.h,
+                      child: Row(
                         children: [
                           SizedBox(height: 13.h),
                           CheckoutTitle(title: state.model!.title, fontSize: 24),
@@ -80,33 +85,64 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                   ),
                                 ],
                               ),
+                          SvgPicture.asset("assets/icons/star_filled.svg"),
+                          SizedBox(width: 6),
+                          Text(
+                            state.model!.rating.toStringAsFixed(1),
+                            style: const TextStyle(
+                              fontFamily: "GeneralSans",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                          SizedBox(height: 13.h),
+                          SizedBox(width: 6),
                           Text(
                             state.model!.description,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 16,
                               fontFamily: "GeneralSans",
+                            "(${state.model!.reviewCount} reviews)",
+                            style: const TextStyle
                               color: Colors.grey,
+                              fontFamily: "GeneralSans",
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(height: 13.h),
-                      CheckoutTitle(title: "Choose size", fontSize: 24),
-                      ButtonsRow(items: ['S', 'M', 'L']),
-                      SizedBox(height: 13.h),
-                    ],
+                    ),
                   ),
+                  SizedBox(height: 13.h),
+                  Text(
+                    state.model!.desc,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
+                      fontFamily: "GeneralSans",
+                      color: Colors.grey,
+                    ),
+                  ),
+                  SizedBox(height: 13.h),
+                  CheckoutTitle(title: "Choose size", fontSize: 24),
+                  ButtonsRow(items: ['S', 'M', 'L']),
+                  SizedBox(height: 13.h),
                 ],
               ),
-            ),
-            bottomNavigationBar: AddToCartBottom(price: state.model!.price.toString()),
-          ),
-        };
-      },
+            };
+          },
+        ),
+      ),
+      bottomNavigationBar: BlocBuilder<DetailBloc, DetailState>(
+        builder: (context, state) {
+          return state.model != null
+              ? AddToCartBottom(price: state.model!.price.toString())
+              : const SizedBox.shrink();
+        },
+      ),
     );
   }
 }

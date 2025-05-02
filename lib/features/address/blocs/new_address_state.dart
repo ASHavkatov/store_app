@@ -56,4 +56,3 @@ class LatLngJsonConverter extends JsonConverter<List<LatLng>, List<String>> {
     return object.map((e) => '${e.latitude},${e.longitude}').toList();
   }
 }
-

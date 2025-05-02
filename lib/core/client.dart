@@ -159,4 +159,26 @@ class ApiClient {
       return false;
     }
   }
+
+  Future<List<dynamic>> fetchReviewsList(int id) async {
+    final response = await dio.get("/reviews/list/$id");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    } else {
+      print('oxshamadi koding uka, qurib ket:/reviews/list:${response.data}');
+      throw Exception("/reviews/list error");
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchReviewsStars(int id) async {
+    final response = await dio.get("/reviews/stats/$id");
+    if (response.statusCode == 200) {
+      Map<String,dynamic> data = response.data;
+      return data;
+    } else {
+      print('oxshamadi koding uka, qurib ket:/reviews/stars:${response.data}');
+      throw Exception("/reviews/list error");
+    }
+  }
 }
