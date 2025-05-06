@@ -15,6 +15,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future _onLoad(SearchLoad event, Emitter<SearchState> emit) async {
     final products = await _productRepo.fetchProduct(title: event.title);
-    emit(state.copWith(status: SearchStatus.idle,products: products));
+    emit(state.copyWith(status: SearchStatus.success,products: products));
   }
 }

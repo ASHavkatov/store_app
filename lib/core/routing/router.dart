@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/core/routing/routes.dart';
-import 'package:store_app/data/repositories/reviews_repository.dart';
 import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
@@ -41,10 +40,11 @@ import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/review/presentation/blocs/review_bloc.dart';
 import '../../features/review/presentation/blocs/review_event.dart';
 import '../../features/review/presentation/pages/reviews_view.dart';
+import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.myCard,
+  initialLocation: Routes.login,
 
   routes: [
     GoRoute(
@@ -202,7 +202,10 @@ GoRouter router = GoRouter(
       path: Routes.notification,
       builder: (context, state) => NotificationView(),
     ),
-    GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
+    GoRoute(path: Routes.search, builder: (context, state) => BlocProvider(
+  create: (context) => SearchBloc(productRepo: context.read()),
+  child: SearchView(),
+)),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
