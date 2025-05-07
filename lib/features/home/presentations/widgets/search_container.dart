@@ -1,15 +1,15 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/features/home/managers/home_bloc.dart';
-import 'package:store_app/features/home/managers/home_event.dart';
 
 class SearchContainer extends StatefulWidget {
-  const SearchContainer({super.key});
+  final void Function(String)? onTextChanged;
+
+  const SearchContainer({super.key, this.onTextChanged});
 
   @override
   State<SearchContainer> createState() => _SearchContainerState();
@@ -19,16 +19,33 @@ class _SearchContainerState extends State<SearchContainer> {
   late stt.SpeechToText _speech;
   bool _isListening = false;
   final TextEditingController _controller = TextEditingController();
+  Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
     _speech = stt.SpeechToText();
+
+    _controller.addListener(() {
+      if (_debounce?.isActive ?? false) _debounce!.cancel();
+      _debounce = Timer(const Duration(milliseconds: 300), () {
+        final text = _controller.text.trim();
+        if (widget.onTextChanged != null) {
+          widget.onTextChanged!(text);
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _controller.dispose();
+    super.dispose();
   }
 
   Future<void> requestMicrophonePermission() async {
     final status = await Permission.microphone.request();
-
     if (status.isGranted) {
       print('Microphone permission granted');
     } else if (status.isDenied) {
@@ -101,7 +118,9 @@ class _SearchContainerState extends State<SearchContainer> {
             padding: EdgeInsets.all(12.w),
             child: GestureDetector(
               onTap: () {
-                context.read<HomeBloc>().add(HomeLoad(title: _controller.text.trim(), categoryId: null));
+                if (widget.onTextChanged != null) {
+                  widget.onTextChanged!(_controller.text.trim());
+                }
               },
               child: SvgPicture.asset(
                 "assets/icons/search.svg",
@@ -120,7 +139,7 @@ class _SearchContainerState extends State<SearchContainer> {
               padding: EdgeInsets.all(12.w),
               child: SvgPicture.asset(
                 "assets/icons/microphone.svg",
-                color: _isListening ? Colors.blue: Colors.grey,
+                color: _isListening ? Colors.blue : Colors.grey,
                 width: 24.w,
                 height: 24.w,
               ),

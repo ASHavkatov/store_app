@@ -31,7 +31,9 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           builder: (context, state) {
             return switch (state.status) {
               null => throw UnimplementedError(),
-              DetailStatus.loading => const Center(child: CircularProgressIndicator()),
+              DetailStatus.loading => const Center(
+                child: CircularProgressIndicator(),
+              ),
               DetailStatus.error => const Center(child: Text("Xatolik bor")),
               DetailStatus.idle => ListView(
                 children: [
@@ -49,43 +51,11 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     child: SizedBox(
                       height: 22.h,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SizedBox(height: 13.h),
-                          CheckoutTitle(title: state.model!.title, fontSize: 24),
-                          GestureDetector(
-                            onTap: () {
-                              context.push(Routes.reviews);
-                            },
-                            child: SizedBox(
-                              height: 22.h,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SvgPicture.asset("assets/icons/star_filled.svg"),
-                                  SizedBox(width: 6),
-                                  Text(
-                                    state.model!.rating.toStringAsFixed(1),
-                                    style: TextStyle(
-                                      fontFamily: "GeneralSans",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                  SizedBox(width: 6),
-                                  Text(
-                                    "(${state.model!.reviewsCount} reviews)",
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontFamily: "GeneralSans",
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                      decoration: TextDecoration.underline,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                          SvgPicture.asset("assets/icons/star_filled.svg"),
+                          SvgPicture.asset(
+                            "assets/icons/star_filled.svg",
+                          ),
                           SizedBox(width: 6),
                           Text(
                             state.model!.rating.toStringAsFixed(1),
@@ -98,13 +68,8 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                           ),
                           SizedBox(width: 6),
                           Text(
-                            state.model!.description,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 16,
-                              fontFamily: "GeneralSans",
-                            "(${state.model!.reviewCount} reviews)",
-                            style: const TextStyle
+                            "(${state.model!.reviewsCount} reviews)",
+                            style: const TextStyle(
                               color: Colors.grey,
                               fontFamily: "GeneralSans",
                               fontSize: 16,
@@ -118,7 +83,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                   ),
                   SizedBox(height: 13.h),
                   Text(
-                    state.model!.desc,
+                    state.model!.description,
                     style: const TextStyle(
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
