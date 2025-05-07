@@ -22,11 +22,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   @override
-  void initState() {
-    context.read<HomeBloc>().add(HomeLoad());
-    super.initState();
-  }
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: HomeAppBar(),
@@ -35,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
             (context, state) => switch (state.status) {
               HomeStatus.idle => RefreshIndicator(
                 onRefresh: () async {
-                  context.read<HomeBloc>().add(HomeLoad());
+                  context.read<HomeBloc>().add(HomeLoad(categoryId: state.selectedCategoryId));
                 },
                 child: CustomScrollView(
                   physics: const AlwaysScrollableScrollPhysics(),

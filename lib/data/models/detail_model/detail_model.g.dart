@@ -9,10 +9,10 @@ part of 'detail_model.dart';
 _DetailModel _$DetailModelFromJson(Map<String, dynamic> json) => _DetailModel(
   id: (json['id'] as num).toInt(),
   title: json['title'] as String,
-  desc: json['desc'] as String,
+  description: json['description'] as String,
   price: (json['price'] as num).toInt(),
   isLiked: json['isLiked'] as bool,
-  reviewCount: (json['reviewCount'] as num).toInt(),
+  reviewsCount: (json['reviewsCount'] as num).toInt(),
   rating: json['rating'] as num,
   productImage:
       (json['productImages'] as List<dynamic>)
@@ -24,10 +24,10 @@ Map<String, dynamic> _$DetailModelToJson(_DetailModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'desc': instance.desc,
+      'description': instance.description,
       'price': instance.price,
       'isLiked': instance.isLiked,
-      'reviewCount': instance.reviewCount,
+      'reviewsCount': instance.reviewsCount,
       'rating': instance.rating,
       'productImages': instance.productImage,
     };

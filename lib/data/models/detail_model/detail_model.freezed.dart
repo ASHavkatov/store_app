@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$DetailModel {
 
- int get id; String get title; String get desc; int get price; bool get isLiked; int get reviewCount; num get rating;@JsonKey(name: 'productImages') List<DetailImageModel> get productImage;
+ int get id; String get title; String get description; int get price; bool get isLiked; int get reviewsCount; num get rating;@JsonKey(name: 'productImages') List<DetailImageModel> get productImage;
 /// Create a copy of DetailModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -29,16 +29,16 @@ $DetailModelCopyWith<DetailModel> get copyWith => _$DetailModelCopyWithImpl<Deta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.price, price) || other.price == price)&&(identical(other.isLiked, isLiked) || other.isLiked == isLiked)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.rating, rating) || other.rating == rating)&&const DeepCollectionEquality().equals(other.productImage, productImage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.isLiked, isLiked) || other.isLiked == isLiked)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.rating, rating) || other.rating == rating)&&const DeepCollectionEquality().equals(other.productImage, productImage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,desc,price,isLiked,reviewCount,rating,const DeepCollectionEquality().hash(productImage));
+int get hashCode => Object.hash(runtimeType,id,title,description,price,isLiked,reviewsCount,rating,const DeepCollectionEquality().hash(productImage));
 
 @override
 String toString() {
-  return 'DetailModel(id: $id, title: $title, desc: $desc, price: $price, isLiked: $isLiked, reviewCount: $reviewCount, rating: $rating, productImage: $productImage)';
+  return 'DetailModel(id: $id, title: $title, description: $description, price: $price, isLiked: $isLiked, reviewsCount: $reviewsCount, rating: $rating, productImage: $productImage)';
 }
 
 
@@ -49,7 +49,7 @@ abstract mixin class $DetailModelCopyWith<$Res>  {
   factory $DetailModelCopyWith(DetailModel value, $Res Function(DetailModel) _then) = _$DetailModelCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, String desc, int price, bool isLiked, int reviewCount, num rating,@JsonKey(name: 'productImages') List<DetailImageModel> productImage
+ int id, String title, String description, int price, bool isLiked, int reviewsCount, num rating,@JsonKey(name: 'productImages') List<DetailImageModel> productImage
 });
 
 
@@ -66,14 +66,14 @@ class _$DetailModelCopyWithImpl<$Res>
 
 /// Create a copy of DetailModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? desc = null,Object? price = null,Object? isLiked = null,Object? reviewCount = null,Object? rating = null,Object? productImage = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = null,Object? price = null,Object? isLiked = null,Object? reviewsCount = null,Object? rating = null,Object? productImage = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,desc: null == desc ? _self.desc : desc // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
-as bool,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
+as bool,reviewsCount: null == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
 as int,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as num,productImage: null == productImage ? _self.productImage : productImage // ignore: cast_nullable_to_non_nullable
 as List<DetailImageModel>,
@@ -87,15 +87,15 @@ as List<DetailImageModel>,
 @JsonSerializable()
 
 class _DetailModel implements DetailModel {
-  const _DetailModel({required this.id, required this.title, required this.desc, required this.price, required this.isLiked, required this.reviewCount, required this.rating, @JsonKey(name: 'productImages') required final  List<DetailImageModel> productImage}): _productImage = productImage;
+  const _DetailModel({required this.id, required this.title, required this.description, required this.price, required this.isLiked, required this.reviewsCount, required this.rating, @JsonKey(name: 'productImages') required final  List<DetailImageModel> productImage}): _productImage = productImage;
   factory _DetailModel.fromJson(Map<String, dynamic> json) => _$DetailModelFromJson(json);
 
 @override final  int id;
 @override final  String title;
-@override final  String desc;
+@override final  String description;
 @override final  int price;
 @override final  bool isLiked;
-@override final  int reviewCount;
+@override final  int reviewsCount;
 @override final  num rating;
  final  List<DetailImageModel> _productImage;
 @override@JsonKey(name: 'productImages') List<DetailImageModel> get productImage {
@@ -118,16 +118,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.desc, desc) || other.desc == desc)&&(identical(other.price, price) || other.price == price)&&(identical(other.isLiked, isLiked) || other.isLiked == isLiked)&&(identical(other.reviewCount, reviewCount) || other.reviewCount == reviewCount)&&(identical(other.rating, rating) || other.rating == rating)&&const DeepCollectionEquality().equals(other._productImage, _productImage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _DetailModel&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&(identical(other.price, price) || other.price == price)&&(identical(other.isLiked, isLiked) || other.isLiked == isLiked)&&(identical(other.reviewsCount, reviewsCount) || other.reviewsCount == reviewsCount)&&(identical(other.rating, rating) || other.rating == rating)&&const DeepCollectionEquality().equals(other._productImage, _productImage));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,title,desc,price,isLiked,reviewCount,rating,const DeepCollectionEquality().hash(_productImage));
+int get hashCode => Object.hash(runtimeType,id,title,description,price,isLiked,reviewsCount,rating,const DeepCollectionEquality().hash(_productImage));
 
 @override
 String toString() {
-  return 'DetailModel(id: $id, title: $title, desc: $desc, price: $price, isLiked: $isLiked, reviewCount: $reviewCount, rating: $rating, productImage: $productImage)';
+  return 'DetailModel(id: $id, title: $title, description: $description, price: $price, isLiked: $isLiked, reviewsCount: $reviewsCount, rating: $rating, productImage: $productImage)';
 }
 
 
@@ -138,7 +138,7 @@ abstract mixin class _$DetailModelCopyWith<$Res> implements $DetailModelCopyWith
   factory _$DetailModelCopyWith(_DetailModel value, $Res Function(_DetailModel) _then) = __$DetailModelCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, String desc, int price, bool isLiked, int reviewCount, num rating,@JsonKey(name: 'productImages') List<DetailImageModel> productImage
+ int id, String title, String description, int price, bool isLiked, int reviewsCount, num rating,@JsonKey(name: 'productImages') List<DetailImageModel> productImage
 });
 
 
@@ -155,14 +155,14 @@ class __$DetailModelCopyWithImpl<$Res>
 
 /// Create a copy of DetailModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? desc = null,Object? price = null,Object? isLiked = null,Object? reviewCount = null,Object? rating = null,Object? productImage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = null,Object? price = null,Object? isLiked = null,Object? reviewsCount = null,Object? rating = null,Object? productImage = null,}) {
   return _then(_DetailModel(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,desc: null == desc ? _self.desc : desc // ignore: cast_nullable_to_non_nullable
+as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
 as int,isLiked: null == isLiked ? _self.isLiked : isLiked // ignore: cast_nullable_to_non_nullable
-as bool,reviewCount: null == reviewCount ? _self.reviewCount : reviewCount // ignore: cast_nullable_to_non_nullable
+as bool,reviewsCount: null == reviewsCount ? _self.reviewsCount : reviewsCount // ignore: cast_nullable_to_non_nullable
 as int,rating: null == rating ? _self.rating : rating // ignore: cast_nullable_to_non_nullable
 as num,productImage: null == productImage ? _self._productImage : productImage // ignore: cast_nullable_to_non_nullable
 as List<DetailImageModel>,

@@ -90,13 +90,29 @@ class _HomeItemState extends State<HomeItem> {
             fontFamily: "GeneralSans",
           ),
         ),
-        Text(
-          "\$${product.price.toInt()}",
-          style: const TextStyle(
-            fontFamily: "GeneralSans",
-            fontSize: 12,
-            fontWeight: FontWeight.w500,
-          ),
+        Row(
+          spacing: 2,
+          children: [
+            Text(
+              "\$${product.price.toInt()}",
+              style: const TextStyle(
+                fontFamily: "GeneralSans",
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            product.discount != 0
+                ? Text(
+              "-${product.discount.toInt()}%",
+              style: const TextStyle(
+                color: Colors.red,
+                fontFamily: "GeneralSans",
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+              ),
+            )
+                : const SizedBox.shrink(),
+          ],
         ),
       ],
     );
