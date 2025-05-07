@@ -31,7 +31,9 @@ class _ProductDetailViewState extends State<ProductDetailView> {
           builder: (context, state) {
             return switch (state.status) {
               null => throw UnimplementedError(),
-              DetailStatus.loading => const Center(child: CircularProgressIndicator()),
+              DetailStatus.loading => const Center(
+                child: CircularProgressIndicator(),
+              ),
               DetailStatus.error => const Center(child: Text("Xatolik bor")),
               DetailStatus.idle => ListView(
                 children: [
@@ -49,8 +51,11 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                     child: SizedBox(
                       height: 22.h,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SvgPicture.asset("assets/icons/star_filled.svg"),
+                          SvgPicture.asset(
+                            "assets/icons/star_filled.svg",
+                          ),
                           SizedBox(width: 6),
                           Text(
                             state.model!.rating.toStringAsFixed(1),
