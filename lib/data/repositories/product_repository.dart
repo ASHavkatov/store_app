@@ -1,6 +1,7 @@
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/categories/category_model.dart';
 import 'package:store_app/data/models/detail_model/detail_model.dart';
+import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/data/models/size_model/sizes_model.dart';
 
@@ -17,12 +18,19 @@ class ProductRepository {
   
   List<SizesModel>? sizesList;
   DetailModel? detail;
+  MyCartModel? cart;
 
   Future<DetailModel>fetchDetail(int id)async{
     final rawDetails = await client.fetchDetail( id);
     print("asilbek $rawDetails");
     detail = DetailModel.fromJson(rawDetails);
     return detail!;
+  }
+
+  Future<MyCartModel>fetchMyCart()async{
+    final rawCart = await client.fetchMyCard();
+    cart = MyCartModel.fromJson(rawCart as Map<String, dynamic>);
+    return cart!;
   }
 
   Future<List<ProductModel>> fetchProduct({ String? title,

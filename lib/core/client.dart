@@ -6,7 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://0.0.0.0:8888/api/v1",
+      baseUrl: "http://192.168.11.145:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -32,6 +32,9 @@ class ApiClient {
       return false;
     }
   }
+
+
+
 
   Future<bool> postResetEmail(String email) async {
     try {
@@ -107,6 +110,15 @@ class ApiClient {
       return data;
     } else {
       throw Exception("/product/list error");
+    }
+  }
+  Future<List<dynamic>>fetchMyCard()async{
+    var response = await dio.get("/my-cart-items");
+    if (response.statusCode == 200) {
+      List<dynamic> data  = response.data;
+      return data;
+    }  else{
+      throw Exception("Xatolik bor");
     }
   }
 
