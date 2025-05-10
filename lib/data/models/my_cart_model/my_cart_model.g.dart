@@ -7,14 +7,16 @@ part of 'my_cart_model.dart';
 // **************************************************************************
 
 MyCartModel _$MyCartModelFromJson(Map<String, dynamic> json) => MyCartModel(
-  subTotal: (json['subTotal'] as num).toInt(),
-  vat: (json['vat'] as num).toInt(),
-  shippingFee: (json['shippingFee'] as num).toInt(),
-  total: (json['total'] as num).toInt(),
+  subTotal: json['subTotal'] as num,
+  items: const MyCartItemsModelConverter().fromJson(json['items'] as List),
+  vat: json['vat'] as num,
+  shippingFee: json['shippingFee'] as num,
+  total: json['total'] as num,
 );
 
 Map<String, dynamic> _$MyCartModelToJson(MyCartModel instance) =>
     <String, dynamic>{
+      'items': const MyCartItemsModelConverter().toJson(instance.items),
       'subTotal': instance.subTotal,
       'vat': instance.vat,
       'shippingFee': instance.shippingFee,
