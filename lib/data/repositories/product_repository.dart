@@ -18,7 +18,6 @@ class ProductRepository {
   
   List<SizesModel>? sizesList;
   DetailModel? detail;
-  MyCartModel? cart;
 
   Future<DetailModel>fetchDetail(int id)async{
     final rawDetails = await client.fetchDetail( id);
@@ -28,9 +27,11 @@ class ProductRepository {
   }
 
   Future<MyCartModel>fetchMyCart()async{
-    final rawCart = await client.fetchMyCard();
-    cart = MyCartModel.fromJson(rawCart as Map<String, dynamic>);
-    return cart!;
+    final rawCart=await client.fetchMyCard();
+    var cart=MyCartModel.fromJson(rawCart);
+    print("2222222222222222222${cart}");
+
+    return cart;
   }
 
   Future<List<ProductModel>> fetchProduct({ String? title,

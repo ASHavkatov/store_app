@@ -4,6 +4,7 @@ import 'package:provider/single_child_widget.dart';
 import 'package:store_app/data/repositories/product_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
+import 'package:store_app/features/my_card/blocs/my_cart_bloc.dart';
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../data/repositories/reviews_repository.dart';
 import '../features/home/managers/home_bloc.dart';
@@ -20,5 +21,6 @@ List<SingleChildWidget> providers = [
   BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepository(client: ApiClient()))),
   Provider(create: (context)=> ProductRepository(client: ApiClient())),
   Provider(create: (context)=> ReviewsRepository(client: ApiClient())),
+  BlocProvider(create: (context) => MyCartBloc(repo: context.read()),)
 
 ];
