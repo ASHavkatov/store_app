@@ -36,6 +36,7 @@ class _HomeViewState extends State<HomeView> {
                   physics: const AlwaysScrollableScrollPhysics(),
                   slivers: [
                     HomeSliverAppBar(categories: state.categories),
+                    Text("Recommends"),
                     SliverPadding(
                       padding: const EdgeInsets.all(25),
                       sliver: SliverGrid(
