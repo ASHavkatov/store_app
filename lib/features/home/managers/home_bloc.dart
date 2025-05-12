@@ -1,13 +1,16 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/product_repository.dart';
+import 'package:store_app/data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/sizes/size_repository.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/managers/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final ProductRepository _productRepo;
+  final SizeRepository _sizeRepository;
 
-  HomeBloc({required ProductRepository productRepo})
+  HomeBloc({required ProductRepository productRepo, required SizeRepository sizeRepo})
       : _productRepo = productRepo,
+  _sizeRepository = sizeRepo,
         super(HomeState.initial()) {
     on<HomeLoad>(_onLoad);
     on<SavedLoad>(onLike);
@@ -28,7 +31,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final categories = await _productRepo.fetchCategories();
     emit(state.copyWith(categories: categories, status: HomeStatus.idle));
 
-    final sizesList = await _productRepo.fetchSizesList();
+    final sizesList = await _sizeRepository.fetchSizesList();
     emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
   }
 

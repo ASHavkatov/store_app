@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/reviews_repository.dart';
+import 'package:store_app/data/repositories/review/reviews_repository.dart';
 import 'package:store_app/features/review/presentation/blocs/review_event.dart';
 import 'package:store_app/features/review/presentation/blocs/review_state.dart';
 

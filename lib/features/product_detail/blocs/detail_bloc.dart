@@ -1,11 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/product_repository.dart';
+import 'package:store_app/data/repositories/detail/detail_repository.dart';
+import 'package:store_app/data/repositories/products/product_repository.dart';
 import 'package:store_app/features/product_detail/blocs/detail_event.dart';
 import 'package:store_app/features/product_detail/blocs/detail_state.dart';
 
 class DetailBloc extends Bloc<DetailEvent, DetailState>{
-  final ProductRepository _repo;
-  DetailBloc({required ProductRepository repo}): _repo = repo, super(DetailState.initial()){
+  final DetailRepository _repo;
+  DetailBloc({required DetailRepository repo}): _repo = repo, super(DetailState.initial()){
     on<DetailLoading>(_onLoad);
   }
 

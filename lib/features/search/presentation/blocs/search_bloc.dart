@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:store_app/features/search/presentation/blocs/search_event.dart';
 import 'package:store_app/features/search/presentation/blocs/search_state.dart';
 
-import '../../../../data/repositories/product_repository.dart';
+import '../../../../data/repositories/products/product_repository.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ProductRepository _productRepo;
