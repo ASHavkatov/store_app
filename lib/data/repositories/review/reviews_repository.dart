@@ -1,5 +1,5 @@
-import '../../core/client.dart';
-import '../models/reviews_model.dart';
+import '../../../core/client.dart';
+import '../../models/reviews_model.dart';
 
 class ReviewsRepository {
   ReviewsRepository({required this.client});

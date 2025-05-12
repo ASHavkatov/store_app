@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:store_app/core/interceptor.dart';
+import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://0.0.0.0:8888/api/v1",
+      baseUrl: "http://192.168.11.248:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -110,6 +111,15 @@ class ApiClient {
     }
   }
 
+  Future<dynamic> fetchMyCard() async {
+    var response = await dio.get("/my-cart/my-cart-items");
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      throw Exception("Xatolik bor");
+    }
+  }
+
   Future<List<dynamic>> fetchCategories() async {
     var response = await dio.get('/categories/list');
     if (response.statusCode == 200) {
@@ -174,7 +184,7 @@ class ApiClient {
   Future<Map<String, dynamic>> fetchReviewsStars(int id) async {
     final response = await dio.get("/reviews/stats/$id");
     if (response.statusCode == 200) {
-      Map<String,dynamic> data = response.data;
+      Map<String, dynamic> data = response.data;
       return data;
     } else {
       print('oxshamadi koding uka, qurib ket:/reviews/stars:${response.data}');
