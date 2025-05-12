@@ -1,93 +1,57 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
+import 'package:store_app/features/notification/blocs/notification_bloc.dart';
+import 'package:store_app/features/notification/blocs/notification_state.dart';
 
+import '../widgets/notification_empty.dart';
+import '../widgets/notification_item.dart';
 
 class NotificationView extends StatelessWidget {
   NotificationView({super.key});
-
-  final item = [
-    // NotificationItem(),
-    // NotificationItem(),
-    // NotificationItem(),
-    // NotificationItem(),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: StoreAppAppBar(title: "Notifications"),
-      body:
-          item.length == 0
-              ? Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 70),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        "assets/icons/no_notification.svg",
-                        width: 64.w,
-                        height: 64.h,
-                        fit: BoxFit.cover,
-                        colorFilter: ColorFilter.mode(
-                          AppColors.primary300,
-                          BlendMode.srcIn,
+      body: BlocBuilder<NotificationBloc, NotificationState>(
+        builder: (context, state) {
+          return switch (state.status) {
+            null => throw UnimplementedError(),
+            NotificationStatus.loading => Center(
+              child: CircularProgressIndicator(),
+            ),
+            NotificationStatus.error => Center(child: Text("error")),
+            NotificationStatus.idle =>
+              state.model.isEmpty
+                  ? NotificationEmpty()
+                  : ListView.builder(
+                    itemCount: state.model.length,
+                    itemBuilder: (context, index) {
+                      var model = state.model[index];
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 24, right: 24),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            NotificationItem(
+                              text: model.title,
+                              desc: model.content,
+                              svg: model.icon,
+                            ),
+                          ],
                         ),
-                      ),
-                      SizedBox(height: 24.h),
-                      Text(
-                        "You haven’t gotten any notifications yet!",
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                        style: TextStyle(
-                          color: AppColors.primary900,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 20,
-                        ),
-                      ),
-                      SizedBox(height: 12.h),
-                      Text(
-                        "We’ll alert you when something cool happens.",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: AppColors.primary500,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
-                ),
-              )
-              : NotificationItem(),
-      bottomNavigationBar: StoreBottomNavigationBar()
-    );
-  }
-}
-
-class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-        Center(child: Text("salom")),
-        SizedBox(height: 20),
-      ],
+          };
+        },
+      ),
+      bottomNavigationBar: StoreBottomNavigationBar(),
     );
   }
 }
