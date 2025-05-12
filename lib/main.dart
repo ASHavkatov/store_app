@@ -3,6 +3,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:store_app/core/dependencies.dart';
 import 'package:store_app/core/l10n/app_localizations.dart';
@@ -17,6 +19,9 @@ final navigatorKey = GlobalKey<NavigatorState>();
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
+  final dir = await getApplicationCacheDirectory();
+  Hive.init(dir.path);
+  await Hive.openBox('SearchedData');
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event){
