@@ -24,8 +24,9 @@ class Routes{
   static const myDetails ='/my-details';
   static const faqs = '/faqs';
   static const helpCenter = '/help-center';
-  static const reviews = '/reviews';
+  static const reviews = '/reviews/:id';
 
   static String getDetail(int id)=> "/detail/$id";
+  static String getReviews(int id)=> "/reviews/$id";
 
 }

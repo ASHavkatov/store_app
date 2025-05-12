@@ -1,13 +1,16 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/product_repository_remote.dart';
+import 'package:store_app/data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/sizes/size_repository.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/managers/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final ProductRepositoryRemote _productRepo;
+  final ProductRepository _productRepo;
+  final SizeRepository _sizeRepository;
 
-  HomeBloc({required ProductRepositoryRemote productRepo})
+  HomeBloc({required ProductRepository productRepo, required SizeRepository sizeRepo})
       : _productRepo = productRepo,
+  _sizeRepository = sizeRepo,
         super(HomeState.initial()) {
     on<HomeLoad>(_onLoad);
     on<SavedLoad>(onLike);
@@ -16,19 +19,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future _onLoad(HomeLoad event, Emitter<HomeState> emit) async {
-    final products = await _productRepo.fetchProducts(
-      event.title,
-      event.categoryId,
-      event.sizeId,
-      event.minPrice,
-      event.maxPrice,
-      event.orderBy,
+    final products = await _productRepo.fetchProduct(
+      title:event.title,
+      categoryId: event.categoryId,
+      sizeId:event.sizeId,
+      minPrice:event.minPrice,
+      maxPrice:event.maxPrice,
+      orderBy:event.orderBy,
     );
     emit(state.copyWith(products: products, status: HomeStatus.idle));
     final categories = await _productRepo.fetchCategories();
     emit(state.copyWith(categories: categories, status: HomeStatus.idle));
 
-    final sizesList = await _productRepo.fetchSizesList();
+    final sizesList = await _sizeRepository.fetchSizesList();
     emit(state.copyWith(sizesList: sizesList, status: HomeStatus.idle));
   }
 

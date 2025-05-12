@@ -16,6 +16,12 @@ class HomeLoad extends HomeEvent {
 });
 }
 
+class HomeSelectCategory extends HomeEvent{
+  final int? selectedCategory;
+
+  HomeSelectCategory({required this.selectedCategory});
+}
+
 class SavedLoad extends HomeEvent{
   SavedLoad({required this.like});
   final int like;

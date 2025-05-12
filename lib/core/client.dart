@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:store_app/core/interceptor.dart';
+import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.8.81:8888/api/v1",
+      baseUrl: "http://192.168.11.248:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -86,6 +87,15 @@ class ApiClient {
       throw Exception("Error at reset email code");
     }
   }
+  Future<List<dynamic>>fetchNotification()async{
+    var response = await dio.get("/notifications/list");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+          return data;
+    }  else{
+      throw Exception("Notification ni olib kelishda hatolik bor");
+    }
+  }
 
   Future<dynamic> fetchDetail(int id) async {
     var response = await dio.get('/products/detail/$id');
@@ -108,6 +118,15 @@ class ApiClient {
       return data;
     } else {
       throw Exception("/product/list error");
+    }
+  }
+
+  Future<dynamic> fetchMyCard() async {
+    var response = await dio.get("/my-cart/my-cart-items");
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      throw Exception("Xatolik bor");
     }
   }
 
@@ -158,6 +177,28 @@ class ApiClient {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<List<dynamic>> fetchReviewsList(int id) async {
+    final response = await dio.get("/reviews/list/$id");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+      return data;
+    } else {
+      print('oxshamadi koding uka, qurib ket:/reviews/list:${response.data}');
+      throw Exception("/reviews/list error");
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchReviewsStars(int id) async {
+    final response = await dio.get("/reviews/stats/$id");
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = response.data;
+      return data;
+    } else {
+      print('oxshamadi koding uka, qurib ket:/reviews/stars:${response.data}');
+      throw Exception("/reviews/list error");
     }
   }
 }

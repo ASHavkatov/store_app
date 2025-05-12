@@ -9,12 +9,13 @@ class ReviewItem extends StatelessWidget {
 
   final String title,userName;
   final int stars;
-  final num date;
+  final String date;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 120.h,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         spacing: 12,
         children: [
           StarsRow(starCount: stars),
@@ -32,7 +33,7 @@ class ReviewItem extends StatelessWidget {
               CheckoutTitle(title: userName),
               Text("•", style: TextStyle(color: Colors.grey)),
               Text(
-                "$date days ago",
+                date,
                 style: TextStyle(
                   color: AppColors.primary400,
                   fontWeight: FontWeight.w400,

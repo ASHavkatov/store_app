@@ -1,12 +1,13 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/product_repository_remote.dart';
+import 'package:store_app/data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/saved/saved_repository.dart';
 import 'package:store_app/features/saved/blocs/saved_event.dart';
 import 'package:store_app/features/saved/blocs/saved_state.dart';
 
 class SavedBloc extends Bloc<SavedEvent, SavedState> {
-  final ProductRepositoryRemote _repo;
+  final SavedRepository _repo;
 
-  SavedBloc({required ProductRepositoryRemote repo})
+  SavedBloc({required SavedRepository repo})
       : _repo = repo,
         super(SavedState.initial()) {
     on<SavedLoading>(_onLoading);

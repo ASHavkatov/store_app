@@ -13,9 +13,12 @@ import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
 import 'package:store_app/features/help_center/pages/help_center_view.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
+import 'package:store_app/features/my_card/blocs/my_cart_bloc.dart';
+import 'package:store_app/features/my_card/blocs/my_cart_event.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
+import 'package:store_app/features/notification/blocs/notification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
 import 'package:store_app/features/product_detail/blocs/detail_bloc.dart';
@@ -25,8 +28,6 @@ import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
-
-import '../../data/repositories/product_repository_remote.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
@@ -37,17 +38,30 @@ import '../../features/authentication/verification/pages/reset_password_view.dar
 import '../../features/authentication/verification/pages/verification_view.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
+import '../../features/review/presentation/blocs/review_bloc.dart';
+import '../../features/review/presentation/blocs/review_event.dart';
 import '../../features/review/presentation/pages/reviews_view.dart';
+import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.home,
+  initialLocation: Routes.login,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
       builder: (context, state) => OnboardingView(),
     ),
-    GoRoute(path: Routes.reviews, builder: (context, state) => ReviewsView()),
+    GoRoute(
+      path: Routes.reviews,
+      builder: (context, state) {
+        return BlocProvider(
+          create:
+              (context) => ReviewBloc(reviewRepo: context.read())
+                ..add(ReviewLoad(id: int.parse(state.pathParameters['id']!))),
+          child: ReviewsView(),
+        );
+      },
+    ),
     GoRoute(
       path: Routes.signUp,
       builder:
@@ -104,9 +118,7 @@ GoRouter router = GoRouter(
       path: Routes.saved,
       builder:
           (context, state) => BlocProvider(
-            create:
-                (context) =>
-                    SavedBloc(repo: ProductRepositoryRemote(client: context.read())),
+            create: (context) => SavedBloc(repo: context.read()),
             child: SavedView(),
           ),
     ),
@@ -118,7 +130,8 @@ GoRouter router = GoRouter(
             child: BlocProvider(
               create:
                   (context) => HomeBloc(
-                    productRepo: ProductRepositoryRemote(client: ApiClient()),
+                    productRepo: context.read(),
+                    sizeRepo: context.read(),
                   ),
               child: HomeView(),
             ),
@@ -142,7 +155,6 @@ GoRouter router = GoRouter(
             },
           ),
     ),
-    GoRoute(path: Routes.myCard, builder: (context, state) => MyCartView()),
 
     GoRoute(
       path: Routes.resetPassword,
@@ -184,9 +196,20 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.notification,
-      builder: (context, state) => NotificationView(),
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => NotificationBloc(repo: context.read()),
+            child: NotificationView(),
+          ),
     ),
-    GoRoute(path: Routes.search, builder: (context, state) => SearchView()),
+    GoRoute(
+      path: Routes.search,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => SearchBloc(productRepo: context.read()),
+            child: SearchView(),
+          ),
+    ),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
     GoRoute(path: Routes.cookieUse, builder: (context, state) => CookieUse()),
@@ -202,6 +225,16 @@ GoRouter router = GoRouter(
           (context, state) => BlocProvider(
             create: (context) => NewAddressBloc(),
             child: NewAddressView(),
+          ),
+    ),
+    GoRoute(
+      path: Routes.myCard,
+      builder:
+          (context, state) => BlocProvider(
+            create:
+                (context) =>
+                    MyCartBloc(repo: context.read())..add(MyCartLoading()),
+            child: MyCartView(),
           ),
     ),
     GoRoute(path: Routes.account, builder: (context, state) => AccountView()),
