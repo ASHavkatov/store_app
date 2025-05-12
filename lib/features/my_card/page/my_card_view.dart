@@ -38,7 +38,7 @@ class MyCartView extends StatelessWidget {
                         return Column(
                           children: [
                             MyCartContainer(
-                              image: 'assets/images/t-shirt.png',
+                              image: cart.image,
                               title: cart.title,
                               callback: () {},
                               clothsize: cart.size,

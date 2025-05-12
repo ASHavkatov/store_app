@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:store_app/data/repositories/detail/detail_repository.dart';
+import 'package:store_app/data/repositories/notification/notification_repository.dart';
 import 'package:store_app/data/repositories/products/product_repository.dart';
 import 'package:store_app/data/repositories/saved/saved_repository.dart';
 import 'package:store_app/data/repositories/sizes/size_repository.dart';
@@ -24,6 +25,7 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => SizeRepository(client: context.read())),
   Provider(create: (context)=> ProductRepository(client: context.read())),
   Provider(create: (context)=> ReviewsRepository(client: context.read())),
+  Provider(create: (context)=> NotificationRepository(client: context.read())),
 
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
   ChangeNotifierProvider(create: (context)=> LoginViewModel(repo: context.read())),

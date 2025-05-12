@@ -86,6 +86,15 @@ class ApiClient {
       throw Exception("Error at reset email code");
     }
   }
+  Future<List<dynamic>>fetchNotification()async{
+    var response = await dio.get("/notifications/list");
+    if (response.statusCode == 200) {
+      List<dynamic> data = response.data;
+          return data;
+    }  else{
+      throw Exception("Notification ni olib kelishda hatolik bor");
+    }
+  }
 
   Future<dynamic> fetchDetail(int id) async {
     var response = await dio.get('/products/detail/$id');
