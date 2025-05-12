@@ -45,7 +45,7 @@ import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.home,
   routes: [
     GoRoute(
       path: Routes.onBoarding,

@@ -5,7 +5,11 @@ import 'package:store_app/data/models/categories/category_model.dart';
 import 'package:store_app/data/models/detail_model/detail_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/data/models/size_model/sizes_model.dart';
+<<<<<<<< HEAD:lib/data/repositories/product_repository_remote.dart
+import 'package:store_app/data/repositories/product_repository_interface.dart';
+========
 import 'package:store_app/data/repositories/products/product_repository_interface.dart';
+>>>>>>>> 1c71144c39aa5235d3bfcb6580e9f2496167b2b1:lib/data/repositories/products/product_repository_remote.dart
 
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
@@ -28,6 +32,17 @@ class ProductRepositoryRemote implements IProductRepository {
     detail = DetailModel.fromJson(rawDetails);
     return detail!;
   }
+<<<<<<<< HEAD:lib/data/repositories/product_repository_remote.dart
+@override
+  Future<List<ProductModel>> fetchProducts (
+    String? title,
+    int? categoryId,
+    int? sizeId,
+    double? minPrice,
+    double? maxPrice,
+    String? orderBy,
+  ) async {
+========
   @override
   Future<List<ProductModel>> fetchProducts (
       String? title,
@@ -37,6 +52,7 @@ class ProductRepositoryRemote implements IProductRepository {
       double? maxPrice,
       String? orderBy,
       ) async {
+>>>>>>>> 1c71144c39aa5235d3bfcb6580e9f2496167b2b1:lib/data/repositories/products/product_repository_remote.dart
     var rawProduct = await client.fetchProduct(
       queryParams: {
         "Title": title,
@@ -48,7 +64,11 @@ class ProductRepositoryRemote implements IProductRepository {
       },
     );
     final products =
+<<<<<<<< HEAD:lib/data/repositories/product_repository_remote.dart
+        rawProduct.map((products) => ProductModel.fromJson(products)).toList();
+========
     rawProduct.map((products) => ProductModel.fromJson(products)).toList();
+>>>>>>>> 1c71144c39aa5235d3bfcb6580e9f2496167b2b1:lib/data/repositories/products/product_repository_remote.dart
     box.clear();
     box.addAll(products);
     box.compact();
