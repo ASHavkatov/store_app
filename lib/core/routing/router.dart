@@ -41,7 +41,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 
 GoRouter router = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: Routes.login,
+  initialLocation: Routes.home,
   routes: [
     GoRoute(
       path: Routes.onBoarding,

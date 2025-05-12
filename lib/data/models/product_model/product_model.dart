@@ -48,6 +48,7 @@ class ProductModel {
 }
 
 class ProductModelAdapter extends TypeAdapter<ProductModel> {
+  @override
   int get typeId => 0;
 
   @override

@@ -20,7 +20,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final cacheDir = await getApplicationCacheDirectory();
   Hive.init(cacheDir.path);
-  print("Hive path: ${cacheDir.path}");
   Hive.registerAdapter(ProductModelAdapter());
   await Hive.openBox<ProductModel>("products");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
