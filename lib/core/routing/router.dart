@@ -18,6 +18,7 @@ import 'package:store_app/features/my_card/blocs/my_cart_event.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
+import 'package:store_app/features/notification/blocs/notification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
 import 'package:store_app/features/product_detail/blocs/detail_bloc.dart';
@@ -27,8 +28,6 @@ import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
-
-import '../../data/repositories/products/product_repository.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
@@ -197,7 +196,11 @@ GoRouter router = GoRouter(
     ),
     GoRoute(
       path: Routes.notification,
-      builder: (context, state) => NotificationView(),
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => NotificationBloc(repo: context.read()),
+            child: NotificationView(),
+          ),
     ),
     GoRoute(
       path: Routes.search,
