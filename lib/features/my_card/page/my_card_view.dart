@@ -15,7 +15,6 @@ import '../widgets/my_cart_container.dart';
 
 class MyCartView extends StatelessWidget {
   const MyCartView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +22,6 @@ class MyCartView extends StatelessWidget {
       body: BlocBuilder<MyCartBloc, MyCartState>(
         builder: (context, state) {
           final data = state.model;
-          print("33333333333333333333333333333${data.toString()}");
           return switch (state.status) {
             MyCartStatus.error => Center(child: Text("Xatoli bor")),
             MyCartStatus.loading => Center(child: CircularProgressIndicator()),
