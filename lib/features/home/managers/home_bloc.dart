@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/product_repository.dart';
+import 'package:store_app/data/repositories/product_repository_remote.dart';
 import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/managers/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final ProductRepository _productRepo;
+  final ProductRepositoryRemote _productRepo;
 
-  HomeBloc({required ProductRepository productRepo})
+  HomeBloc({required ProductRepositoryRemote productRepo})
       : _productRepo = productRepo,
         super(HomeState.initial()) {
     on<HomeLoad>(_onLoad);
@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   Future _onLoad(HomeLoad event, Emitter<HomeState> emit) async {
-    final products = await _productRepo.fetchProduct(
+    final products = await _productRepo.fetchProducts(
       event.title,
       event.categoryId,
       event.sizeId,

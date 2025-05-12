@@ -26,7 +26,7 @@ import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
 import 'package:store_app/main.dart';
 
-import '../../data/repositories/product_repository.dart';
+import '../../data/repositories/product_repository_remote.dart';
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
 import '../../features/authentication/terms_and_privacy/cookie_use.dart';
@@ -106,7 +106,7 @@ GoRouter router = GoRouter(
           (context, state) => BlocProvider(
             create:
                 (context) =>
-                    SavedBloc(repo: ProductRepository(client: context.read())),
+                    SavedBloc(repo: ProductRepositoryRemote(client: context.read())),
             child: SavedView(),
           ),
     ),
@@ -118,7 +118,7 @@ GoRouter router = GoRouter(
             child: BlocProvider(
               create:
                   (context) => HomeBloc(
-                    productRepo: ProductRepository(client: ApiClient()),
+                    productRepo: ProductRepositoryRemote(client: ApiClient()),
                   ),
               child: HomeView(),
             ),

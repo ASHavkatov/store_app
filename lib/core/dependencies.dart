@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:store_app/data/repositories/product_repository.dart';
+import 'package:store_app/data/repositories/product_repository_remote.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
@@ -16,7 +16,7 @@ List<SingleChildWidget> providers = [
   // ChangeNotifierProvider(create: (context)=> LoginViewModel(repo: context.read())),
   ChangeNotifierProvider(create: (context)=> SignUpViewModel(authRepo: context.read())),
   BlocProvider(create: (context)=> LoginBloc(repo: context.read())),
-  BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepository(client: ApiClient()))),
-  Provider(create: (context)=> ProductRepository(client: ApiClient())),
+  BlocProvider(create: (context)=>HomeBloc(productRepo: ProductRepositoryRemote(client: ApiClient()))),
+  Provider(create: (context)=> ProductRepositoryRemote(client: ApiClient())),
 
 ];
