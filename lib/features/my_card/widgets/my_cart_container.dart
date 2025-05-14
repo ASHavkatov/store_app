@@ -70,7 +70,7 @@ class MyCartContainer extends StatelessWidget {
                     fontSize: 13,
                   ),
                 ),
-                SizedBox(height: 18.h),
+                SizedBox(height: 16.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

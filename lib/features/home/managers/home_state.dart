@@ -6,6 +6,7 @@ import '../../../data/models/categories/category_model.dart';
 
 enum HomeStatus { idle, error, loading }
 
+
 class HomeState extends Equatable {
   const HomeState({
     required this.status,

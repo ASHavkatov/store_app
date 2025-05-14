@@ -1,57 +1,66 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/categories/category_model.dart';
-import 'package:store_app/data/models/detail_model/detail_model.dart';
 import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
-import 'package:store_app/data/models/size_model/sizes_model.dart';
+import 'package:store_app/data/repositories/products/product_repository_interface.dart';
+import 'package:store_app/data/repositories/products/product_repository_local.dart';
+import 'package:store_app/data/repositories/products/product_repository_remote.dart';
 
-class ProductRepository {
-  ProductRepository({required this.client});
+class ProductRepository implements IProductRepository {
+  ProductRepository({
+    required this.client,
+    required this.remoteRepo,
+    required this.localRepo,
+  });
 
+  final ProductRepositoryRemote remoteRepo;
+  final ProductRepositoryLocal localRepo;
   final ApiClient client;
-
-  List<ProductModel>? products;
-
-
-  List<CategoryModel>? categories;
-
-
-
 
   Future<MyCartModel> fetchMyCart() async {
     final rawCart = await client.fetchMyCard();
-    var cart = MyCartModel.fromJson(rawCart);
-    return cart;
+    return MyCartModel.fromJson(rawCart);
   }
 
-  Future<List<ProductModel>> fetchProduct({ String? title,
+  @override
+  Future<List<ProductModel>> fetchProduct({
+    String? title,
     int? categoryId,
     int? sizeId,
     double? minPrice,
     double? maxPrice,
-    String? orderBy}) async {
-    var rawProduct = await client.fetchProduct(
-      queryParams: {
-        "Title": title,
-        "CategoryId": categoryId,
-        "SizeId": sizeId,
-        "MinPrice": minPrice,
-        "MaxPrice": maxPrice,
-        "OrderBy": orderBy,
-      },
-    );
-    products =
-        rawProduct.map((products) => ProductModel.fromJson(products)).toList();
-    return products!;
+    String? orderBy,
+  }) async {
+    final isConnect = await Connectivity().checkConnectivity();
+    final isOnline =
+        isConnect.contains(ConnectivityResult.mobile) ||
+            isConnect.contains(ConnectivityResult.wifi);
+
+    if (isOnline) {
+      return await remoteRepo.fetchProduct(
+        title: title,
+        categoryId: categoryId,
+        sizeId: sizeId,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        orderBy: orderBy,
+      );
+    } else {
+      return await localRepo.fetchProduct(
+        title: title,
+        categoryId: categoryId,
+        sizeId: sizeId,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        orderBy: orderBy,
+      );
+    }
   }
 
   Future<List<CategoryModel>> fetchCategories() async {
-    var rawCategories = await client.fetchCategories();
-    categories =
-        rawCategories
-            .map((categories) => CategoryModel.fromJson(categories))
-            .toList();
-    return categories!;
+    final rawCategories = await client.fetchCategories();
+    return rawCategories.map((json) => CategoryModel.fromJson(json)).toList();
   }
-
 }
+
