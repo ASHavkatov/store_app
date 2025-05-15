@@ -16,14 +16,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: AppBar(
         leadingWidth: 180.w,
-        leading: Expanded(
-          child: Text(
-            "Discover",
-            style: TextStyle(
-              fontSize: 32,
-              fontFamily: "GeneralSans",
-              fontWeight: FontWeight.w600,
-            ),
+        leading: Text(
+          "Discover",
+          style: TextStyle(
+            fontSize: 32,
+            fontFamily: "GeneralSans",
+            fontWeight: FontWeight.w600,
           ),
         ),
         actions: [

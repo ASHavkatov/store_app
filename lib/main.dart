@@ -21,13 +21,12 @@ void main() async {
   final cacheDir = await getApplicationCacheDirectory();
   Hive.init(cacheDir.path);
   Hive.registerAdapter(ProductModelAdapter());
-  await Hive.openBox("products");
+  await Hive.openBox<ProductModel>("products");
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
   runApp(MyApp());
-  Hive.close();
 }
 
 class MyApp extends StatelessWidget {
