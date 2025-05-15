@@ -62,5 +62,5 @@ class ProductRepository implements IProductRepository {
     final rawCategories = await client.fetchCategories();
     return rawCategories.map((json) => CategoryModel.fromJson(json)).toList();
   }
-}
 
+}

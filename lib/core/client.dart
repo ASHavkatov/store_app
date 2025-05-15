@@ -1,17 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:store_app/core/interceptor.dart';
-import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.0.103:8888/api/v1",
+      baseUrl: "http://192.168.11.248:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
-
 
   Future<String> login(String login, String password) async {
     var response = await dio.post(
