@@ -5,7 +5,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../../core/utils/colors.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key, required this.text, required this.desc, required this.svg});
+  const NotificationItem({
+    super.key,
+    required this.text,
+    required this.desc,
+    required this.svg,
+  });
 
   final String text;
   final String desc, svg;
@@ -15,6 +20,7 @@ class NotificationItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        SizedBox(height: 20.h),
         SizedBox(
           height: 39.h,
           width: 224.w,
@@ -25,22 +31,30 @@ class NotificationItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(text, style: TextStyle(color: AppColors.primary900,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: AppColors.primary900,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                   SizedBox(height: 2.h),
-                  Text(text, style: TextStyle(color: AppColors.primary500,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400,),),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: AppColors.primary500,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
         ),
         SizedBox(height: 10.h),
-        Divider(color: AppColors.primary500,)
+        Divider(color: AppColors.primary100),
       ],
     );
   }
