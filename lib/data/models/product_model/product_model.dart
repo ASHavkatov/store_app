@@ -49,24 +49,24 @@ class ProductModel {
 
 class ProductModelAdapter extends TypeAdapter<ProductModel> {
   @override
-  int get typeId => 0;
+  int get typeId => 7;
 
   @override
   ProductModel read(BinaryReader reader) {
     return ProductModel(
-      id: reader.read(),
+      id: reader.readInt(),
       title: reader.readString(),
-      price: reader.read(),
+      price: reader.readDouble(),
       image: reader.readString(),
-      discount: reader.read(),
-      isLiked: reader.read(),
+      discount: reader.readDouble(),
+      isLiked: reader.readBool(),
     );
   }
 
   @override
   void write(BinaryWriter writer, ProductModel obj) {
     writer.write(obj.id);
-    writer.writeString(obj.title);
+    writer.write(obj.title);
     writer.write(obj.price);
     writer.write(obj.image);
     writer.write(obj.discount);
