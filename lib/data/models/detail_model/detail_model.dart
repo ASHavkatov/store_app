@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:json_annotation/json_annotation.dart';
+
 part 'detail_model.freezed.dart';
 part 'detail_model.g.dart';
 

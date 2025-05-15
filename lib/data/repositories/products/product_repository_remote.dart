@@ -1,4 +1,3 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive/hive.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/categories/category_model.dart';
