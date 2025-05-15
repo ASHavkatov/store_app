@@ -18,6 +18,10 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
+  final dir = await getApplicationCacheDirectory();
+  Hive.init(dir.path);
+  await Hive.openBox('recentSearches');
   final cacheDir = await getApplicationCacheDirectory();
   Hive.init(cacheDir.path);
   Hive.registerAdapter(ProductModelAdapter());
@@ -56,3 +60,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

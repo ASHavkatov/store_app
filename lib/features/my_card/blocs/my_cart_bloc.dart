@@ -15,7 +15,6 @@ class MyCartBloc extends Bloc<MyCartEvent, MyCartState> {
 
   Future<void> _onLoad(MyCartLoading event, Emitter<MyCartState> emit) async {
     final cart = await _repo.fetchMyCart();
-    print("11111111111111111111111111111111111${cart}");
     emit(state.copyWith(model: cart, status: MyCartStatus.idle));
   }
 }

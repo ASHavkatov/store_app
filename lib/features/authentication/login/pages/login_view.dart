@@ -153,7 +153,7 @@ class _LoginViewState extends State<LoginView> {
             SizedBox(height: 34.h),
             Row(
               children: [
-                const Expanded(child: Divider()),
+                Divider(),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 8.0),
@@ -165,7 +165,7 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                 ),
-                const Expanded(child: Divider()),
+                Divider(),
               ],
             ),
             SizedBox(height: 24.h),
