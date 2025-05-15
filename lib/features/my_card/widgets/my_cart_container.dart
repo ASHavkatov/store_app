@@ -23,86 +23,83 @@ class MyCartContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 342.w,
-          height: 107.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(width: 1, color: AppColors.primary100),
-          ),
-          child: Padding(
-            padding: EdgeInsets.only(left: 14),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+    return Container(
+      width: 342.w,
+      height: 107.h,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(width: 1, color: AppColors.primary100),
+      ),
+      child: Padding(
+        padding: EdgeInsets.only(left: 14),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(
+                image,
+                width: 83.w,
+                height: 79.h,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(width: 16.w),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Image.network(
-                    image,
-                    width: 83.w,
-                    height: 79.h,
-                    fit: BoxFit.cover,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    CheckoutTitle(title: title),
+                    SizedBox(width: 32.w),
+                    StoreIconButton(
+                      icon: "assets/icons/trash.svg",
+                      width: 16.w,
+                      height: 16.h,
+                      callback: callback,
+                    ),
+                  ],
+                ),
+                Text(
+                  clothsize,
+                  style: TextStyle(
+                    height: 1,
+                    color: AppColors.primary900.withValues(alpha: 0.5),
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
                   ),
                 ),
-                SizedBox(width: 16.w),
-                Column(
+                SizedBox(height: 16.h),
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CheckoutTitle(title: title),
-                        StoreIconButton(
-                          icon: "assets/icons/trash.svg",
-                          width: 15.w,
-                          height: 15.h,
-                          callback: callback,
-                        ),
-                      ],
+                    CheckoutTitle(title: price),
+                    SizedBox(width: 95.w),
+                    PlusMinusContainer(
+                      svg: 'assets/icons/minus.svg',
+                      callback: callbackminus,
                     ),
+                    SizedBox(width: 10.w),
                     Text(
-                      clothsize,
+                      '1',
                       style: TextStyle(
-                        height: 1,
-                        color: AppColors.primary900.withValues(alpha: 0.5),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 13,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CheckoutTitle(title: price),
-                        SizedBox(width: 95.w),
-                        PlusMinusContainer(
-                          svg: 'assets/icons/plus.svg',
-                          callback: callbackminus,
-                        ),
-                        SizedBox(width: 10.w),
-                        Text(
-                          '1',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(width: 10.w),
-                        PlusMinusContainer(
-                            svg: 'assets/icons/plus.svg',
-                            callback: callbackplus
-                        ),
-                      ],
+                    SizedBox(width: 10.w),
+                    PlusMinusContainer(
+                        svg: 'assets/icons/plus.svg',
+                        callback: callbackplus
                     ),
                   ],
                 ),
               ],
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

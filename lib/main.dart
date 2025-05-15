@@ -11,22 +11,27 @@ import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/l10n/localization_view_model.dart';
 import 'package:store_app/core/routing/router.dart';
 import 'package:store_app/core/utils/themes.dart';
+import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/firebase_options.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final dir = await getApplicationCacheDirectory();
   Hive.init(dir.path);
   await Hive.openBox('recentSearches');
+  final cacheDir = await getApplicationCacheDirectory();
+  Hive.init(cacheDir.path);
+  Hive.registerAdapter(ProductModelAdapter());
+  await Hive.openBox("products");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
-  FirebaseMessaging.onMessage.listen((RemoteMessage event){
-  });
+  FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
   runApp(MyApp());
+  Hive.close();
 }
 
 class MyApp extends StatelessWidget {
