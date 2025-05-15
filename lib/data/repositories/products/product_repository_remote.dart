@@ -5,10 +5,10 @@ import 'package:store_app/data/models/detail_model/detail_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/data/models/size_model/sizes_model.dart';
 import 'package:store_app/data/repositories/products/product_repository_interface.dart';
+
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
 
-  final Box<ProductModel> box = Hive.box<ProductModel>("products");
   final ApiClient client;
 
   Future<DetailModel> fetchDetail(int id) async {
@@ -35,12 +35,16 @@ class ProductRepositoryRemote implements IProductRepository {
         "OrderBy": orderBy,
       },
     );
+
     final products = rawProduct
         .map<ProductModel>((json) => ProductModel.fromJson(json))
         .toList();
-    box.clear();
-    box.addAll(products);
-    box.compact();
+
+    final box = Hive.box<ProductModel>('products');
+    await box.clear();
+    await box.addAll(products);
+    await box.compact();
+
     return products;
   }
 

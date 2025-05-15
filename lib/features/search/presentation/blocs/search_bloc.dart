@@ -40,10 +40,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _onAddRecentSearch(AddRecentSearch event, Emitter<SearchState> emit) async {
     final box = await Hive.openBox<String>('saved');
-    print("dsmdkmfsdmf ${event.search}");
-    await box.put("search", event.search);
+    await box.add( event.search);
     final recentSearches = box.values.toList();
-    print("daslkmrfmsdgmdfgmd $recentSearches");
     emit(state.copyWith(recentSearches: recentSearches));
   }
 
