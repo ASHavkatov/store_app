@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -22,35 +21,33 @@ import 'l10n/localization_view_model.dart';
 
 List<SingleChildWidget> providers = [
   Provider(create: (context) => ApiClient()),
+
+  // Add these two before ProductRepository
+  Provider(create: (context) => ProductRepositoryRemote(client: context.read())),
+  Provider(create: (context) => ProductRepositoryLocal()),
+
   Provider(create: (context) => AuthRepository(client: context.read())),
   Provider(create: (context) => SavedRepository(client: context.read())),
   Provider(create: (context) => DetailRepository(client: context.read())),
   Provider(create: (context) => SizeRepository(client: context.read())),
   Provider(
-    create:
-        (context) => ProductRepository(
-          client: context.read<ApiClient>(),
-          remoteRepo: context.read<ProductRepositoryRemote>(),
-          localRepo: context.read<ProductRepositoryLocal>(),
-        ),
+    create: (context) => ProductRepository(
+      client: context.read<ApiClient>(),
+      remoteRepo: context.read<ProductRepositoryRemote>(),
+      localRepo: context.read<ProductRepositoryLocal>(),
+    ),
   ),
-
   Provider(create: (context) => ReviewsRepository(client: context.read())),
   Provider(create: (context) => NotificationRepository(client: context.read())),
 
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
-  ChangeNotifierProvider(
-    create: (context) => LoginViewModel(repo: context.read()),
-  ),
-  ChangeNotifierProvider(
-    create: (context) => SignUpViewModel(authRepo: context.read()),
-  ),
+  ChangeNotifierProvider(create: (context) => LoginViewModel(repo: context.read())),
+  ChangeNotifierProvider(create: (context) => SignUpViewModel(authRepo: context.read())),
 
   BlocProvider(create: (context) => LoginBloc(repo: context.read())),
-  BlocProvider(
-    create:
-        (context) =>
-            HomeBloc(productRepo: context.read(), sizeRepo: context.read()),
-  ),
+  BlocProvider(create: (context) => HomeBloc(
+    productRepo: context.read(),
+    sizeRepo: context.read(),
+  )),
   BlocProvider(create: (context) => MyCartBloc(repo: context.read())),
 ];
