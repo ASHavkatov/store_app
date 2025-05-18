@@ -30,6 +30,8 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => SavedRepository(client: context.read())),
   Provider(create: (context) => DetailRepository(client: context.read())),
   Provider(create: (context) => SizeRepository(client: context.read())),
+  Provider(create: (context) => ProductRepositoryLocal()),
+  Provider(create: (context) => ProductRepositoryRemote(client: context.read())),
   Provider(
     create: (context) => ProductRepository(
       client: context.read<ApiClient>(),

@@ -18,22 +18,19 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
+  await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final dir = await getApplicationCacheDirectory();
   Hive.init(dir.path);
-  Hive.registerAdapter(ProductModelAdapter());
   await Hive.openBox('recentSearches');
-  await Hive.openBox('products');
+  final cacheDir = await getApplicationCacheDirectory();
+  Hive.init(cacheDir.path);
+  Hive.registerAdapter(ProductModelAdapter());
+  await Hive.openBox<ProductModel>("products");
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  final fcmToken = await FirebaseMessaging.instance.getToken();
 
-  await FirebaseMessaging.instance.getToken();
-  FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-    // Handle notification here
-  });
-
-  runApp(const MyApp());
-  Hive.close();
+  FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -45,20 +42,22 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       child: MultiProvider(
         providers: providers,
-        builder: (context, child) => MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
-          theme: AppThemes.lightTheme,
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            MyLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale("uz"), Locale("en")],
-          locale: context.watch<LocalizationViewModel>().currentLocale,
-        ),
+        builder:
+            (context, child) => MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              routerConfig: router,
+              theme: AppThemes.lightTheme,
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                MyLocalizations.delegate,
+              ],
+              supportedLocales: [Locale("uz"), Locale("en")],
+              locale: context.watch<LocalizationViewModel>().currentLocale,
+            ),
       ),
     );
   }
 }
+
