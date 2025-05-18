@@ -65,6 +65,37 @@ class ApiClient {
     }
   }
 
+  Future<bool> postNewCard(
+    String cardNumber,
+    String expiryDate,
+    String securityCode,
+  ) async {
+    try {
+      var response = await dio.post(
+        "/cards/create",
+        data: {
+          "cardNumber": cardNumber,
+          "expiryDate": expiryDate,
+          "securityCode": securityCode,
+        },
+      );
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      throw Exception("New card yaratishda hatolik bor $e");
+    }
+  }
+  Future<List<dynamic>> fetchCard() async {
+    var response = await dio.get("/cards/list");
+    if (response.statusCode == 200) {
+      return response.data;
+    } else {
+      return throw Exception("Card ni olib kelishda hatolik bor");
+    }
+  }
   Future<bool> postResetEmailCodeReset(
     String email,
     String code,
@@ -78,19 +109,21 @@ class ApiClient {
       if (response.statusCode == 200) {
         return true;
       } else {
-        print("${response.statusCode} 111111111111111111111111111");
         return false;
       }
     } catch (e) {
       throw Exception("Error at reset email code");
     }
   }
-  Future<List<dynamic>>fetchNotification()async{
+
+
+
+  Future<List<dynamic>> fetchNotification() async {
     var response = await dio.get("/notifications/list");
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
-          return data;
-    }  else{
+      return data;
+    } else {
       throw Exception("Notification ni olib kelishda hatolik bor");
     }
   }
@@ -100,7 +133,7 @@ class ApiClient {
     if (response.statusCode == 200) {
       return response.data;
     } else {
-      throw Exception("/products/detail/{id} Olib kelishda hatolik bor");
+      throw Exception("/products/detail/${id} Olib kelishda hatolik bor");
     }
   }
 
@@ -134,7 +167,6 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     } else {
-      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }
@@ -145,7 +177,6 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     } else {
-      print('oxshamadi koding uka, qurib ket:/sizes/list${response.data}');
       throw Exception("/sizes/list error");
     }
   }
@@ -155,7 +186,6 @@ class ApiClient {
     if (response.statusCode == 200) {
       return List.from(response.data);
     } else {
-      print("${response.statusCode} 11111111111111111111");
       throw Exception("/products/list error");
     }
   }
@@ -184,7 +214,6 @@ class ApiClient {
       List<dynamic> data = response.data;
       return data;
     } else {
-      print('oxshamadi koding uka, qurib ket:/reviews/list:${response.data}');
       throw Exception("/reviews/list error");
     }
   }
@@ -195,7 +224,6 @@ class ApiClient {
       Map<String, dynamic> data = response.data;
       return data;
     } else {
-      print('oxshamadi koding uka, qurib ket:/reviews/stars:${response.data}');
       throw Exception("/reviews/list error");
     }
   }

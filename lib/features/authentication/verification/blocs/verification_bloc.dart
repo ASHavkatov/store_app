@@ -48,8 +48,6 @@ class VerificationBloc extends Bloc<VerificationEvent, VerificationState> {
     );
     if (result) {
       emit(state.copyWith(status: VerificationStatus.success));
-    } else {
-      print("1111111111111111111111111111111111111111");
       emit(state.copyWith(status: VerificationStatus.error));
     }
   }
