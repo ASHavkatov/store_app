@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:store_app/data/repositories/card_repositories/card_repository.dart';
+import 'package:store_app/data/repositories/card_repositories/new_card_repository.dart';
 import 'package:store_app/data/repositories/detail/detail_repository.dart';
 import 'package:store_app/data/repositories/notification/notification_repository.dart';
 import 'package:store_app/data/repositories/products/product_repository.dart';
@@ -9,7 +10,9 @@ import 'package:store_app/data/repositories/saved/saved_repository.dart';
 import 'package:store_app/data/repositories/sizes/size_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
+import 'package:store_app/features/cards/blocs/card_bloc.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_bloc.dart';
+import 'package:store_app/features/new_card/blocs/new_card_bloc.dart';
 
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../data/repositories/products/product_repository_local.dart';
@@ -34,23 +37,33 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => ProductRepositoryLocal()),
   Provider(create: (context) => ProductRepositoryRemote(client: context.read())),
   Provider(
-    create: (context) => ProductRepository(
-      client: context.read<ApiClient>(),
-      remoteRepo: context.read<ProductRepositoryRemote>(),
-      localRepo: context.read<ProductRepositoryLocal>(),
-    ),
+    create:
+        (context) => ProductRepository(
+          client: context.read<ApiClient>(),
+          remoteRepo: context.read<ProductRepositoryRemote>(),
+          localRepo: context.read<ProductRepositoryLocal>(),
+        ),
   ),
   Provider(create: (context) => ReviewsRepository(client: context.read())),
   Provider(create: (context) => NotificationRepository(client: context.read())),
+  Provider(create: (context) => NewCardRepository(client: context.read())),
+  Provider(create: (context) => CardRepository(client: context.read())),
 
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
-  ChangeNotifierProvider(create: (context) => LoginViewModel(repo: context.read())),
-  ChangeNotifierProvider(create: (context) => SignUpViewModel(authRepo: context.read())),
+  ChangeNotifierProvider(
+    create: (context) => LoginViewModel(repo: context.read()),
+  ),
+  ChangeNotifierProvider(
+    create: (context) => SignUpViewModel(authRepo: context.read()),
+  ),
 
   BlocProvider(create: (context) => LoginBloc(repo: context.read())),
-  BlocProvider(create: (context) => HomeBloc(
-    productRepo: context.read(),
-    sizeRepo: context.read(),
-  )),
+  BlocProvider(
+    create:
+        (context) =>
+            HomeBloc(productRepo: context.read(), sizeRepo: context.read()),
+  ),
   BlocProvider(create: (context) => MyCartBloc(repo: context.read())),
+  BlocProvider(create: (context) => NewCardBloc(repo: context.read())),
+  BlocProvider(create: (context) => CardBloc(repo: context.read())),
 ];

@@ -17,6 +17,8 @@ import 'package:store_app/features/my_card/blocs/my_cart_event.dart';
 import 'package:store_app/features/my_card/page/my_card_view.dart';
 import 'package:store_app/features/my_details/pages/my_details_view.dart';
 import 'package:store_app/features/my_order/pages/my_order_view.dart';
+import 'package:store_app/features/new_card/blocs/new_card_bloc.dart';
+import 'package:store_app/features/new_card/pages/new_card_view.dart';
 import 'package:store_app/features/notification/blocs/notification_bloc.dart';
 import 'package:store_app/features/notification/pages/notification_view.dart';
 import 'package:store_app/features/notification_settigns/pages/notification_settings.dart';
@@ -26,7 +28,6 @@ import 'package:store_app/features/product_detail/presentation/pages/product_det
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
-import 'package:store_app/main.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -44,7 +45,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.saved,
   routes: [
     GoRoute(
       path: Routes.onBoarding,
@@ -60,6 +61,14 @@ GoRouter router = GoRouter(
           child: ReviewsView(),
         );
       },
+    ),
+    GoRoute(
+      path: Routes.newCard,
+      builder:
+          (context, state) => BlocProvider(
+            create: (context) => NewCardBloc(repo: context.read()),
+            child: NewCardView(),
+          ),
     ),
     GoRoute(
       path: Routes.signUp,
