@@ -20,17 +20,18 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final dir = await getApplicationCacheDirectory();
+
   Hive.init(dir.path);
-  await Hive.openBox('recentSearches');
-  final cacheDir = await getApplicationCacheDirectory();
-  Hive.init(cacheDir.path);
-  Hive.registerAdapter(ProductModelAdapter());
+  await Hive.openBox<List<String>>('saved');
   await Hive.openBox<ProductModel>("products");
+
+  Hive.registerAdapter(ProductModelAdapter());
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
   runApp(MyApp());
+  Hive.box('saved').compact();
 }
 
 class MyApp extends StatelessWidget {
