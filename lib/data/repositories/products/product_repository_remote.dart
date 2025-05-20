@@ -5,10 +5,12 @@ import 'package:store_app/data/models/detail_model/detail_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/data/models/size_model/sizes_model.dart';
 import 'package:store_app/data/repositories/products/product_repository_interface.dart';
+
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
 
   final Box<ProductModel> box = Hive.box<ProductModel>("products");
+  final Box<CategoryModel> boxCategories = Hive.box<CategoryModel>("categories",);
   final ApiClient client;
 
   Future<DetailModel> fetchDetail(int id) async {
@@ -35,18 +37,23 @@ class ProductRepositoryRemote implements IProductRepository {
         "OrderBy": orderBy,
       },
     );
-    final products = rawProduct
-        .map<ProductModel>((json) => ProductModel.fromJson(json))
-        .toList();
+    final products =
+        rawProduct
+            .map<ProductModel>((json) => ProductModel.fromJson(json))
+            .toList();
     box.clear();
     box.addAll(products);
     box.compact();
     return products;
   }
-
+@override
   Future<List<CategoryModel>> fetchCategories() async {
     final rawCategories = await client.fetchCategories();
-    return rawCategories.map((json) => CategoryModel.fromJson(json)).toList();
+    final categories = rawCategories.map((json) => CategoryModel.fromJson(json)).toList();
+    boxCategories.clear();
+    boxCategories.addAll(categories);
+    box.compact();
+    return categories;
   }
 
   Future<List<ProductModel>> fetchSavedProducts() async {
