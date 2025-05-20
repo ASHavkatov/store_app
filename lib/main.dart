@@ -11,6 +11,7 @@ import 'package:store_app/core/l10n/app_localizations.dart';
 import 'package:store_app/core/l10n/localization_view_model.dart';
 import 'package:store_app/core/routing/router.dart';
 import 'package:store_app/core/utils/themes.dart';
+import 'package:store_app/data/models/categories/category_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/firebase_options.dart';
 
@@ -18,23 +19,26 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final dir = await getApplicationCacheDirectory();
-
   Hive.init(dir.path);
+  await Hive.openBox('recentSearches');
+  final cacheDir = await getApplicationCacheDirectory();
+  Hive.init(cacheDir.path);
   Hive.registerAdapter(ProductModelAdapter());
+  Hive.registerAdapter(CategoryModelAdapter());
 
-  await Hive.openBox<List<String>>('saved');
   await Hive.openBox<ProductModel>("products");
+  await Hive.openBox<CategoryModel>("categories");
 
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   final fcmToken = await FirebaseMessaging.instance.getToken();
-  FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
 
+  FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
   runApp(MyApp());
   Hive.box('saved').compact();
   Hive.box('products').compact();
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,19 +49,20 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       child: MultiProvider(
         providers: providers,
-        builder: (context, child) => MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: router,
-          theme: AppThemes.lightTheme,
-          localizationsDelegates: [
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            MyLocalizations.delegate,
-          ],
-          supportedLocales: const [Locale("uz"), Locale("en")],
-          locale: context.watch<LocalizationViewModel>().currentLocale,
-        ),
+        builder:
+            (context, child) => MaterialApp.router(
+              debugShowCheckedModeBanner: false,
+              routerConfig: router,
+              theme: AppThemes.lightTheme,
+              localizationsDelegates: [
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                MyLocalizations.delegate,
+              ],
+              supportedLocales: [Locale("uz"), Locale("en")],
+              locale: context.watch<LocalizationViewModel>().currentLocale,
+            ),
       ),
     );
   }

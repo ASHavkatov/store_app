@@ -9,6 +9,8 @@ import 'package:store_app/data/repositories/products/product_repository_interfac
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
 
+  final Box<ProductModel> box = Hive.box<ProductModel>("products");
+  final Box<CategoryModel> boxCategories = Hive.box<CategoryModel>("categories",);
   final ApiClient client;
 
   Future<DetailModel> fetchDetail(int id) async {
@@ -35,19 +37,16 @@ class ProductRepositoryRemote implements IProductRepository {
         "OrderBy": orderBy,
       },
     );
-
-    final products = rawProduct
-        .map<ProductModel>((json) => ProductModel.fromJson(json))
-        .toList();
-
-    final box = Hive.box<ProductModel>('products');
-    await box.clear();
-    await box.addAll(products);
-    await box.compact();
-
+    final products =
+        rawProduct
+            .map<ProductModel>((json) => ProductModel.fromJson(json))
+            .toList();
+    box.clear();
+    box.addAll(products);
+    box.compact();
     return products;
   }
-
+@override
   Future<List<CategoryModel>> fetchCategories() async {
     final rawCategories = await client.fetchCategories();
     return rawCategories.map((json) => CategoryModel.fromJson(json)).toList();

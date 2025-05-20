@@ -6,8 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.9.113:8888/api/v1",
-
+      baseUrl: "http://192.168.9.28:8888/api/v1",
       validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
@@ -81,10 +80,8 @@ class ApiClient {
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
-        print("status code: ${response.statusCode}");
         return true;
       } else {
-        print("status code: ${response.statusCode}");
         return false;
       }
     } catch (e) {
@@ -94,10 +91,8 @@ class ApiClient {
   Future<List<dynamic>> fetchCard() async {
     var response = await dio.get("/cards/list");
     if (response.statusCode == 200) {
-      print("status code: ${response.statusCode}");
       return response.data;
     } else {
-      print("status code: ${response.statusCode}");
       return throw Exception("Card ni olib kelishda hatolik bor");
     }
   }
@@ -120,12 +115,15 @@ class ApiClient {
       throw Exception("Error at reset email code");
     }
   }
-  Future<List<dynamic>>fetchNotification()async{
+
+
+
+  Future<List<dynamic>> fetchNotification() async {
     var response = await dio.get("/notifications/list");
     if (response.statusCode == 200) {
       List<dynamic> data = response.data;
-          return data;
-    }  else{
+      return data;
+    } else {
       throw Exception("Notification ni olib kelishda hatolik bor");
     }
   }
