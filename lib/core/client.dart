@@ -6,7 +6,7 @@ import '../data/models/auth_models/auth_model.dart';
 class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.8.235:8888/api/v1",
+      baseUrl: "http://192.168.9.113:8888/api/v1",
 
       validateStatus: (status) => true,
     ),
@@ -81,8 +81,10 @@ class ApiClient {
         },
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        print("status code: ${response.statusCode}");
         return true;
       } else {
+        print("status code: ${response.statusCode}");
         return false;
       }
     } catch (e) {
@@ -92,8 +94,10 @@ class ApiClient {
   Future<List<dynamic>> fetchCard() async {
     var response = await dio.get("/cards/list");
     if (response.statusCode == 200) {
+      print("status code: ${response.statusCode}");
       return response.data;
     } else {
+      print("status code: ${response.statusCode}");
       return throw Exception("Card ni olib kelishda hatolik bor");
     }
   }
@@ -131,7 +135,7 @@ class ApiClient {
     if (response.statusCode == 200) {
       return response.data;
     } else {
-      throw Exception("/products/detail/${id} Olib kelishda hatolik bor");
+      throw Exception("/products/detail${id} Olib kelishda hatolik bor");
     }
   }
 
