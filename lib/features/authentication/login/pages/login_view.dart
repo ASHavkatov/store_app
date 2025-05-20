@@ -47,169 +47,173 @@ class _LoginViewState extends State<LoginView> {
         child: Padding(
       padding: EdgeInsets.only(left: 25.w, right: 25.w, top: 59.h),
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            StoreAppText(
-              title: MyLocalizations.of(context)!.loginTo,
-              color: Colors.black,
-              size: 32,
-              fontWeight: FontWeight.w600,
-            ),
-            SizedBox(height: 8.h),
-            StoreAppText(
-              title: MyLocalizations.of(context)!.itsGreat,
-              color: Colors.black.withValues(alpha:0.5),
-              size: 16,
-              fontWeight: FontWeight.w400,
-            ),
-            SizedBox(height: 25.h),
-            StoreAppFormField(
-              isValid: emailValid,
-              title: 'Email',
-              hintText: MyLocalizations.of(context)!.enterEmail,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
-              controller: context.read<LoginBloc>().loginController,
-              size: 16,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  emailValid = false;
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StoreAppText(
+                title: MyLocalizations.of(context)!.loginTo,
+                color: Colors.black,
+                size: 32,
+                fontWeight: FontWeight.w600,
+              ),
+              SizedBox(height: 8.h),
+              StoreAppText(
+                title: MyLocalizations.of(context)!.itsGreat,
+                color: Colors.black.withValues(alpha:0.5),
+                size: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              SizedBox(height: 25.h),
+              StoreAppFormField(
+                isValid: emailValid,
+                title: 'Email',
+                hintText: MyLocalizations.of(context)!.enterEmail,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+                controller: context.read<LoginBloc>().loginController,
+                size: 16,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    emailValid = false;
+                    setState(() {});
+                    return "This field is required";
+                  }
+                  final emailRegex = RegExp(
+                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                  if (!emailRegex.hasMatch(value)) {
+                    emailValid = false;
+                    setState(() {});
+                    return "Enter a valid email address";
+                  }
+                  emailValid = true;
                   setState(() {});
-                  return "This field is required";
-                }
-                final emailRegex = RegExp(
-                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                if (!emailRegex.hasMatch(value)) {
-                  emailValid = false;
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.h),
+              StoreAppFormField(
+                isValid: passwordValid,
+                title: "Password",
+                hintText: MyLocalizations.of(context)!.enterPassword,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
+                controller: context.read<LoginBloc>().passwordController,
+                size: 16,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    passwordValid = false;
+                    setState(() {});
+                    return "This field is required";
+                  }
+                  passwordValid = true;
                   setState(() {});
-                  return "Enter a valid email address";
-                }
-                emailValid = true;
-                setState(() {});
-                return null;
-              },
-            ),
-            SizedBox(height: 16.h),
-            StoreAppFormField(
-              isValid: passwordValid,
-              title: "Password",
-              hintText: MyLocalizations.of(context)!.enterPassword,
-              fontWeight: FontWeight.w500,
-              color: Colors.black,
-              controller: context.read<LoginBloc>().passwordController,
-              size: 16,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  passwordValid = false;
-                  setState(() {});
-                  return "This field is required";
-                }
-                passwordValid = true;
-                setState(() {});
-                return null;
-              },
-            ),
-            SizedBox(height: 10.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  MyLocalizations.of(context)!.forgotPassword,
-                  style: TextStyle(
-                    color: Colors.black.withValues(alpha:0.5),
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {
-                    context.push(Routes.forgotPassword);
-                  },
-                  child: Text(
-                    MyLocalizations.of(context)!.resetPassword,
+                  return null;
+                },
+              ),
+              SizedBox(height: 10.h),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    MyLocalizations.of(context)!.forgotPassword,
                     style: TextStyle(
-                      color: AppColors.primary900,
-                      fontWeight: FontWeight.w500,
+                      color: Colors.black.withValues(alpha:0.5),
                       fontSize: 14,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 24.h),
-            StoreFloatingButton(
-              text: "Login",
-              arrow: false,
-              color: getBackgroundColor(),
-              callback: () {
-                context.read<LoginBloc>().add(LoginLoad());
-                if (formKey.currentState!.validate()) {
-                  context.read<LoginBloc>().add(LoginLoad());
-                  context.go(Routes.home);
-                }
-              },
-            ),
-            SizedBox(height: 34.h),
-            Row(
-              children: [
-                Divider(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0),
-                  child: Text(
-                    MyLocalizations.of(context)!.or,
-                    style: TextStyle(
-                      color: AppColors.primary500,
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-                Divider(),
-              ],
-            ),
-            SizedBox(height: 24.h),
-            StoreSignUpContainer(
-              color: Colors.white,
-              title: MyLocalizations.of(context)!.loginWithGoogle,
-              svg: "assets/icons/google_logo.svg",
-              fontColor: Colors.black,
-            ),
-            SizedBox(height: 16.h),
-            StoreSignUpContainer(
-              color: AppColors.darkBlue,
-              title: MyLocalizations.of(context)!.loginWithFacebook,
-              svg: "assets/icons/facebook_logo.svg",
-              fontColor: Colors.white,
-            ),
-            SizedBox(height: 32.h),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  text: MyLocalizations.of(context)!
-                      .doNotHaveAccount,
-                  style: TextStyle(
-                    color: AppColors.primary500,
-                    fontSize: 16,
-                  ),
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: " ${MyLocalizations.of(context)!.join}",
+                  GestureDetector(
+                    onTap: () {
+                      context.push(Routes.forgotPassword);
+                    },
+                    child: Text(
+                      MyLocalizations.of(context)!.resetPassword,
                       style: TextStyle(
                         color: AppColors.primary900,
-                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 14,
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          context.go(Routes.signUp);
-                        },
                     ),
-                  ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 24.h),
+              StoreFloatingButton(
+                text: "Login",
+                arrow: false,
+                color: getBackgroundColor(),
+                callback: () {
+                  // context.read<LoginBloc>().add(LoginLoad());
+                  final formState = formKey.currentState;
+                  if (formState != null && formState.validate()) {
+                    context.read<LoginBloc>().add(LoginLoad());
+                    context.go(Routes.home);
+                  }
+                },
+              ),
+              SizedBox(height: 34.h),
+              Row(
+                children: [
+                  Divider(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0),
+                    child: Text(
+                      MyLocalizations.of(context)!.or,
+                      style: TextStyle(
+                        color: AppColors.primary500,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                ],
+              ),
+              SizedBox(height: 24.h),
+              StoreSignUpContainer(
+                color: Colors.white,
+                title: MyLocalizations.of(context)!.loginWithGoogle,
+                svg: "assets/icons/google_logo.svg",
+                fontColor: Colors.black,
+              ),
+              SizedBox(height: 16.h),
+              StoreSignUpContainer(
+                color: AppColors.darkBlue,
+                title: MyLocalizations.of(context)!.loginWithFacebook,
+                svg: "assets/icons/facebook_logo.svg",
+                fontColor: Colors.white,
+              ),
+              SizedBox(height: 32.h),
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    text: MyLocalizations.of(context)!
+                        .doNotHaveAccount,
+                    style: TextStyle(
+                      color: AppColors.primary500,
+                      fontSize: 16,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: " ${MyLocalizations.of(context)!.join}",
+                        style: TextStyle(
+                          color: AppColors.primary900,
+                          fontSize: 15,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            context.go(Routes.signUp);
+                          },
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 24.h),
-          ],
+              SizedBox(height: 24.h),
+            ],
+          ),
         ),
       ),
     ),

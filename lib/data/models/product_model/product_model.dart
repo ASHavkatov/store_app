@@ -49,7 +49,7 @@ class ProductModel {
 
 class ProductModelAdapter extends TypeAdapter<ProductModel> {
   @override
-  int get typeId => 7;
+  int get typeId => 1;
 
   @override
   ProductModel read(BinaryReader reader) {
