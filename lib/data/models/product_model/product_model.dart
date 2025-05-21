@@ -1,3 +1,4 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 
 class ProductModel {
@@ -65,11 +66,11 @@ class ProductModelAdapter extends TypeAdapter<ProductModel> {
 
   @override
   void write(BinaryWriter writer, ProductModel obj) {
-    writer.write(obj.id);
-    writer.write(obj.title);
-    writer.write(obj.price);
-    writer.write(obj.image);
-    writer.write(obj.discount);
-    writer.write(obj.isLiked);
+    writer.writeInt(obj.id);
+    writer.writeString(obj.title);
+    writer.writeDouble(obj.price.toDouble());
+    writer.writeString(obj.image);
+    writer.writeDouble(obj.discount.toDouble());
+    writer.writeBool(obj.isLiked);
   }
 }
