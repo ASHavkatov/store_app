@@ -133,7 +133,7 @@ class ApiClient {
     if (response.statusCode == 200) {
       return response.data;
     } else {
-      throw Exception("/products/detail${id} Olib kelishda hatolik bor");
+      throw Exception("/products/detail$id Olib kelishda hatolik bor");
     }
   }
 

@@ -5,7 +5,8 @@ import 'package:store_app/features/home/managers/home_event.dart';
 import 'package:store_app/features/home/managers/home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final ProductRepository _productRepo;
+  final
+  ProductRepository _productRepo;
   final SizeRepository _sizeRepository;
 
   HomeBloc({required ProductRepository productRepo, required SizeRepository sizeRepo})
