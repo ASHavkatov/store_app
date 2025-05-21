@@ -1,28 +1,14 @@
-import 'package:equatable/equatable.dart';
-import 'package:store_app/data/models/product_model/product_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:store_app/data/models/my_orders_model/my_order_model.dart';
+part 'my_order_state.freezed.dart';
 
 enum MyOrderStatus { idle, loading, error, success }
 
-class MyOrderState extends Equatable {
-  MyOrderState({required this.status, required this.products});
+@freezed
+abstract class MyOrderState with _$MyOrderState {
+  const factory MyOrderState({required MyOrderStatus? status, required List<MyOrderModel> model}) = _MyOrderState;
 
-  final MyOrderStatus? status;
-  final List<ProductModel>? products;
-
-  factory MyOrderState.initial() {
-    return MyOrderState(status: MyOrderStatus.loading, products: []);
+  factory MyOrderState.initial(){
+    return MyOrderState(status: MyOrderStatus.loading, model: []);
   }
-
-  MyOrderState copyWith({
-    MyOrderStatus? status,
-    List<ProductModel>? products,
-  }) {
-    return MyOrderState(
-      status: status ?? this.status,
-      products: products ?? this.products,
-    );
-  }
-
-  @override
-  List<Object?> get props => [status, products];
 }
