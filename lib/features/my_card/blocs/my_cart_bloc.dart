@@ -9,7 +9,7 @@ class MyCartBloc extends Bloc<MyCartEvent, MyCartState> {
   MyCartBloc({required ProductRepository repo})
     : _repo = repo,
       super(MyCartState.initial()) {
-    on<MyCartLoading>(_onLoad);
+    // on<MyCartLoading>(_onLoad);
     add(MyCartLoading());
   }
 

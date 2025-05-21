@@ -17,6 +17,7 @@ class ProductRepositoryLocal implements IProductRepository {
     double? maxPrice,
     String? orderBy,
   }) async {
+    final values = box.values.toList();
     return box.values.toList();
   }
 @override

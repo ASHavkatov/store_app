@@ -9,8 +9,6 @@ import 'package:store_app/data/repositories/products/product_repository_interfac
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
 
-  final Box<ProductModel> box = Hive.box<ProductModel>("products");
-  final Box<CategoryModel> boxCategories = Hive.box<CategoryModel>("categories",);
   final ApiClient client;
 
   Future<DetailModel> fetchDetail(int id) async {
@@ -27,6 +25,8 @@ class ProductRepositoryRemote implements IProductRepository {
     double? maxPrice,
     String? orderBy,
   }) async {
+    final Box<ProductModel> box = Hive.box<ProductModel>("products");
+
     final rawProduct = await client.fetchProduct(
       queryParams: {
         "Title": title,
@@ -37,22 +37,20 @@ class ProductRepositoryRemote implements IProductRepository {
         "OrderBy": orderBy,
       },
     );
-    final products =
-        rawProduct
-            .map<ProductModel>((json) => ProductModel.fromJson(json))
-            .toList();
-    box.clear();
-    box.addAll(products);
-    box.compact();
+    final products = rawProduct.map<ProductModel>((json) => ProductModel.fromJson(json)).toList();
+    await box.clear();
+    await box.addAll(products);
+    final values = box.values.toList();
     return products;
   }
-@override
+
+  @override
   Future<List<CategoryModel>> fetchCategories() async {
+    final Box<CategoryModel> boxCategories = Hive.box<CategoryModel>("categories");
     final rawCategories = await client.fetchCategories();
     final categories = rawCategories.map((json) => CategoryModel.fromJson(json)).toList();
-    boxCategories.clear();
-    boxCategories.addAll(categories);
-    box.compact();
+    await boxCategories.clear();
+    await boxCategories.addAll(categories);
     return categories;
   }
 
