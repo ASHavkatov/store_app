@@ -17,12 +17,12 @@ class CategoryModelAdapter extends TypeAdapter<CategoryModel>{
   int get typeId => 2;
  @override
   CategoryModel read(BinaryReader reader) {
- return CategoryModel(id: reader.read(), title: reader.read());
+ return CategoryModel(id: reader.readInt(), title: reader.readString());
   }
 
   @override
   void write(BinaryWriter writer, CategoryModel obj) {
-   writer.write(obj.id);
-   writer.write(obj.title);
+   writer.writeInt(obj.id);
+   writer.writeString(obj.title);
   }
 }

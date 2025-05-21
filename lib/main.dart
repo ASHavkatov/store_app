@@ -22,16 +22,14 @@ void main() async {
   await Firebase.initializeApp(options:  DefaultFirebaseOptions.currentPlatform);
   final dir = await getApplicationCacheDirectory();
   Hive.init(dir.path);
-  await Hive.openBox('recentSearches');
-  final cacheDir = await getApplicationCacheDirectory();
-  Hive.init(cacheDir.path);
   Hive.registerAdapter(ProductModelAdapter());
   Hive.registerAdapter(CategoryModelAdapter());
-
   await Hive.openBox<ProductModel>("products");
   await Hive.openBox<CategoryModel>("categories");
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await Hive.deleteBoxFromDisk('products');
+  // await Hive.deleteBoxFromDisk('categories');
+  await Hive.openBox('recentSearches');
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) {});

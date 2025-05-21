@@ -6,6 +6,7 @@ import 'package:store_app/data/repositories/card_repositories/new_card_repositor
 import 'package:store_app/data/repositories/detail/detail_repository.dart';
 import 'package:store_app/data/repositories/notification/notification_repository.dart';
 import 'package:store_app/data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/products/product_repository_interface.dart';
 import 'package:store_app/data/repositories/saved/saved_repository.dart';
 import 'package:store_app/data/repositories/sizes/size_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
@@ -35,13 +36,15 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => DetailRepository(client: context.read())),
   Provider(create: (context) => SizeRepository(client: context.read())),
   Provider(create: (context) => ProductRepositoryLocal()),
-  Provider(create: (context) => ProductRepositoryRemote(client: context.read())),
   Provider(
+    create: (context) => ProductRepositoryRemote(client: context.read()),
+  ),
+  Provider<IProductRepository>(
     create:
         (context) => ProductRepository(
-          client: context.read<ApiClient>(),
-          remoteRepo: context.read<ProductRepositoryRemote>(),
-          localRepo: context.read<ProductRepositoryLocal>(),
+          client: context.read(),
+          remoteRepo: context.read(),
+          localRepo: context.read(),
         ),
   ),
   Provider(create: (context) => ReviewsRepository(client: context.read())),
