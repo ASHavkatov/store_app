@@ -227,4 +227,13 @@ class ApiClient {
       throw Exception("/reviews/list error");
     }
   }
+
+  Future<List<dynamic>> fetchMyOrders()async{
+    final response = await dio.get("/orders/list");
+    if(response.statusCode == 200){
+      return response.data;
+    }else{
+      throw Exception("My Order list error");
+    }
+  }
 }
