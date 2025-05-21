@@ -2,9 +2,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'my_cart_items_model.g.dart';
 
-
-
-
 @JsonSerializable()
 class MyCartItemsModel {
   final int id;
@@ -27,7 +24,6 @@ class MyCartItemsModel {
   factory MyCartItemsModel.fromJson(Map<String, dynamic> json) => _$MyCartItemsModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$MyCartItemsModelToJson(this);
-
 }
 
 /*
@@ -43,10 +39,8 @@ class MyCartItemsModel {
   ]
   */
 
-
-class MyCartItemsModelConverter
-    implements JsonConverter<List<MyCartItemsModel>, List<dynamic>> {
- const MyCartItemsModelConverter();
+class MyCartItemsModelConverter implements JsonConverter<List<MyCartItemsModel>, List<dynamic>> {
+  const MyCartItemsModelConverter();
 
   @override
   List<MyCartItemsModel> fromJson(List<dynamic> json) {
