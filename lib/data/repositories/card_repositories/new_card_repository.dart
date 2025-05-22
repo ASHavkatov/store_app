@@ -1,5 +1,4 @@
 import 'package:store_app/core/client.dart';
-import 'package:store_app/data/models/card_models/new_card_model.dart';
 
 class NewCardRepository{
   final ApiClient client;
