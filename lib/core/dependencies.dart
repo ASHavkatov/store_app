@@ -25,13 +25,13 @@ import '../data/repositories/products/product_repository_remote.dart';
 import '../data/repositories/review/reviews_repository.dart';
 import '../features/authentication/login/manager/login_view_model.dart';
 import '../features/home/managers/home_bloc.dart';
+import '../features/search/presentation/blocs/search_bloc.dart';
 import 'client.dart';
 import 'l10n/localization_view_model.dart';
 
 List<SingleChildWidget> providers = [
   Provider(create: (context) => ApiClient()),
 
-  // Add these two before ProductRepository
   Provider(create: (context) => ProductRepositoryRemote(client: context.read())),
   Provider(create: (context) => ProductRepositoryLocal()),
 
@@ -41,23 +41,24 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => SizeRepository(client: context.read())),
   Provider(create: (context) => MyOrderRepository(client: context.read())),
   Provider(create: (context) => MyCardRepository(client: context.read())),
-
-  Provider(create: (context) => ProductRepositoryLocal()),
-  Provider(
-    create: (context) => ProductRepositoryRemote(client: context.read()),
-  ),
-  Provider<IProductRepository>(
-    create:
-        (context) => ProductRepository(
-          client: context.read(),
-          remoteRepo: context.read(),
-          localRepo: context.read(),
-        ),
-  ),
   Provider(create: (context) => ReviewsRepository(client: context.read())),
   Provider(create: (context) => NotificationRepository(client: context.read())),
   Provider(create: (context) => NewCardRepository(client: context.read())),
   Provider(create: (context) => CardRepository(client: context.read())),
+
+  Provider<IProductRepository>(
+    create: (context) => ProductRepository(
+      client: context.read(),
+      remoteRepo: context.read(),
+      localRepo: context.read(),
+    ),
+  ),
+
+  BlocProvider(
+    create: (context) => SearchBloc(
+      productRepository: context.read(),
+    ),
+  ),
 
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
   ChangeNotifierProvider(
@@ -69,13 +70,14 @@ List<SingleChildWidget> providers = [
 
   BlocProvider(create: (context) => LoginBloc(repo: context.read())),
   BlocProvider(
-    create:
-        (context) =>
-            HomeBloc(productRepo: context.read(), sizeRepo: context.read()),
+    create: (context) => HomeBloc(
+      productRepo: context.read(),
+      sizeRepo: context.read(),
+    ),
   ),
   BlocProvider(create: (context) => MyCartBloc(repo: context.read())),
   BlocProvider(create: (context) => NewCardBloc(repo: context.read())),
   BlocProvider(create: (context) => CardBloc(repo: context.read())),
   BlocProvider(create: (context) => MyOrderBloc(repo: context.read())),
-  BlocProvider(create: (context) => SavedBloc(repo: context.read()))
+  BlocProvider(create: (context) => SavedBloc(repo: context.read())),
 ];
