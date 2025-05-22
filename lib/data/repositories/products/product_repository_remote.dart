@@ -9,6 +9,8 @@ import 'package:store_app/data/repositories/products/product_repository_interfac
 class ProductRepositoryRemote implements IProductRepository {
   ProductRepositoryRemote({required this.client});
 
+  final Box<ProductModel> box = Hive.box<ProductModel>("products");
+  final Box<CategoryModel> boxCategories = Hive.box<CategoryModel>("categories",);
   final ApiClient client;
 
   Future<DetailModel> fetchDetail(int id) async {

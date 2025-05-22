@@ -67,7 +67,9 @@
               child: MainContainer(
                 svg: 'assets/icons/card.svg',
                 title: "Payment Method",
-                onTap: () {},
+                onTap: () {
+                  context.push(Routes.newCard);
+                },
               ),
             ),
             Padding(

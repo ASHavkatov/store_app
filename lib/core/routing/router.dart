@@ -164,7 +164,7 @@ GoRouter router = GoRouter(
       path: Routes.search,
       builder:
           (context, state) =>
-              BlocProvider(create: (context) => SearchBloc(productRepo: context.read()), child: SearchView()),
+              BlocProvider(create: (context) => SearchBloc(productRepository: context.read()), child: SearchView()),
     ),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),
