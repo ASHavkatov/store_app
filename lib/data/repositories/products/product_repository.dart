@@ -8,11 +8,7 @@ import 'package:store_app/data/repositories/products/product_repository_local.da
 import 'package:store_app/data/repositories/products/product_repository_remote.dart';
 
 class ProductRepository implements IProductRepository {
-  ProductRepository( {
-    required this.remoteRepo,
-    required this.localRepo,
-    required this.client,
-  });
+  ProductRepository({required this.remoteRepo, required this.localRepo, required this.client});
 
   final ProductRepositoryRemote remoteRepo;
   final ProductRepositoryLocal localRepo;
@@ -33,9 +29,7 @@ class ProductRepository implements IProductRepository {
     String? orderBy,
   }) async {
     final isConnect = await Connectivity().checkConnectivity();
-    final isOnline =
-        isConnect.contains(ConnectivityResult.mobile) ||
-            isConnect.contains(ConnectivityResult.wifi);
+    final isOnline = isConnect.contains(ConnectivityResult.mobile) || isConnect.contains(ConnectivityResult.wifi);
     if (isOnline) {
       return await remoteRepo.fetchProduct(
         title: title,
@@ -59,14 +53,30 @@ class ProductRepository implements IProductRepository {
 
   Future<List<CategoryModel>> fetchCategories() async {
     final isConnect = await Connectivity().checkConnectivity();
-    final isOnline =
-        isConnect.contains(ConnectivityResult.mobile) ||
-            isConnect.contains(ConnectivityResult.wifi);
-    if(isOnline){
+    final isOnline = isConnect.contains(ConnectivityResult.mobile) || isConnect.contains(ConnectivityResult.wifi);
+    if (isOnline) {
       return await remoteRepo.fetchCategories();
-    }else{
+    } else {
       return await localRepo.fetchCategories();
     }
   }
 
+  Future<bool> fetchIsLike(int id) async {
+    try {
+      final isLiked = await client.fetchIsLike(id);
+      return isLiked;
+    } catch (e) {
+      print('LikeRepository.fetchIsLike error: $e');
+      return false;
+    }
+  }
+  Future<bool>fetchUnLike(int id)async{
+    try{
+      final unLiked = await client.fetchUnLike(id);
+      return unLiked;
+    }catch(e){
+      print("Unlike qilishda hatolik $e");
+      return false;
+    }
+  }
 }
