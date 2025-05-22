@@ -2,10 +2,10 @@ import 'package:hive/hive.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/my_orders_model/my_order_model.dart';
 
-class MyOrderRepositoryRemote {
+class MyOrderRepository {
   final ApiClient client;
 
-  MyOrderRepositoryRemote({required this.client});
+  MyOrderRepository({required this.client});
 
   Future<List<MyOrderModel>> fetchMyOrders() async {
     final rawOrders = await client.fetchMyOrders();

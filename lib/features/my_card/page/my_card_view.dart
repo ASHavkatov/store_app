@@ -8,7 +8,6 @@ import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_state.dart';
 import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_button.dart';
-
 import '../../checkout/widgets/order_summery.dart';
 import '../blocs/my_cart_bloc.dart';
 import '../widgets/my_cart_container.dart';
