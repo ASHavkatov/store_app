@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:store_app/core/routing/routes.dart';
-import 'package:store_app/data/repositories/products/product_repository.dart';
-import 'package:store_app/data/repositories/products/product_repository_interface.dart';
-import 'package:store_app/data/repositories/products/product_repository_local.dart';
 import 'package:store_app/features/account/pages/account_view.dart';
 import 'package:store_app/features/address/blocs/new_address_bloc.dart';
 import 'package:store_app/features/address/pages/address_view.dart';
@@ -33,7 +30,6 @@ import 'package:store_app/features/product_detail/presentation/pages/product_det
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
-import 'package:store_app/main.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -52,6 +48,7 @@ import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
   initialLocation: Routes.login,
+
   routes: [
     GoRoute(path: Routes.onBoarding, builder: (context, state) => OnboardingView()),
     GoRoute(

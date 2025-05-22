@@ -5,7 +5,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:store_app/features/home/managers/home_bloc.dart';
 import 'package:store_app/features/home/managers/home_state.dart';
+import 'package:store_app/features/saved/blocs/saved_bloc.dart';
+import 'package:store_app/features/saved/blocs/saved_state.dart';
 import '../../../../data/models/product_model/product_model.dart';
+import '../../../saved/blocs/saved_event.dart';
 import '../../managers/home_event.dart';
 
 class HomeItem extends StatefulWidget {
@@ -85,6 +88,8 @@ class _HomeItemState extends State<HomeItem> {
         const SizedBox(height: 8),
         Text(
           product.title,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
           style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,

@@ -17,6 +17,7 @@ import 'package:store_app/features/cards/blocs/card_bloc.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_bloc.dart';
 import 'package:store_app/features/my_order/blocs/my_order_bloc.dart';
 import 'package:store_app/features/new_card/blocs/new_card_bloc.dart';
+import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../data/repositories/products/product_repository_local.dart';
@@ -71,5 +72,5 @@ List<SingleChildWidget> providers = [
   BlocProvider(create: (context) => NewCardBloc(repo: context.read())),
   BlocProvider(create: (context) => CardBloc(repo: context.read())),
   BlocProvider(create: (context) => MyOrderBloc(repo: context.read())),
-
+  BlocProvider(create: (context) => SavedBloc(repo: context.read()))
 ];
