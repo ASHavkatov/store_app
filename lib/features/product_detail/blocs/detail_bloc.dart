@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:store_app/data/repositories/detail/detail_repository.dart';
-import 'package:store_app/data/repositories/products/product_repository.dart';
 import 'package:store_app/features/product_detail/blocs/detail_event.dart';
 import 'package:store_app/features/product_detail/blocs/detail_state.dart';
 

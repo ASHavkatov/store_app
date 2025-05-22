@@ -3,7 +3,7 @@ import 'package:store_app/data/models/card_models/new_card_model.dart';
 
 part 'new_card_state.freezed.dart';
 
-enum NewCardStatus { error, loading, idle }
+enum NewCardStatus { error, success, idle }
 
 @freezed
 abstract class NewCardState with _$NewCardState {
@@ -13,6 +13,6 @@ abstract class NewCardState with _$NewCardState {
   }) = _NewCardState;
 
   factory NewCardState.initial() {
-    return NewCardState(status: NewCardStatus.loading, model: null);
+    return NewCardState(status: NewCardStatus.success, model: null);
   }
 }
