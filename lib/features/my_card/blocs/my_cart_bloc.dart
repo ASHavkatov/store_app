@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:store_app/data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/my_card_repository/my_card_repository.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_event.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_state.dart';
 
 class MyCartBloc extends Bloc<MyCartEvent, MyCartState> {
-  final ProductRepository _repo;
+  final MyCardRepository _repo;
 
-  MyCartBloc({required ProductRepository repo})
+  MyCartBloc({required MyCardRepository repo})
     : _repo = repo,
       super(MyCartState.initial()) {
     on<MyCartLoading>(_onLoad);

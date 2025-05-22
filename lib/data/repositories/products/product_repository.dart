@@ -14,10 +14,7 @@ class ProductRepository implements IProductRepository {
   final ProductRepositoryLocal localRepo;
   final ApiClient client;
 
-  Future<MyCartModel> fetchMyCart() async {
-    final rawCart = await client.fetchMyCard();
-    return MyCartModel.fromJson(rawCart);
-  }
+
 
   @override
   Future<List<ProductModel>> fetchProduct({

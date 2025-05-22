@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$MyOrderState {
 
- MyOrderStatus? get status; List<MyOrderModel> get model;
+ MyOrderStatus get status; List<MyOrderModel> get model;
 /// Create a copy of MyOrderState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -46,7 +46,7 @@ abstract mixin class $MyOrderStateCopyWith<$Res>  {
   factory $MyOrderStateCopyWith(MyOrderState value, $Res Function(MyOrderState) _then) = _$MyOrderStateCopyWithImpl;
 @useResult
 $Res call({
- MyOrderStatus? status, List<MyOrderModel> model
+ MyOrderStatus status, List<MyOrderModel> model
 });
 
 
@@ -63,10 +63,10 @@ class _$MyOrderStateCopyWithImpl<$Res>
 
 /// Create a copy of MyOrderState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = freezed,Object? model = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? model = null,}) {
   return _then(_self.copyWith(
-status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as MyOrderStatus?,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as MyOrderStatus,model: null == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
 as List<MyOrderModel>,
   ));
 }
@@ -81,7 +81,7 @@ class _MyOrderState implements MyOrderState {
   const _MyOrderState({required this.status, required final  List<MyOrderModel> model}): _model = model;
   
 
-@override final  MyOrderStatus? status;
+@override final  MyOrderStatus status;
  final  List<MyOrderModel> _model;
 @override List<MyOrderModel> get model {
   if (_model is EqualUnmodifiableListView) return _model;
@@ -120,7 +120,7 @@ abstract mixin class _$MyOrderStateCopyWith<$Res> implements $MyOrderStateCopyWi
   factory _$MyOrderStateCopyWith(_MyOrderState value, $Res Function(_MyOrderState) _then) = __$MyOrderStateCopyWithImpl;
 @override @useResult
 $Res call({
- MyOrderStatus? status, List<MyOrderModel> model
+ MyOrderStatus status, List<MyOrderModel> model
 });
 
 
@@ -137,10 +137,10 @@ class __$MyOrderStateCopyWithImpl<$Res>
 
 /// Create a copy of MyOrderState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = freezed,Object? model = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? model = null,}) {
   return _then(_MyOrderState(
-status: freezed == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as MyOrderStatus?,model: null == model ? _self._model : model // ignore: cast_nullable_to_non_nullable
+status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
+as MyOrderStatus,model: null == model ? _self._model : model // ignore: cast_nullable_to_non_nullable
 as List<MyOrderModel>,
   ));
 }

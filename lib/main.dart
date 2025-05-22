@@ -26,9 +26,6 @@ void main() async {
   Hive.registerAdapter(CategoryModelAdapter());
   await Hive.openBox<ProductModel>("products");
   await Hive.openBox<CategoryModel>("categories");
-
-  // await Hive.deleteBoxFromDisk('products');
-  // await Hive.deleteBoxFromDisk('categories');
   await Hive.openBox('recentSearches');
   final fcmToken = await FirebaseMessaging.instance.getToken();
 

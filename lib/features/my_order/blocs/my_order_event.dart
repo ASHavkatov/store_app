@@ -1,3 +1,3 @@
 sealed class MyOrderEvent{}
 
-final class MyOrderLoad{}
+final class MyOrderLoad extends MyOrderEvent{}

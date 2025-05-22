@@ -10,7 +10,7 @@ class MyOrderModel {
   final String size;
   final int price;
   final String status;
-  final num rating;
+  final num? rating;
 
   MyOrderModel({
     required this.id,
@@ -19,7 +19,7 @@ class MyOrderModel {
     required this.size,
     required this.price,
     required this.status,
-    required this.rating,
+    this.rating,
   });
 
   factory MyOrderModel.fromJson(Map<String,dynamic> json)=> _$MyOrderModelFromJson(json);
