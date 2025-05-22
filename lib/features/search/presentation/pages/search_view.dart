@@ -32,6 +32,7 @@ class _SearchViewState extends State<SearchView> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     String text = "";
     return Scaffold(
       appBar: StoreAppAppBar(title: "Search"),
@@ -50,6 +51,7 @@ class _SearchViewState extends State<SearchView> {
                       text = text2;
                       context.read<SearchBloc>().add(SearchLoad(title: text2));
                     },
+                    controller: controller,
                   ),
                   SizedBox(height: 16.h),
                 ],
@@ -69,9 +71,7 @@ class _SearchViewState extends State<SearchView> {
                             CheckoutTitle(title: "Recently Searched"),
                             GestureDetector(
                               onTap: () {
-                                context.read<SearchBloc>().add(
-                                  ClearAllSearches(),
-                                );
+                                context.read<SearchBloc>().add(ClearAllSearches());
                               },
                               child: Text(
                                 "Clear all",
@@ -86,10 +86,7 @@ class _SearchViewState extends State<SearchView> {
                           ],
                         ),
                         if (state.recentSearches.isEmpty) ...[
-                          Text(
-                            "No recent searches",
-                            style: TextStyle(fontSize: 14),
-                          ),
+                          Text("No recent searches", style: TextStyle(fontSize: 14)),
                         ] else ...[
                           ListView.builder(
                             shrinkWrap: true,
@@ -97,15 +94,24 @@ class _SearchViewState extends State<SearchView> {
                             itemCount: state.recentSearches.length,
                             itemBuilder: (context, index) {
                               return Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    state.recentSearches[index],
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      fontFamily: "GeneralSans",
+                                  GestureDetector(
+                                    onTap: () {
+                                      controller.value = TextEditingValue(
+                                        text: state.recentSearches[index],
+                                        selection: TextSelection.collapsed(
+                                          offset: state.recentSearches[index].length,
+                                        ),
+                                      );
+                                    },
+                                    child: Text(
+                                      state.recentSearches[index],
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        fontFamily: "GeneralSans",
+                                      ),
                                     ),
                                   ),
                                   StoreIconButton(
@@ -113,11 +119,7 @@ class _SearchViewState extends State<SearchView> {
                                     width: 24,
                                     height: 24,
                                     callback: () {
-                                      context.read<SearchBloc>().add(
-                                        DeleteText(
-                                          state.recentSearches[index] as int,
-                                        ),
-                                      );
+                                      context.read<SearchBloc>().add(DeleteText(index));
                                     },
                                   ),
                                 ],
@@ -155,32 +157,25 @@ class _SearchViewState extends State<SearchView> {
                         height: 600.h,
                         child: ListView.builder(
                           itemCount: state.products.length,
-                          itemBuilder:
-                              (context, index) => Column(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      context.push(
-                                        Routes.getDetail(
-                                          state.products[index].id,
-                                        ),
-                                      );
-                                      context.read<SearchBloc>().add(
-                                        AddRecentSearch(text),
-                                      );
-                                    },
-                                    child: SearchItem(
-                                      image: state.products[index].image,
-                                      title: state.products[index].title,
-                                      discount: state.products[index].discount,
-                                      price: state.products[index].price,
-                                    ),
-                                  ),
-                                  SizedBox(height: 20.h),
-                                  Divider(color: Colors.grey),
-                                  SizedBox(height: 20.h),
-                                ],
+                          itemBuilder: (context, index) => Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  context.push(Routes.getDetail(state.products[index].id));
+                                  context.read<SearchBloc>().add(AddRecentSearch(text));
+                                },
+                                child: SearchItem(
+                                  image: state.products[index].image,
+                                  title: state.products[index].title,
+                                  discount: state.products[index].discount,
+                                  price: state.products[index].price,
+                                ),
                               ),
+                              SizedBox(height: 20.h),
+                              Divider(color: Colors.grey),
+                              SizedBox(height: 20.h),
+                            ],
+                          ),
                         ),
                       ),
                     );

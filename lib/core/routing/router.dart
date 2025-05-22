@@ -30,6 +30,7 @@ import 'package:store_app/features/product_detail/presentation/pages/product_det
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
+import 'package:store_app/main.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -47,6 +48,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
+  navigatorKey: navigatorKey,
   initialLocation: Routes.login,
 
   routes: [

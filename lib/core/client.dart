@@ -7,7 +7,6 @@ class ApiClient {
   final Dio dio = Dio(
     BaseOptions(
       baseUrl: "http://192.168.10.219:8888/api/v1",
-      validateStatus: (status) => true,
     ),
   )..interceptors.add(AuthInterceptor());
 

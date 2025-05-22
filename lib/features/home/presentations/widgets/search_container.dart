@@ -8,22 +8,24 @@ import 'package:store_app/core/utils/colors.dart';
 
 class SearchContainer extends StatefulWidget {
   final void Function(String)? onTextChanged;
+  final TextEditingController? controller;
 
-  const SearchContainer({super.key, this.onTextChanged});
+  const SearchContainer({super.key, this.onTextChanged, this.controller});
 
   @override
   State<SearchContainer> createState() => _SearchContainerState();
 }
 
 class _SearchContainerState extends State<SearchContainer> {
+  late final TextEditingController _controller;
   late stt.SpeechToText _speech;
   bool _isListening = false;
-  final TextEditingController _controller = TextEditingController();
   Timer? _debounce;
 
   @override
   void initState() {
     super.initState();
+    _controller = widget.controller ?? TextEditingController();
     _speech = stt.SpeechToText();
 
     _controller.addListener(() {
@@ -40,47 +42,47 @@ class _SearchContainerState extends State<SearchContainer> {
   @override
   void dispose() {
     _debounce?.cancel();
-    _controller.dispose();
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
   Future<void> requestMicrophonePermission() async {
     final status = await Permission.microphone.request();
-    if (status.isGranted) {
-      print('Microphone permission granted');
-    } else if (status.isDenied) {
-      print('Microphone permission denied');
+    if (status.isGranted) return;
+    if (status.isDenied) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Microphone permission is denied')),
       );
     } else if (status.isPermanentlyDenied) {
-      print('Microphone permission is permanently denied');
       openAppSettings();
     }
   }
 
   void _startListening() async {
     bool available = await _speech.initialize();
-    if (available) {
-      setState(() => _isListening = true);
-      _speech.listen(
-        onResult: (val) {
-          setState(() {
-            _controller.text = val.recognizedWords;
-            _controller.selection = TextSelection.fromPosition(
-              TextPosition(offset: _controller.text.length),
-            );
-          });
-        },
-        listenFor: const Duration(seconds: 30),
-        pauseFor: const Duration(seconds: 5),
-        partialResults: true,
-      );
-    } else {
+    if (!available) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Speech recognition is not available")),
       );
+      return;
     }
+
+    setState(() => _isListening = true);
+    _speech.listen(
+      onResult: (val) {
+        setState(() {
+          _controller.text = val.recognizedWords;
+          _controller.selection = TextSelection.fromPosition(
+            TextPosition(offset: _controller.text.length),
+          );
+        });
+      },
+      listenFor: const Duration(seconds: 30),
+      pauseFor: const Duration(seconds: 5),
+      partialResults: true,
+    );
   }
 
   void _stopListening() {
@@ -102,16 +104,10 @@ class _SearchContainerState extends State<SearchContainer> {
       height: 52.h,
       child: TextFormField(
         controller: _controller,
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 16.sp,
-        ),
+        style: TextStyle(color: Colors.black, fontSize: 16.sp),
         decoration: InputDecoration(
           hintText: "Search for clothes...",
-          hintStyle: TextStyle(
-            color: AppColors.primary400,
-            fontSize: 14.sp,
-          ),
+          hintStyle: TextStyle(color: AppColors.primary400, fontSize: 14.sp),
           filled: true,
           fillColor: Colors.white,
           prefixIcon: Padding(
@@ -147,17 +143,11 @@ class _SearchContainerState extends State<SearchContainer> {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
-            borderSide: const BorderSide(
-              color: Colors.black12,
-              width: 2,
-            ),
+            borderSide: const BorderSide(color: Colors.black12, width: 2),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12.r),
-            borderSide: const BorderSide(
-              color: Colors.black26,
-              width: 2,
-            ),
+            borderSide: const BorderSide(color: Colors.black26, width: 2),
           ),
         ),
       ),
