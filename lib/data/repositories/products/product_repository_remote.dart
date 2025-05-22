@@ -65,4 +65,26 @@ class ProductRepositoryRemote implements IProductRepository {
     final rawSizesList = await client.fetchSizesList();
     return rawSizesList.map((json) => SizesModel.fromJson(json)).toList();
   }
+
+  @override
+  Future<bool> fetchIsLike(int id) async {
+    try {
+      final isLiked = await client.fetchIsLike(id);
+      return isLiked;
+    } catch (e) {
+      print('fetchIsLike error: $e');
+      return false;
+    }
+  }
+  @override
+  Future<bool>fetchUnLike(int id)async{
+  try{
+    final unLiked = await client.fetchUnLike(id);
+    return unLiked;
+  }catch(e) {
+    print("fetchUnlike hato");
+    return false;
+  }
+  }
+
 }

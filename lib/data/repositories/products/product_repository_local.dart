@@ -24,4 +24,24 @@ class ProductRepositoryLocal implements IProductRepository {
   Future<List<CategoryModel>> fetchCategories()async{
     return boxCategories.values.toList();
   }
+
+  @override
+  Future<bool> fetchIsLike(int id) async {
+    final product = box.get(id);
+    if (product != null) {
+      return product.isLiked ?? false;
+    } else {
+      return false;
+    }
+  }
+  @override
+  Future<bool>fetchUnLike(int id)async{
+    final product = box.get(id);
+    if(product != null){
+      return product.isLiked ?? true;
+    }else{
+      return false;
+    }
+  }
+
 }

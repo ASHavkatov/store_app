@@ -13,7 +13,7 @@ MyOrderModel _$MyOrderModelFromJson(Map<String, dynamic> json) => MyOrderModel(
   size: json['size'] as String,
   price: (json['price'] as num).toInt(),
   status: json['status'] as String,
-  rating: json['rating'] as num,
+  rating: json['rating'] as num?,
 );
 
 Map<String, dynamic> _$MyOrderModelToJson(MyOrderModel instance) =>

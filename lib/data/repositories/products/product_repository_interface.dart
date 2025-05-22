@@ -14,4 +14,6 @@ abstract interface class IProductRepository {
   });
 
   Future<List<CategoryModel>> fetchCategories();
+  Future<bool> fetchIsLike(int id);
+  Future<bool>fetchUnLike(int id);
 }
