@@ -78,7 +78,8 @@ class MyLocalizationsUz extends MyLocalizations {
   String get fourDigit => '4 tali kodni kiriting';
 
   @override
-  String get fourDigitExample => '(cody.fisher45@example.com) emailingizga borgan 4 talik kodni kiriting';
+  String get fourDigitExample =>
+      '(cody.fisher45@example.com) emailingizga borgan 4 talik kodni kiriting';
 
   @override
   String get emailNorReceived => 'Email yetib kelmadi?';
@@ -90,7 +91,8 @@ class MyLocalizationsUz extends MyLocalizations {
   String get forgotPasswordTitle => 'Parolni unutdingizmi';
 
   @override
-  String get forgotPasswordSubtitle => 'Tasdiqlash jarayoni uchun elektron pochtangizni kiriting. Elektron pochtangizga 4 raqamli kod yuboramiz.';
+  String get forgotPasswordSubtitle =>
+      'Tasdiqlash jarayoni uchun elektron pochtangizni kiriting. Elektron pochtangizga 4 raqamli kod yuboramiz.';
 
   @override
   String get sendCode => 'Kodni Jo\'natish';
@@ -99,7 +101,8 @@ class MyLocalizationsUz extends MyLocalizations {
   String get resetPassword => 'Parolni yangilash';
 
   @override
-  String get resetPasswordSubtitle => 'Hisobingizga kirish va barcha funksiyalarga kirishingiz uchun yangi parolni o\'rnating.';
+  String get resetPasswordSubtitle =>
+      'Hisobingizga kirish va barcha funksiyalarga kirishingiz uchun yangi parolni o\'rnating.';
 
   @override
   String get continues => 'Davom etish';
@@ -108,7 +111,8 @@ class MyLocalizationsUz extends MyLocalizations {
   String get passwordChanged => 'Parol Yangilandi!';
 
   @override
-  String get passwordChangedSubtitle => 'Endi siz hisobingizga kirish uchun yangi parolingizdan foydalanishingiz mumkin.';
+  String get passwordChangedSubtitle =>
+      'Endi siz hisobingizga kirish uchun yangi parolingizdan foydalanishingiz mumkin.';
 
   @override
   String get home => 'Home';

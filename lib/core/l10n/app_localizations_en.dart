@@ -78,7 +78,8 @@ class MyLocalizationsEn extends MyLocalizations {
   String get fourDigit => 'Enter 4 Digit Code';
 
   @override
-  String get fourDigitExample => 'Enter 4 digit code that your receive on your email (cody.fisher45@example.com).';
+  String get fourDigitExample =>
+      'Enter 4 digit code that your receive on your email (cody.fisher45@example.com).';
 
   @override
   String get emailNorReceived => 'Email not received?';
@@ -90,7 +91,8 @@ class MyLocalizationsEn extends MyLocalizations {
   String get forgotPasswordTitle => 'Forgot Password';
 
   @override
-  String get forgotPasswordSubtitle => 'Enter your email for the verification process. We will send 4 digits code to your email.';
+  String get forgotPasswordSubtitle =>
+      'Enter your email for the verification process. We will send 4 digits code to your email.';
 
   @override
   String get sendCode => 'Send Code';
@@ -99,7 +101,8 @@ class MyLocalizationsEn extends MyLocalizations {
   String get resetPassword => 'Reset Password';
 
   @override
-  String get resetPasswordSubtitle => 'Set the new password for your account so you can login and access all the features.';
+  String get resetPasswordSubtitle =>
+      'Set the new password for your account so you can login and access all the features.';
 
   @override
   String get continues => 'Continue';
@@ -108,7 +111,8 @@ class MyLocalizationsEn extends MyLocalizations {
   String get passwordChanged => 'Password Changed!';
 
   @override
-  String get passwordChangedSubtitle => 'Your can now use your new password to login to your account.';
+  String get passwordChangedSubtitle =>
+      'Your can now use your new password to login to your account.';
 
   @override
   String get home => 'Home';
