@@ -46,6 +46,8 @@ dependencies:
   path_provider: ^2.1.5
   hive: ^2.2.3
   cached_network_image: ^3.4.1
+  credit_card_type_detector: ^3.0.0
+  flutter_credit_card: ^4.1.0
 
 
 dev_dependencies:

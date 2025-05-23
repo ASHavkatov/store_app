@@ -8,6 +8,7 @@ import 'package:store_app/features/address/pages/address_view.dart';
 import 'package:store_app/features/address/pages/new_address_view.dart';
 import 'package:store_app/features/authentication/sign_up/blocs/signup_bloc.dart';
 import 'package:store_app/features/authentication/verification/blocs/verification_bloc.dart';
+import 'package:store_app/features/cards/pages/payment_method.dart';
 import 'package:store_app/features/checkout/pages/checkout_view.dart';
 import 'package:store_app/features/faqs/pages/faqs_view.dart';
 import 'package:store_app/features/help_center/pages/help_center_view.dart';
@@ -47,7 +48,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.login,
+  initialLocation: Routes.card,
 
   routes: [
     GoRoute(path: Routes.onBoarding, builder: (context, state) => OnboardingView()),
@@ -196,5 +197,7 @@ GoRouter router = GoRouter(
 
     GoRoute(path: Routes.notificationSettings, builder: (context, state) => NotificationSettingsView()),
     GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
+    GoRoute(path: Routes.card, builder: (context, state) => PaymentMethod()),
+
   ],
 );

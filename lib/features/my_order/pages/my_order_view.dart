@@ -36,7 +36,7 @@ class _MyOrderViewState extends State<MyOrderView> {
       body: BlocBuilder<MyOrderBloc, MyOrderState>(
         builder: (context, state) {
           return switch (state.status) {
-            MyOrderStatus.loading => Center(child: CupertinoActivityIndicator()),
+            MyOrderStatus.loading => Center(child: CircularProgressIndicator()),
             MyOrderStatus.error => Center(child: Text("My Order error")),
             MyOrderStatus.success => Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
