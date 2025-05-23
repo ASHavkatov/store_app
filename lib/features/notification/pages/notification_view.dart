@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:store_app/core/utils/colors.dart';
-import 'package:store_app/data/models/notification_model/notification_model.dart';
 import 'package:store_app/features/checkout/widgets/checkout_title.dart';
 import 'package:store_app/features/common/presentations/store_app_app_bar.dart';
 import 'package:store_app/features/common/presentations/store_bottom_navigation_bar.dart';
