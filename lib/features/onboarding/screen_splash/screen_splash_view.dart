@@ -5,6 +5,8 @@ import 'package:lottie/lottie.dart';
 import 'package:store_app/core/routing/routes.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
