@@ -11,7 +11,7 @@ import '../widgets/my_detail_gender.dart';
 import '../widgets/phone_number.dart';
 
 class MyDetailsView extends StatefulWidget {
-  MyDetailsView({super.key});
+  const MyDetailsView({super.key});
 
   @override
   State<MyDetailsView> createState() => _MyDetailsViewState();

@@ -15,11 +15,3 @@ NotificationModel _$NotificationModelFromJson(Map<String, dynamic> json) =>
       date: DateTime.parse(json['date'] as String),
     );
 
-Map<String, dynamic> _$NotificationModelToJson(NotificationModel instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'icon': instance.icon,
-      'content': instance.content,
-      'date': instance.date.toIso8601String(),
-    };
