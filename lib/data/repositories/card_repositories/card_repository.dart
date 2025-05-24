@@ -11,4 +11,8 @@ class CardRepository {
     final details = rawCard.map((e) => CardModel.fromJson(e)).toList();
     return details;
   }
+  Future<bool> deleteCard(int id)async{
+    final deletedCard = await client.deleteCard(id);
+    return deletedCard;
+  }
 }

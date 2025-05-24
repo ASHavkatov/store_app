@@ -13,8 +13,15 @@ import 'package:store_app/features/onboarding/onboarding/widgets/store_floating_
 import '../blocs/card_bloc.dart';
 import '../blocs/card_state.dart';
 
-class PaymentMethod extends StatelessWidget {
-  const PaymentMethod({super.key});
+class PaymentMethod extends StatefulWidget {
+   PaymentMethod({super.key});
+
+  @override
+  State<PaymentMethod> createState() => _PaymentMethodState();
+}
+
+class _PaymentMethodState extends State<PaymentMethod> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +47,15 @@ class PaymentMethod extends StatelessWidget {
                   ),
                   SizedBox(height: 14.h),
                   SizedBox(
-                    height: 400.h,
+                    height: 200.h,
                     child: ListView.separated(
                       scrollDirection: Axis.vertical,
                       itemCount: state.model!.length,
-                      itemBuilder: (context, index) => CardContainer(index: index),
+                      itemBuilder: (context, index) => CardContainer(index: index,groupValue: selectedIndex,onChanged: (value){
+                        setState(() {
+                          selectedIndex = value!;
+                        });
+                      },),
                       separatorBuilder: (context, index) => SizedBox(height: 10.h),
                     ),
                   ),
