@@ -13,11 +13,14 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.toolbarHeight = 64,
     required this.title,
     this.isTrue = false,
+    this.callback
   });
 
   final double toolbarHeight;
   final String title;
   final bool isTrue;
+
+  final VoidCallback? callback;
 
   @override
   Size get preferredSize => Size(double.infinity, toolbarHeight);
@@ -34,7 +37,10 @@ class StoreAppAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: "assets/icons/back-arrow.svg",
             width: 19.w,
             height: 16.h,
-            callback: () => context.pop(),
+            callback: () {
+              context.pop();
+              callback;
+            }
           ),
         ),
       ),
