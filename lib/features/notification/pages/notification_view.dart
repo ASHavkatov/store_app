@@ -12,7 +12,7 @@ import '../widgets/notification_empty.dart';
 import '../widgets/notification_item.dart';
 
 class NotificationView extends StatelessWidget {
-  NotificationView({super.key});
+  const NotificationView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/utils/colors.dart';
 
 class MyDetailGender extends StatefulWidget {
-  MyDetailGender({super.key});
+  const MyDetailGender({super.key});
 
   @override
   State<MyDetailGender> createState() => _MyDetailGenderState();
