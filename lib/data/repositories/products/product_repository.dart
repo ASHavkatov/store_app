@@ -1,7 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:store_app/core/client.dart';
 import 'package:store_app/data/models/categories/category_model.dart';
-import 'package:store_app/data/models/my_cart_model/my_cart_model.dart';
 import 'package:store_app/data/models/product_model/product_model.dart';
 import 'package:store_app/data/repositories/products/product_repository_interface.dart';
 import 'package:store_app/data/repositories/products/product_repository_local.dart';

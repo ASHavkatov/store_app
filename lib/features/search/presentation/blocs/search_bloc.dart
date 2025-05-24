@@ -1,14 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:store_app/features/search/presentation/blocs/search_event.dart';
 import 'package:store_app/features/search/presentation/blocs/search_state.dart';
-import '../../../../data/repositories/products/product_repository.dart';
+import 'package:store_app/data/repositories/products/product_repository_interface.dart';
 import 'package:hive/hive.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  final ProductRepository _productRepo;
+  final IProductRepository _productRepo;
 
-  SearchBloc({required ProductRepository productRepo})
-      : _productRepo = productRepo,
+  SearchBloc({required IProductRepository productRepository})
+      : _productRepo = productRepository,
         super(SearchState.initial()) {
     on<SearchLoad>(_onLoad);
     on<AddRecentSearch>(_onAddRecentSearch);
@@ -19,7 +19,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _onLoad(SearchLoad event, Emitter<SearchState> emit) async {
     final title = event.title;
-    if (title!.isEmpty) {
+    if (title == null || title.isEmpty) {
       emit(SearchState.initial());
       return;
     }
@@ -40,10 +40,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   Future<void> _onAddRecentSearch(AddRecentSearch event, Emitter<SearchState> emit) async {
     final box = await Hive.openBox<String>('saved');
-    print("dsmdkmfsdmf ${event.search}");
-    await box.put("search", event.search);
+    await box.add(event.search);
     final recentSearches = box.values.toList();
-    print("daslkmrfmsdgmdfgmd $recentSearches");
     emit(state.copyWith(recentSearches: recentSearches));
   }
 

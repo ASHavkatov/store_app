@@ -31,6 +31,7 @@ import 'package:store_app/features/product_detail/presentation/pages/product_det
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
 import 'package:store_app/features/saved/page/saved_view.dart';
 import 'package:store_app/features/search/presentation/pages/search_view.dart';
+import 'package:store_app/main.dart';
 
 import '../../features/authentication/login/pages/login_view.dart';
 import '../../features/authentication/sign_up/page/sign_up_view.dart';
@@ -48,7 +49,9 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.newCard,
+  initialLocation: Routes.card,
+  navigatorKey: navigatorKey,
+  initialLocation: Routes.login,
 
   routes: [
     GoRoute(path: Routes.onBoarding, builder: (context, state) => OnboardingView()),
@@ -165,7 +168,7 @@ GoRouter router = GoRouter(
       path: Routes.search,
       builder:
           (context, state) =>
-              BlocProvider(create: (context) => SearchBloc(productRepo: context.read()), child: SearchView()),
+              BlocProvider(create: (context) => SearchBloc(productRepository: context.read()), child: SearchView()),
     ),
     GoRoute(path: Routes.terms, builder: (context, state) => TermsView()),
     GoRoute(path: Routes.privacy, builder: (context, state) => PrivacyView()),

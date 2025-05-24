@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:store_app/core/routing/routes.dart';
 import 'package:store_app/core/utils/colors.dart';
 import 'package:store_app/features/address/widgets/add_new_address_icon.dart';
 import 'package:store_app/features/address/widgets/address_item.dart';
@@ -24,12 +26,7 @@ class _AddressViewState extends State<AddressView> {
       body: ListView(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         children: [
-          StoreAppText(
-            title: "Saved Address",
-            color: AppColors.primary900,
-            fontWeight: FontWeight.w600,
-            size: 16,
-          ),
+          StoreAppText(title: "Saved Address", color: AppColors.primary900, fontWeight: FontWeight.w600, size: 16),
           SizedBox(height: 10.h),
           AddressItem(
             title: "Home",
@@ -87,17 +84,16 @@ class _AddressViewState extends State<AddressView> {
             },
           ),
           SizedBox(height: 10.h),
-          AddNewAddressIcon(),
+          AddNewAddressIcon(
+            callback: () {
+              context.push(Routes.newAddress);
+            },
+          ),
         ],
       ),
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 35),
-        child: StoreFloatingButton(
-          text: "Apply",
-          arrow: false,
-          callback: () {},
-          color: AppColors.primary900,
-        ),
+        child: StoreFloatingButton(text: "Apply", arrow: false, callback: () {}, color: AppColors.primary900),
       ),
     );
   }
