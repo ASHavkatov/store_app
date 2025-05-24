@@ -58,6 +58,8 @@ class ProductRepository implements IProductRepository {
     }
   }
 
+
+@override
   Future<bool> fetchIsLike(int id) async {
     try {
       final isLiked = await client.fetchIsLike(id);
@@ -67,6 +69,7 @@ class ProductRepository implements IProductRepository {
       return false;
     }
   }
+  @override
   Future<bool>fetchUnLike(int id)async{
     try{
       final unLiked = await client.fetchUnLike(id);

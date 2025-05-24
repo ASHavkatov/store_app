@@ -10,11 +10,17 @@ class CardBloc extends Bloc<CardEvent, CardState> {
     : _repo = repo,
       super(CardState.initial()){
     on<CardLoad>(_onLoad);
+    on<DeleteCardEvent>(_onCardDeleted);
     add(CardLoad());
   }
 
   Future<void>_onLoad(CardEvent event, Emitter<CardState>emit)async{
     final detail = await _repo.fetchCard();
     emit(state.copyWith(model: detail,status: CardStatus.idle));
+  }
+  Future<void> _onCardDeleted(DeleteCardEvent event, Emitter<CardState> emit)async{
+     await _repo.deleteCard(event.id);
+    final detail = await _repo.fetchCard();
+    emit(state.copyWith(model: detail, status: CardStatus.idle));
   }
 }

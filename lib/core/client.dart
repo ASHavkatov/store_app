@@ -236,4 +236,13 @@ class ApiClient {
       throw Exception("My Order list error");
     }
   }
+  Future<bool> deleteCard(int id)async{
+    final response = await dio.delete("/cards/delete/$id");
+    print(response.statusCode);
+    if(response.statusCode == 200){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
