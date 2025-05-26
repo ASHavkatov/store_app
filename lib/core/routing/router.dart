@@ -49,8 +49,8 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.newCard,
   navigatorKey: navigatorKey,
+  initialLocation: Routes.onBoarding,
   routes: [
     GoRoute(path: Routes.onBoarding, builder: (context, state) => OnboardingView()),
     GoRoute(
