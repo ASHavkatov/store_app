@@ -27,12 +27,11 @@ void main() async {
   await Hive.openBox<ProductModel>("products");
   await Hive.openBox<CategoryModel>("categories");
   await Hive.openBox('recentSearches');
+  await Hive.openBox("saved");
   final fcmToken = await FirebaseMessaging.instance.getToken();
 
   FirebaseMessaging.onMessage.listen((RemoteMessage event) {});
   runApp(MyApp());
-  Hive.box('saved').compact();
-  Hive.box('products').compact();
 }
 
 class MyApp extends StatelessWidget {
