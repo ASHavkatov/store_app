@@ -116,7 +116,7 @@ class _CheckoutViewState extends State<CheckoutView>
                   ],
                 ),
                 SizedBox(height: 16.h),
-                if (selectedPaymentIndex == 0) CardPay(onTap: () {}),
+                if (selectedPaymentIndex == 0) CardPay(onTap: () {context.push(Routes.card);}),
                 if (selectedPaymentIndex == 1) CashPay(),
                 SizedBox(height: 20.h),
                 Divider(color: Colors.grey),

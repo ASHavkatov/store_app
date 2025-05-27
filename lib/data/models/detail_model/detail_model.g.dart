@@ -14,10 +14,9 @@ _DetailModel _$DetailModelFromJson(Map<String, dynamic> json) => _DetailModel(
   isLiked: json['isLiked'] as bool,
   reviewsCount: (json['reviewsCount'] as num).toInt(),
   rating: json['rating'] as num,
-  productImage:
-      (json['productImages'] as List<dynamic>)
-          .map((e) => DetailImageModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+  productImage: (json['productImages'] as List<dynamic>)
+      .map((e) => DetailImageModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$DetailModelToJson(_DetailModel instance) =>
