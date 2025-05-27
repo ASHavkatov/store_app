@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$NewCardState {
 
- NewCardStatus get status; NewCardModel? get model;
+ NewCardStatus get status;
 /// Create a copy of NewCardState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -26,16 +26,16 @@ $NewCardStateCopyWith<NewCardState> get copyWith => _$NewCardStateCopyWithImpl<N
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewCardState&&(identical(other.status, status) || other.status == status)&&(identical(other.model, model) || other.model == model));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is NewCardState&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,model);
+int get hashCode => Object.hash(runtimeType,status);
 
 @override
 String toString() {
-  return 'NewCardState(status: $status, model: $model)';
+  return 'NewCardState(status: $status)';
 }
 
 
@@ -46,7 +46,7 @@ abstract mixin class $NewCardStateCopyWith<$Res>  {
   factory $NewCardStateCopyWith(NewCardState value, $Res Function(NewCardState) _then) = _$NewCardStateCopyWithImpl;
 @useResult
 $Res call({
- NewCardStatus status, NewCardModel? model
+ NewCardStatus status
 });
 
 
@@ -63,11 +63,10 @@ class _$NewCardStateCopyWithImpl<$Res>
 
 /// Create a copy of NewCardState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? model = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? status = null,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as NewCardStatus,model: freezed == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
-as NewCardModel?,
+as NewCardStatus,
   ));
 }
 
@@ -78,11 +77,10 @@ as NewCardModel?,
 
 
 class _NewCardState implements NewCardState {
-  const _NewCardState({required this.status, required this.model});
+  const _NewCardState({required this.status});
   
 
 @override final  NewCardStatus status;
-@override final  NewCardModel? model;
 
 /// Create a copy of NewCardState
 /// with the given fields replaced by the non-null parameter values.
@@ -94,16 +92,16 @@ _$NewCardStateCopyWith<_NewCardState> get copyWith => __$NewCardStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewCardState&&(identical(other.status, status) || other.status == status)&&(identical(other.model, model) || other.model == model));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _NewCardState&&(identical(other.status, status) || other.status == status));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,status,model);
+int get hashCode => Object.hash(runtimeType,status);
 
 @override
 String toString() {
-  return 'NewCardState(status: $status, model: $model)';
+  return 'NewCardState(status: $status)';
 }
 
 
@@ -114,7 +112,7 @@ abstract mixin class _$NewCardStateCopyWith<$Res> implements $NewCardStateCopyWi
   factory _$NewCardStateCopyWith(_NewCardState value, $Res Function(_NewCardState) _then) = __$NewCardStateCopyWithImpl;
 @override @useResult
 $Res call({
- NewCardStatus status, NewCardModel? model
+ NewCardStatus status
 });
 
 
@@ -131,11 +129,10 @@ class __$NewCardStateCopyWithImpl<$Res>
 
 /// Create a copy of NewCardState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? model = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? status = null,}) {
   return _then(_NewCardState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as NewCardStatus,model: freezed == model ? _self.model : model // ignore: cast_nullable_to_non_nullable
-as NewCardModel?,
+as NewCardStatus,
   ));
 }
 

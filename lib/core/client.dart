@@ -69,7 +69,6 @@ class ApiClient {
       return false;
     }
   }
-
   Future<List<dynamic>> fetchCard() async {
     var response = await dio.get("/cards/list");
     if (response.statusCode == 200) {
@@ -218,29 +217,6 @@ class ApiClient {
     }
   }
 
-  Future<bool> postNewCard2(String cardNumber, String expiryDate, String securityCode) async {
-    var response = await dio.post(
-      '/cards/create',
-      data: {"cardNumber": cardNumber, "expiryDate": expiryDate, "securityCode": securityCode},
-    );
-    print(response.statusCode);
-    if(response.statusCode == 200){
-      return true;
-    }else{
-      return false;
-    }
-  }
 
-  // Future<bool> postNewCard(String cardNumber, String expiryDate, String securityCode) async {
-  //   var response = await dio.post(
-  //     "/cards/create",
-  //     data: {"cardNumber": cardNumber, "expiryDate": expiryDate, "securityCode": securityCode},
-  //   );
-  //   print(response.statusCode);
-  //   if (response.statusCode == 200) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+
 }
