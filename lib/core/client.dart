@@ -4,6 +4,8 @@ import 'package:store_app/core/interceptor.dart';
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.11.156:8888/api/v1", validateStatus: (status) => true))
+    ..interceptors.add(AuthInterceptor());
   final Dio dio = Dio(
     BaseOptions(
       baseUrl: "http://192.168.9.28:8888/api/v1",
@@ -69,6 +71,7 @@ class ApiClient {
       return false;
     }
   }
+
   Future<List<dynamic>> fetchCard() async {
     var response = await dio.get("/cards/list");
     if (response.statusCode == 200) {
@@ -217,6 +220,29 @@ class ApiClient {
     }
   }
 
+  Future<bool> postNewCard2(String cardNumber, String expiryDate, String securityCode) async {
+    var response = await dio.post(
+      '/cards/create',
+      data: {"cardNumber": cardNumber, "expiryDate": expiryDate, "securityCode": securityCode},
+    );
+    print(response.statusCode);
+    if(response.statusCode == 200){
+      return true;
+    }else{
+      return false;
+    }
+  }
 
-
+  // Future<bool> postNewCard(String cardNumber, String expiryDate, String securityCode) async {
+  //   var response = await dio.post(
+  //     "/cards/create",
+  //     data: {"cardNumber": cardNumber, "expiryDate": expiryDate, "securityCode": securityCode},
+  //   );
+  //   print(response.statusCode);
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

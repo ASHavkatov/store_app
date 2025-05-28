@@ -27,6 +27,8 @@ class Routes{
   static const reviews = '/reviews/:id';
   static const newCard = '/new-card';
   static const card = '/card';
+  static const customerService = '/customer-service';
+
   static String getDetail(int id)=> "/detail/$id";
 
   static String getReviews(int id)=> "/reviews/$id";

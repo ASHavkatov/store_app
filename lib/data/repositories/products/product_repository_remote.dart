@@ -42,7 +42,7 @@ class ProductRepositoryRemote implements IProductRepository {
     final products = rawProduct.map<ProductModel>((json) => ProductModel.fromJson(json)).toList();
     await box.clear();
     await box.addAll(products);
-    final values = box.values.toList();
+    // final values = box.values.toList();
     return products;
   }
 
