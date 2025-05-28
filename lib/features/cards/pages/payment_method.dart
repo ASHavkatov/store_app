@@ -26,7 +26,7 @@ class _PaymentMethodState extends State<PaymentMethod> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: StoreAppAppBar(title: "Payment Method"),
+      appBar: StoreAppAppBar(title: "Payment Method", callback: (){context.go(Routes.checkout);},),
       body: BlocBuilder<CardBloc, CardState>(
         builder: (context, state) {
           return switch (state.status) {
