@@ -4,7 +4,7 @@ import 'package:store_app/core/interceptor.dart';
 import '../data/models/auth_models/auth_model.dart';
 
 class ApiClient {
-  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.0.104:8888/api/v1", validateStatus: (status) => true))
+  final Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.11.156:8888/api/v1", validateStatus: (status) => true))
     ..interceptors.add(AuthInterceptor());
 
   Future<String> login(String login, String password) async {

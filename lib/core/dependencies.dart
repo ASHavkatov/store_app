@@ -14,11 +14,12 @@ import 'package:store_app/data/repositories/sizes/size_repository.dart';
 import 'package:store_app/features/authentication/login/blocs/login_bloc.dart';
 import 'package:store_app/features/authentication/sign_up/manager/sign_up_view_model.dart';
 import 'package:store_app/features/cards/blocs/card_bloc.dart';
+import 'package:store_app/features/customer_service/blocs/customer_service_bloc.dart';
+import 'package:store_app/features/customer_service/pages/customer_service_page.dart';
 import 'package:store_app/features/my_card/blocs/my_cart_bloc.dart';
 import 'package:store_app/features/my_order/blocs/my_order_bloc.dart';
 import 'package:store_app/features/new_card/blocs/new_card_bloc.dart';
 import 'package:store_app/features/saved/blocs/saved_bloc.dart';
-
 import '../data/repositories/auth_repositories_models/auth_repository.dart';
 import '../data/repositories/products/product_repository_local.dart';
 import '../data/repositories/products/product_repository_remote.dart';
@@ -45,39 +46,26 @@ List<SingleChildWidget> providers = [
   Provider(create: (context) => NotificationRepository(client: context.read())),
   Provider(create: (context) => NewCardRepository(client: context.read())),
   Provider(create: (context) => CardRepository(client: context.read())),
-
   Provider<IProductRepository>(
-    create: (context) => ProductRepository(
-      client: context.read(),
-      remoteRepo: context.read(),
-      localRepo: context.read(),
-    ),
+    create: (context) =>
+        ProductRepository(client: context.read(), remoteRepo: context.read(), localRepo: context.read()),
   ),
 
-  BlocProvider(
-    create: (context) => SearchBloc(
-      productRepository: context.read(),
-    ),
-  ),
+  BlocProvider(create: (context) => SearchBloc(productRepository: context.read())),
 
   ChangeNotifierProvider(create: (context) => LocalizationViewModel()),
-  ChangeNotifierProvider(
-    create: (context) => LoginViewModel(repo: context.read()),
-  ),
-  ChangeNotifierProvider(
-    create: (context) => SignUpViewModel(authRepo: context.read()),
-  ),
+  ChangeNotifierProvider(create: (context) => LoginViewModel(repo: context.read())),
+  ChangeNotifierProvider(create: (context) => SignUpViewModel(authRepo: context.read())),
 
   BlocProvider(create: (context) => LoginBloc(repo: context.read())),
   BlocProvider(
-    create: (context) => HomeBloc(
-      productRepo: context.read(),
-      sizeRepo: context.read(),
-    ),
+    create: (context) => HomeBloc(productRepo: context.read(), sizeRepo: context.read()),
   ),
   BlocProvider(create: (context) => MyCartBloc(repo: context.read())),
   BlocProvider(create: (context) => NewCardBloc(repo: context.read())),
   BlocProvider(create: (context) => CardBloc(repo: context.read())),
   BlocProvider(create: (context) => MyOrderBloc(repo: context.read())),
   BlocProvider(create: (context) => SavedBloc(repo: context.read())),
+  BlocProvider(create: (context) => CustomerServiceBloc(), child: CustomerServicePage(),),
+
 ];

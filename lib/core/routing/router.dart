@@ -41,6 +41,7 @@ import '../../features/authentication/terms_and_privacy/terms_view.dart';
 import '../../features/authentication/verification/pages/forgot_password_view.dart';
 import '../../features/authentication/verification/pages/reset_password_view.dart';
 import '../../features/authentication/verification/pages/verification_view.dart';
+import '../../features/customer_service/pages/customer_service_page.dart';
 import '../../features/home/presentations/pages/home_view.dart';
 import '../../features/onboarding/onboarding/pages/onboarding_view.dart';
 import '../../features/review/presentation/blocs/review_bloc.dart';
@@ -49,7 +50,7 @@ import '../../features/review/presentation/pages/reviews_view.dart';
 import '../../features/search/presentation/blocs/search_bloc.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: Routes.newCard,
+  initialLocation: Routes.customerService,
   navigatorKey: navigatorKey,
   routes: [
     GoRoute(path: Routes.onBoarding, builder: (context, state) => OnboardingView()),
@@ -199,6 +200,7 @@ GoRouter router = GoRouter(
     GoRoute(path: Routes.notificationSettings, builder: (context, state) => NotificationSettingsView()),
     GoRoute(path: Routes.faqs, builder: (context, state) => FaqsView()),
     GoRoute(path: Routes.card, builder: (context, state) => PaymentMethod()),
+    GoRoute(path: Routes.customerService, builder: (context, state) => CustomerServicePage()),
 
   ],
 );

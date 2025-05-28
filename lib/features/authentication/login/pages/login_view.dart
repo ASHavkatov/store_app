@@ -149,7 +149,7 @@ class _LoginViewState extends State<LoginView> {
                   final formState = formKey.currentState;
                   if (formState != null && formState.validate()) {
                     context.read<LoginBloc>().add(LoginLoad());
-                    context.go(Routes.home);
+                    context.go(Routes.customerService);
                   }
                 },
               ),
