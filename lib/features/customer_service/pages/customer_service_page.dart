@@ -33,10 +33,11 @@ class _CustomerServicePageState extends State<CustomerServicePage> {
       });
     }
   }
-  Future<void> requestPermission()async{
-    if(await Permission.photos.request().isGranted){
+
+  Future<void> requestPermission() async {
+    if (await Permission.photos.request().isGranted) {
       pickedImage(ImageSource.gallery);
-    }else{
+    } else {
       Permission.photos.isDenied;
     }
   }
@@ -182,8 +183,9 @@ class _CustomerServicePageState extends State<CustomerServicePage> {
                             ),
                             border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
                             suffix: IconButton(
-                              onPressed: () {
-                               requestPermission();
+                              onPressed: (){
+
+
                               },
                               icon: SvgPicture.asset(
                                 "assets/icons/galery.svg",
